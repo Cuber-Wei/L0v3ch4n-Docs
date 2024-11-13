@@ -7,6 +7,16 @@ export const navbar = defineNavbarConfig([
     {text: '归档', link: '/blog/archives/'},
     {
         text: '笔记',
-        items: [{text: '示例', link: '/notes/demo/README.md'}]
+        items: [
+            {text: '语言学习', link: '/notes/language/README.md'},
+            {text: '项目笔记', link: '/notes/project/README.md'},
+        ]
     },
+    {
+        text: '个人项目',
+        items: [
+            {text: 'OJ项目', link: 'http://oj.l0v3ch4n.top'}
+        ]
+    },
+    {text: '友链', link: '/friends/'},
 ])

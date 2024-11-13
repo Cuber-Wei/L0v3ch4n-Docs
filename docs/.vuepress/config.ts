@@ -5,8 +5,8 @@ import {plumeTheme} from 'vuepress-theme-plume'
 export default defineUserConfig({
     base: '/',
     lang: 'zh-CN',
-    title: 'L0v3ch4n Notes',
-    description: 'A note page for l0v3ch4n&#x27;s learning.',
+    title: 'L0v3ch4n',
+    description: 'L0v3ch4n&#x27;s learning records.',
 
     bundler: viteBundler(),
 
