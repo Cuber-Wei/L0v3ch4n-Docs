@@ -10,6 +10,7 @@ export const navbar = defineNavbarConfig([
         items: [
             {text: '语言学习', link: '/notes/language/README.md'},
             {text: '项目笔记', link: '/notes/project/README.md'},
+            {text: '系统笔记', link: '/notes/OS/README.md'},
         ]
     },
     {

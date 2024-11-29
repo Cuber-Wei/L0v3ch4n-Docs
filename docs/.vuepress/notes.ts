@@ -5,12 +5,8 @@ const projectNote = defineNoteConfig({
     link: '/project/',
     sidebar: [
         {
-            text: 'OJ项目',
-            items: [
-                {text: '项目简介', link: '1.OJ-project-profile'},
-                {text: '前端初始化', link: '2.OJ-frontend-init'},
-            ]
-        },
+            items: 'auto'
+        }
     ],
 })
 
@@ -24,11 +20,22 @@ const languageNote = defineNoteConfig({
     ]
 })
 
+const osNote = defineNoteConfig({
+    dir: 'OS',
+    link: '/OS/',
+    sidebar: [
+        {
+            items: 'auto'
+        }
+    ]
+})
+
 export const notes = defineNotesConfig({
     dir: 'notes',
     link: '/',
     notes: [
         projectNote,
-        languageNote
+        languageNote,
+        osNote,
     ],
 })
