@@ -7,6 +7,9 @@ export default defineUserConfig({
     lang: 'zh-CN',
     title: 'L0v3ch4n',
     description: 'L0v3ch4n&#x27;s learning records.',
+    head: [
+        ['link', {rel: 'icon', href: '/L-logo.png'}]
+    ],
 
     bundler: viteBundler(),
 
