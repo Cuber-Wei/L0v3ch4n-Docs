@@ -69,7 +69,7 @@ export default defineUserConfig({
             // comment: {
             //     provider: "Waline", // "Artalk" | "Giscus" | "Twikoo" | "Waline"
             //     comment: true,
-            //     repo: '',
+            //     repo: 'https://github.com/Cuber-Wei/L0v3ch4n-Docs',
             //     repoId: '',
             //     categoryId: '',
             //     mapping: 'pathname',
