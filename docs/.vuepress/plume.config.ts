@@ -44,7 +44,7 @@ export default defineThemeConfig({
     sidebarDepth: 3,
 
     footer: {
-        message: `<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2024137659" target="_blank">正在申请公安备案号</a>&emsp;<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2024137659号-1</a>`,
+        message: `<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33060302001361" target="_blank">浙公网安备33060302001361</a>&emsp;<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2024137659号-1</a>`,
         copyright: 'Copyright © 2024-present L0v3ch4n'
     }
 
