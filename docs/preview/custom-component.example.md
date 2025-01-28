@@ -7,4 +7,4 @@ createTime: 2024/11/13 13:48:34
 permalink: /article/ea91l3ra/
 ---
 
-<CustomComponent />
+<CloudMusicPlayer id="1824454149" auto="1"/>

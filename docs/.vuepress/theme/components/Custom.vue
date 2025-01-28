@@ -6,6 +6,6 @@ const message = ref('Hello World!')
 
 <template>
   <div class="my-custom-content">
-    {{ message }}
+    >>>>>>>>>>>>{{ message }}
   </div>
 </template>

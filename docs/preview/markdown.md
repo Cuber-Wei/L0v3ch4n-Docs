@@ -312,3 +312,17 @@ span {
     也可以由多个段落组成
 
 [^second]: 脚注文字。
+
+:::card title="流程图"
+```flow:
+st=>start: 开始
+cond1=>condition: a>0?
+block1=>operation: 操作1
+block2=>operation: 操作2
+e=>end: 结束
+
+st->cond1
+cond1(yes)->block1->e
+cond1(no)->block2->e
+```
+:::
