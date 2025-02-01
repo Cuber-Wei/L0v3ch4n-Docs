@@ -12,11 +12,11 @@ tags:
 
 > [!note]
 > 在蓝牙模块调用时，采用的是Promise链式调用的形式，因此下文所提供的代码片段均为Promise形式。
-> 
+>
 > <div style="text-align: center">
 >     <img src="/images/项目小记/promise链.png" style="height: 80%; width: 80%;" alt="超绝promise链">
 > </div>
-> 
+>
 > 文章参考：[uni-app官网](https://zh.uniapp.dcloud.io/quickstart-hx.html)、
 > [蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html)、
 > [低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html)
@@ -338,9 +338,11 @@ const stopConnection = () => {
 1. **协议文档写错了**：可能是文档看错了或者硬件那边把协议改了却没有更新文档。
 2. **数据类型不对**：可能是收到的数据没有进行转换，直接在ArrayBuffer上面进行了数据解析操作。
 3. **硬件波特率设置有问题**：可能是硬件那边的波特率设置有问题，导致数据收发不正常。经过~~测试~~踩坑，波特率设置成9600时，
-数据收发正常。
+   数据收发正常。
 
 ### 为什么采用Promise链的形式？
 
 1. **逻辑清晰**：Promise链的形式可以让代码看起来更加清晰，易于理解。
-2. **避免上下文影响**：一些函数的调用会影响到下文，若只是按顺序结构编写逻辑则有可能发生[获取服务](#step5-获取蓝牙设备所有服务)先于[蓝牙连接](#step3-连接蓝牙设备)的情况，导致程序报错。
+2. **避免上下文影响**
+   ：一些函数的调用会影响到下文，若只是按顺序结构编写逻辑则有可能发生[获取服务](#step5-获取蓝牙设备所有服务)
+   先于[蓝牙连接](#step3-连接蓝牙设备)的情况，导致程序报错。

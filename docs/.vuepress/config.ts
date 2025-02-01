@@ -7,6 +7,13 @@ export default defineUserConfig({
     lang: 'zh-CN',
     title: 'L0v3ch4n',
     description: 'L0v3ch4n&#x27;s learning records.',
+    locales: {
+        '/': {
+            lang: 'zh-CN',
+            title: 'L0v3ch4n',
+            description: 'L0v3ch4n&#x27;s learning records.'
+        }
+    },
     head: [
         ['link', {rel: 'icon', href: '/L-logo.png'}]
     ],
@@ -15,7 +22,7 @@ export default defineUserConfig({
 
     theme: plumeTheme({
         // 添加您的部署域名
-        hostname: 'https://l0v3ch4n.top',
+        hostname: 'https://blog.l0v3ch4n.top/',
 
         plugins: {
             /**

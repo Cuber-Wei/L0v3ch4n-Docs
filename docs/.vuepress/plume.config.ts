@@ -8,8 +8,8 @@ import {notes} from './notes'
 export default defineThemeConfig({
     logo: 'https://q.qlogo.cn/headimg_dl?dst_uin=3134210778&spec=640&img_type=jpg',
     // your git repo url
-    docsRepo: 'https://github.com/Cuber-Wei/L0v3ch4n-Docs',
-    docsDir: 'docs',
+    // docsRepo: 'https://github.com/Cuber-Wei/L0v3ch4n-Docs',
+    // docsDir: 'docs',
 
     appearance: true,
 
@@ -41,7 +41,7 @@ export default defineThemeConfig({
     ],
     navbarSocialInclude: ['github', 'email'],
 
-    sidebarDepth: 3,
+    // sidebarDepth: 3,
 
     footer: {
         message: `<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33060302001361" target="_blank">浙公网安备33060302001361</a>&emsp;<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2024137659号-1</a>`,

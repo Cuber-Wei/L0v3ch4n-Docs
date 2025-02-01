@@ -21,7 +21,8 @@ const getSrc = () => {
 </script>
 <template>
   <div id="cloud-music-player">
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height=86 :src="getSrc()" class="inner-player"/>
+    <iframe :src="getSrc()" border="0" class="inner-player" frameborder="no" height=86 marginheight="0"
+            marginwidth="0"/>
   </div>
 </template>
 
