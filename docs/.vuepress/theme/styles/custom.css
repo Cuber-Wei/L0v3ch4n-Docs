@@ -1,12 +1,10 @@
 :root {
     /** 主题颜色 */
 
-    /*
-    --vp-c-brand-1: #5086a1;
-    --vp-c-brand-2: #6aa1b7;
-    --vp-c-brand-3: #8cccd5;
-    --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
-    */
+    --vp-c-brand-1: var(--vp-c-purple-1);
+    --vp-c-brand-2: var(--vp-c-purple-2);
+    --vp-c-brand-3: var(--vp-c-purple-3);
+    --vp-c-brand-soft: var(--vp-c-purple-soft);
 
     /** 背景颜色 */
 
@@ -29,13 +27,6 @@
 /** 深色模式 */
 [data-theme="dark"] {
     /*
-    --vp-c-brand-1: #8cccd5;
-    --vp-c-brand-2: #6aa1b7;
-    --vp-c-brand-3: #5086a1;
-    --vp-c-brand-soft: rgba(131, 208, 218, 0.314);
-    */
-
-    /*
     --vp-c-bg: #1b1b1f;
     --vp-c-bg-alt: #161618;
     --vp-c-bg-elv: #202127;
@@ -49,7 +40,7 @@
     */
 }
 
-.content-container h2{
+.content-container h2 {
     font-size: 28px;
     border-radius: .5em;
     border-top: 0 !important;
@@ -74,7 +65,7 @@
 
 .content-container h3::before {
     content: "H3";
-    color : white;
+    color: white;
     font-size: 0.8em;
     background-color: var(--vp-c-purple-3);
     border-radius: .3em;
@@ -91,6 +82,7 @@
 .content-container p {
     text-indent: 2em;
 }
+
 .vp-doc-meta p,
 blockquote p {
     text-indent: 0;
@@ -102,4 +94,40 @@ blockquote {
     margin: 1rem 0;
     background-color: var(--vp-c-bg-soft);
     border-radius: 0.25rem;
+}
+
+/*博客item下划线*/
+.vp-blog-short-post-list li .post-title,
+.blog-post-item-content h3 {
+    width: fit-content;
+    background: linear-gradient(to right, var(--vp-c-purple-1), var(--vp-c-purple-soft)) no-repeat right bottom;
+    background-size: 0 2px;
+    transition: background-size 1s ease !important;
+}
+
+.vp-blog-short-post-list li:hover .post-title,
+.blog-post-item-content h3:hover {
+    background-position-x: left;
+    background-size: 100% 2px;
+}
+.vp-blog-short-post-list li:hover .post-time{
+    color: var(--vp-c-purple-1) !important;
+}
+.vp-blog-short-post-list li .post-title {
+    flex: none !important;
+}
+
+/*页脚链接样式*/
+.vp-friend .content a,
+.vp-footer .container .message a {
+    text-decoration-line: none !important;
+    background: linear-gradient(to right, var(--vp-c-purple-1), var(--vp-c-purple-soft)) no-repeat right bottom;
+    background-size: 0 2px;
+    transition: background-size 1s ease !important;
+}
+.vp-friend .content a:hover,
+.vp-footer .container .message a:hover {
+    color: var(--vp-c-brand-1) !important;
+    background-position-x: left;
+    background-size: 100% 2px;
 }
