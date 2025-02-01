@@ -15,13 +15,13 @@ const props = defineProps({
 })
 
 const getSrc = () => {
-  return `//music.163.com/outchain/player?type=2&id=${props.id}&auto=${props.auto}&height=66`
+  return `https://music.163.com/outchain/player?type=2&id=${props.id}&auto=${props.auto}&height=66`
 }
 
 </script>
 <template>
   <div id="cloud-music-player">
-    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 :src="getSrc()" class="inner-player"/>
+    <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" height=86 :src="getSrc()" class="inner-player"/>
   </div>
 </template>
 

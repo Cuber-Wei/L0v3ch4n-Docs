@@ -110,9 +110,11 @@ blockquote {
     background-position-x: left;
     background-size: 100% 2px;
 }
-.vp-blog-short-post-list li:hover .post-time{
+
+.vp-blog-short-post-list li:hover .post-time {
     color: var(--vp-c-purple-1) !important;
 }
+
 .vp-blog-short-post-list li .post-title {
     flex: none !important;
 }
@@ -125,6 +127,7 @@ blockquote {
     background-size: 0 2px;
     transition: background-size 1s ease !important;
 }
+
 .vp-friend .content a:hover,
 .vp-footer .container .message a:hover {
     color: var(--vp-c-brand-1) !important;
