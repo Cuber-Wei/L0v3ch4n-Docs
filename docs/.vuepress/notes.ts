@@ -20,11 +20,23 @@ const languageNote = defineNoteConfig({
     sidebar: [
         '',
         {
-            prefix: '基础语法',
-            text: '基础语法',
-            collapsed: false,
+            prefix: 'Python',
+            text: 'Python',
+            collapsed: true,
             items: 'auto'
-        }
+        },
+        {
+            prefix: 'Java',
+            text: 'Java',
+            collapsed: true,
+            items: 'auto'
+        },
+        {
+            prefix: 'JavaScript',
+            text: 'JavaScript',
+            collapsed: true,
+            items: 'auto'
+        },
     ]
 })
 

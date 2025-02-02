@@ -15,7 +15,8 @@ export default defineUserConfig({
         }
     },
     head: [
-        ['link', {rel: 'icon', href: '/L-logo.png'}]
+        ['link', {rel: 'icon', href: '/L-logo.png'}],
+        // ['script', {src: "https://cdn.jsdelivr.net/pyodide/v0.18.1/full/pyodide.js"}],
     ],
 
     bundler: viteBundler(),
@@ -59,7 +60,6 @@ export default defineUserConfig({
                 youtube: true,
                 icons: true,
                 codepen: true,
-                replit: true,
                 codeSandbox: true,
                 jsfiddle: true,
                 repl: {

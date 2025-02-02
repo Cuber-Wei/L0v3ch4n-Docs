@@ -12,7 +12,7 @@ export const navbar = defineNavbarConfig([
             {
                 text: '语言学习',
                 link: '/notes/language/README.md',
-                icon: 'material-symbols-light:language-spanish-rounded'
+                icon: 'material-symbols:language-spanish-rounded'
             },
             {text: '项目笔记', link: '/notes/project/README.md', icon: 'pajamas:project'},
             {text: '系统笔记', link: '/notes/OS/README.md', icon: 'grommet-icons:system'},
