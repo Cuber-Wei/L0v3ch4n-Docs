@@ -1,5 +1,5 @@
 ---
-title: 系统相关
+title: 系统相关笔记
 createTime: 2024/11/27 22：10：00
 permalink: /OS/
 ---

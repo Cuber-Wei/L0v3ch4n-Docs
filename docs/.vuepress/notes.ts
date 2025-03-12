@@ -6,7 +6,7 @@ const projectNote = defineNoteConfig({
     sidebar: [
         '',
         {
-            prefix: 'OJ项目',
+            prefix: 'OJ',
             text: 'Online Judge',
             collapsed: false,
             items: 'auto'

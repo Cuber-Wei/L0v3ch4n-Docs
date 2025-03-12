@@ -32,7 +32,7 @@ export default defineUserConfig({
              */
             shiki: {
                 // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-                languages: ['shell', 'bash', 'typescript', 'javascript', 'python', 'java', 'vue', 'c++'],
+                languages: ['sh', 'css', 'html', 'jsx', 'javascript', 'js', 'ts', 'stylus', 'json', 'yaml', 'tsx', 'dockerfile', 'bash', 'groovy', 'yml', 'md', 'nginx', 'toml', 'rust', 'vue'],
             },
 
             /**

@@ -2,9 +2,11 @@
 pageLayout: home
 externalLinkIcon: true
 config:
-  - type: hero
-    full: true
-    background: tint-plate
+  - type: banner
+    banner: /images/homeBackground.png
+    bannerMask:
+      light: 0.1
+      dark: 0.3
     hero:
       name: L0v3ch4n
       tagline: Love Coding, Love Life.
