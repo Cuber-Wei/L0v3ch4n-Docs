@@ -25,12 +25,12 @@ const languageNote = defineNoteConfig({
             collapsed: true,
             items: 'auto'
         },
-        {
-            prefix: 'Java',
-            text: 'Java',
-            collapsed: true,
-            items: 'auto'
-        },
+        // {
+        //     prefix: 'Java',
+        //     text: 'Java',
+        //     collapsed: true,
+        //     items: 'auto'
+        // },
         {
             prefix: 'JavaScript',
             text: 'JavaScript',

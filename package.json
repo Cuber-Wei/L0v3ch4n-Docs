@@ -31,6 +31,5 @@
     "vuepress-theme-plume": "1.0.0-rc.116"
   },
   "dependencies": {
-    "pyodide": "^0.27.2"
   }
 }

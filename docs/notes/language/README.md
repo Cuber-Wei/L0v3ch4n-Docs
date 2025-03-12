@@ -9,3 +9,4 @@ permalink: /language/
 ## 更新日志
 
 2025-2-3: 编写了Python《快速开始》部分的内容。
+2025-3-12: 编写了JavaScript《基础语法》部分的内容。
