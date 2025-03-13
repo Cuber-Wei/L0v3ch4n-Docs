@@ -1,7 +1,7 @@
 ---
 title: Schmidt-Samoa密码系统
 createTime: 2025/03/12 20:05:53
-permalink: /article/Schmidt-Samoa/
+permalink: /CTF/SchmidtSamoa/
 tags:
   - CTF
   - Crypto

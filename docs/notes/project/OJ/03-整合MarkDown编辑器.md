@@ -59,9 +59,9 @@ import 'bytemd/dist/index.css'
   />
 </template>
 <script lang="ts" setup>
-  const onContentChange = (v: string) => {
-    question.value.content = v;
-  };
+  const onContentChange = (v: string) => { // [!code highlight]
+    question.value.content = v; // [!code highlight]
+  }; // [!code highlight]
 </script>
 ```
 
@@ -108,6 +108,64 @@ import 'bytemd/dist/index.css'
     math(),
     // Add more plugins here
   ];
+</script>
+```
+
+:::
+还有一种组件间传参的方法：`v-model`：
+:::tabs
+@tab 父组件
+
+```vue
+<template>
+  <MdEditor v-model:value="question.content"/>
+</template>
+```
+
+@tab 子组件
+
+```vue
+<template>
+  <Editor
+      :mode="mode"
+      :plugins="plugins"
+      :value="value"
+      @change="handleChange"
+  />
+</template>
+<script lang="ts" setup>
+  import gfm from "@bytemd/plugin-gfm";
+  import highlight from "@bytemd/plugin-highlight";
+  import math from "@bytemd/plugin-math";
+  import {defineEmits, defineProps, withDefaults} from "vue";
+
+  /**
+   定义组件属性类型
+   */
+  interface Props {
+    value: string;
+    mode?: string;
+    handleChange: (v: string) => void;
+  }
+
+  /**
+   给组件指定初始值
+   */
+  const props = withDefaults(defineProps<Props>(), {
+    value: () => "",
+    mode: () => "split",
+  });
+
+  const plugins = [
+    gfm(),
+    highlight(),
+    math(),
+  ];
+
+  const emit = defineEmits(["update:value"]) // [!code highlight]
+  const handleChange = (v: string) => { // [!code highlight]
+    emit("update:value", v); // [!code highlight]
+  }; // [!code highlight]
 </script>
 ```
 

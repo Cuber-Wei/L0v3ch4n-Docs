@@ -1,7 +1,7 @@
 ---
-title: 2022-NewStar-Week1-ezrsa复现
+title: 2022 NewStar Week1 ezrsa复现
 createTime: 2025/03/12 19:30:48
-permalink: /article/NewStar2022Week1_ezrsa/
+permalink: /CTF/NewStar2022Week1ezrsa/
 tags:
   - CTF
   - Crypto
@@ -121,18 +121,18 @@ hint = pow(d, e, n)
 推导:
 $$
 n=p\times p\times q\newline
-则\phi (n)=p\times (p-1)\times (q-1)\newline
+\text{则}\phi (n)=p\times (p-1)\times (q-1)\newline
 p=gcd(n,\phi (n)\newline
-由题干知:\newline
+\text{由题干知}:\newline
 ed\equiv 1(\bmod \phi (n))\Leftrightarrow ed=1+K_{1}\phi (n)\newline
 hint=d^{e}\bmod n \Leftrightarrow d^{e}=hint +K_{2}n\newline
-经代换可得:\newline
+\text{经代换可得}:\newline
 (ed)^{e}\equiv 1\bmod \phi (n)\Leftrightarrow e^{e}\times d^{e}=1+K_{3}\phi (n)\newline
-两边同时对n取模,化简得:\newline
+\text{两边同时对}n\text{取模,化简得}:\newline
 e^{e}\times hint\equiv 1+K_{3}\phi (n)(\bmod n)\newline
-最后得到:\newline
+\text{最后得到}:\newline
 K\phi(n)=(x\times hint -1)\bmod n,\newline
-其中x=e^{e}\bmod n
+\text{其中}x=e^{e}\bmod n
 $$
 
 ```python

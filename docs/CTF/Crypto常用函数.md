@@ -1,7 +1,7 @@
 ---
 title: CTF Crypto 常用函数库的常见函数使用
 createTime: 2025/03/12 19:37:02
-permalink: /article/CryptoFunctions/
+permalink: /CTF/CryptoFunctions/
 tags:
   - CTF
   - Crypto

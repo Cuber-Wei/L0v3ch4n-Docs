@@ -1,7 +1,7 @@
 ---
 title: Lattice练习
 createTime: 2025/03/12 20:03:52
-permalink: /article/LatticePractise/
+permalink: /CTF/LatticePractise/
 tags:
   - CTF
   - Crypto

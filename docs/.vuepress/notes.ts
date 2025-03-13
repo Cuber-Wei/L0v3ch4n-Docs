@@ -54,6 +54,38 @@ const osNote = defineNoteConfig({
     ]
 })
 
+const interviewNote = defineNoteConfig({
+    dir: 'interview',
+    link: '/interview/',
+    sidebar: [
+        '',
+        {
+            prefix: 'browser',
+            text: '浏览器',
+            collapsed: false,
+            items: 'auto'
+        },
+        {
+            prefix: 'HTML',
+            text: 'HTML',
+            collapsed: false,
+            items: 'auto'
+        },
+        {
+            prefix: 'CSS',
+            text: 'CSS',
+            collapsed: false,
+            items: 'auto'
+        },
+        {
+            prefix: 'JavaScript',
+            text: 'JavaScript',
+            collapsed: false,
+            items: 'auto'
+        },
+    ]
+})
+
 export const notes = defineNotesConfig({
     dir: 'notes',
     link: '/',
@@ -61,5 +93,6 @@ export const notes = defineNotesConfig({
         projectNote,
         languageNote,
         osNote,
+        interviewNote,
     ],
 })

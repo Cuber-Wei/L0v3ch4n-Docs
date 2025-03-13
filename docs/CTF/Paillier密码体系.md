@@ -1,7 +1,7 @@
 ---
 title: Paillier：最著名的半同态加密方案
 createTime: 2025/03/12 19:50:25
-permalink: /article/Paillier/
+permalink: /CTF/Paillier/
 tags:
   - CTF
   - Crypto

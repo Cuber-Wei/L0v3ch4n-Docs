@@ -1,0 +1,19 @@
+---
+title: codeSnap
+createTime: 2025/03/13 10:37:53
+permalink: /article/CodeSnippet/
+---
+## JavaScript
+
+### 防抖
+```javascript
+function debounce(func, duration = 500) {
+    let timerId;
+    return function (...args) {
+        clearTimeout(timerId);
+        timerId = setTimeout(() => {
+            func.apply(this, args);
+        }, duration);
+    }
+}
+```
