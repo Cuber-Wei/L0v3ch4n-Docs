@@ -27,13 +27,13 @@ export const navbar = defineNavbarConfig([
                 icon: 'material-symbols:language-spanish-rounded'
             },
             {
-                text: '项目笔记',
+                text: '项目开发笔记',
                 link: '/project/',
                 activeMatch: '^/project/',
                 icon: 'pajamas:project'
             },
             {
-                text: '前端面试题',
+                text: '面试题笔记',
                 link: '/interview/',
                 activeMatch: '^/interview/',
                 icon: 'codicon:comment-unresolved',

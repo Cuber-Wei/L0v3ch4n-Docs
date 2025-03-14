@@ -1,10 +1,10 @@
 :root {
     /** 主题颜色 */
 
-    --vp-c-brand-1: var(--vp-c-purple-1);
-    --vp-c-brand-2: var(--vp-c-purple-2);
-    --vp-c-brand-3: var(--vp-c-purple-3);
-    --vp-c-brand-soft: var(--vp-c-purple-soft);
+    --vp-c-brand-1: var(--vp-c-turquoise-1);
+    --vp-c-brand-2: var(--vp-c-turquoise-2);
+    --vp-c-brand-3: var(--vp-c-turquoise-3);
+    --vp-c-brand-soft: var(--vp-c-turquoise-soft);
 
     /** 背景颜色 */
 
@@ -101,7 +101,7 @@ blockquote p {
 }
 
 blockquote {
-    border-left: 0.25rem solid var(--vp-c-purple-3) !important;
+    border-left: 0.25rem solid var(--vp-c-brand-3) !important;
     padding: 0.25rem 1rem;
     margin: 1rem 0;
     background-color: var(--vp-c-bg-soft);
@@ -113,7 +113,7 @@ blockquote {
 .vp-blog-short-post-list li .post-title,
 .blog-post-item-content h3 {
     width: fit-content;
-    background: linear-gradient(to right, var(--vp-c-purple-1), var(--vp-c-purple-soft)) no-repeat right bottom;
+    background: linear-gradient(to right, var(--vp-c-brand-1), var(--vp-c-brand-soft)) no-repeat right bottom;
     background-size: 0 2px;
     transition: background-size 1s ease !important;
 }
@@ -126,7 +126,7 @@ blockquote {
 }
 
 .vp-blog-short-post-list li:hover .post-time {
-    color: var(--vp-c-purple-1) !important;
+    color: var(--vp-c-brand-1) !important;
 }
 
 .vp-blog-short-post-list li .post-title {
@@ -137,7 +137,7 @@ blockquote {
 .vp-friend .content a,
 .vp-footer .container .message a {
     text-decoration-line: none !important;
-    background: linear-gradient(to right, var(--vp-c-purple-1), var(--vp-c-purple-soft)) no-repeat right bottom;
+    background: linear-gradient(to right, var(--vp-c-brand-1), var(--vp-c-brand-soft)) no-repeat right bottom;
     background-size: 0 2px;
     transition: background-size 1s ease !important;
 }
