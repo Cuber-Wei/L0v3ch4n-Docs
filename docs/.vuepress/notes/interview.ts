@@ -14,37 +14,43 @@ export default defineNoteConfig({
         {
             prefix: 'CSS',
             text: 'CSS',
-            collapsed: false,
+            collapsed: true,
             items: 'auto'
         },
         {
             prefix: 'JavaScript',
             text: 'JavaScript',
-            collapsed: false,
+            collapsed: true,
             items: 'auto'
         },
         {
             prefix: 'browser',
             text: '浏览器',
-            collapsed: false,
+            collapsed: true,
             items: 'auto'
         },
         {
             prefix: 'Vue3',
             text: 'Vue3',
-            collapsed: false,
+            collapsed: true,
             items: 'auto'
         },
         {
             prefix: 'computerNetwork',
             text: '计算机网络原理',
-            collapsed: false,
+            collapsed: true,
             items: 'auto'
         },
         {
             prefix: 'tools',
             text: '工具',
-            collapsed: false,
+            collapsed: true,
+            items: 'auto'
+        },
+        {
+            prefix: 'tricks',
+            text: '技巧',
+            collapsed: true,
             items: 'auto'
         },
     ]

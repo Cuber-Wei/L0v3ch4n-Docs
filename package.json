@@ -2,9 +2,9 @@
   "name": "l0v3ch4n-notes",
   "type": "module",
   "version": "1.0.0",
-  "description": "A note page for l0v3ch4n's learning.",
+  "description": "A note site for l0v3ch4n's learning.",
   "packageManager": "pnpm@9.10.0",
-  "author": "Cuber-Wei <cuberwei0@163.com>",
+  "author": "L0v3ch4n <cuberwei0@163.com>",
   "license": "MIT",
   "engines": {
     "node": "^18.20.0 || >=20.0.0"
