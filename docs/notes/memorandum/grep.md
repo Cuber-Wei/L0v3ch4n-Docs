@@ -1,6 +1,6 @@
 ---
-title: git
-icon: logos:git-icon
+title: grep
+icon: cil:find-in-page
 createTime: 2025/03/13 08:11:10
 permalink: /memorandum/grep/
 ---
