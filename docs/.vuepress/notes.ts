@@ -4,7 +4,7 @@ import interviewNote from "./notes/interview";
 import languageNote from "./notes/language";
 import osNote from "./notes/OS";
 import memorandum from "./notes/memorandum";
-
+import secretsNote from './notes/secrets';
 
 export const notes = defineNotesConfig({
     dir: 'notes',
@@ -15,5 +15,6 @@ export const notes = defineNotesConfig({
         osNote,
         interviewNote,
         memorandum,
+        secretsNote,
     ],
 })

@@ -91,9 +91,9 @@
     --vp-doc-blog-bg: rgba(30, 120, 120, 0.15);
 }
 
-.content-container p {
+/* .content-container p {
     text-indent: 2em;
-}
+} */
 
 .vp-doc-meta p,
 blockquote p {

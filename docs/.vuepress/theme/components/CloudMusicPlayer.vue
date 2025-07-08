@@ -30,8 +30,7 @@ const isMobile = () => {
 </script>
 <template>
   <div id="cloud-music-player" v-if="!is_mobile">
-    <iframe :src="getSrc()" border="0" class="inner-player" frameborder="no" height=86 marginheight="0"
-            marginwidth="0"/>
+    <iframe :src="getSrc()" class="inner-player" border="0" frameborder="no" width="330" height=86 marginheight="0" marginwidth="0" />
   </div>
 </template>
 
@@ -45,5 +44,6 @@ const isMobile = () => {
 #cloud-music-player .inner-player {
   width: 50%;
   margin: 0 auto;
+  border-radius: 0.5rem;
 }
 </style>

@@ -44,6 +44,12 @@ export const navbar = defineNavbarConfig([
                 activeMatch: '^/OS/',
                 icon: 'grommet-icons:system'
             },
+            {
+                text: '加密文章',
+                link: '/secrets/',
+                activeMatch: '^/secrets/',
+                icon: 'material-symbols:lock',
+            },
         ]
     },
     {

@@ -12,7 +12,7 @@ export default defineUserConfig({
             lang: 'zh-CN',
             title: 'L0v3ch4n',
             description: 'L0v3ch4n&#x27;s learning records.'
-        }
+        },
     },
     head: [
         ['link', {rel: 'icon', href: '/L-logo.png'}],
@@ -24,6 +24,16 @@ export default defineUserConfig({
         // 添加您的部署域名
         hostname: 'https://blog.l0v3ch4n.top/',
 
+        markdown: {
+            abbr: true,
+            annotation: true,
+            timeline: true,
+            codeTree: true,
+            field: true,
+            collapse: true,
+            chat: true,
+        },
+
         plugins: {
             /**
              * Shiki 代码高亮
@@ -31,20 +41,8 @@ export default defineUserConfig({
              */
             shiki: {
                 // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-                languages: ['sh', 'css', 'html', 'jsx', 'javascript', 'js', 'ts', 'stylus', 'json', 'yaml', 'tsx',
+                langs: ['sh', 'css', 'html', 'jsx', 'javascript', 'js', 'ts', 'stylus', 'json', 'yaml', 'tsx',
                     'dockerfile', 'bash', 'groovy', 'yml', 'md', 'nginx', 'toml', 'rust', 'vue', 'python'],
-            },
-
-            /**
-             * markdown enhance
-             * @see https://theme-plume.vuejs.press/config/plugins/markdown-enhance/
-             */
-            markdownEnhance: {
-                demo: true,
-                chartjs: true,
-                echarts: true,
-                mermaid: true,
-                flowchart: true,
             },
 
             /**
@@ -82,6 +80,13 @@ export default defineUserConfig({
             //     reactionsEnabled: true,
             //     inputPosition: 'top',
             // },
+        },
+        // 加密设置
+        encrypt: {
+            rules: {
+              // 可以是 md 文件的相对路径，对该文件加密
+              '/secrets/ShortArticle/ForLingeFirstLive/': '0817',
+            }
         },
     }),
 })
