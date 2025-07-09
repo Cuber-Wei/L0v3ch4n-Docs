@@ -20,14 +20,14 @@ jobs:
           # "Last updated time" and other git log-related information require fetching all commit records.
           fetch-depth: 0
 
-      - name: Setup pnpm
+      - name: Install pnpm
         uses: pnpm/action-setup@v4
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           # 选择要使用的 node 版本
-          node-version: 20
+          node-version: 22
 
 
       # 安装依赖
@@ -39,6 +39,9 @@ jobs:
       # 运行构建脚本
       # Run the build script
       - name: Build VuePress site
+        env:
+          NODE_OPTIONS: --max_old_space_size=8192
+          VUEPRESS_GAODE_MAP_KEY: ${{ secrets.VUEPRESS_GAODE_MAP_KEY }}
         run: pnpm run docs:build
 
 

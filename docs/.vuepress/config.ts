@@ -89,4 +89,10 @@ export default defineUserConfig({
             }
         },
     }),
+
+    define: {
+        __VUEPRESS_GAODE_MAP_KEY__: process.env.VUEPRESS_GAODE_MAP_KEY,
+        // debug hydration mismatch
+        // __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+    },
 })
