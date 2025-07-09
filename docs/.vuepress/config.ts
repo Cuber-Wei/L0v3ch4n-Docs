@@ -1,28 +1,26 @@
-import {viteBundler} from '@vuepress/bundler-vite'
-import {defineUserConfig} from 'vuepress'
-import {plumeTheme} from 'vuepress-theme-plume'
+import { viteBundler } from "@vuepress/bundler-vite";
+import { defineUserConfig } from "vuepress";
+import { plumeTheme } from "vuepress-theme-plume";
 
 export default defineUserConfig({
-    base: '/',
-    lang: 'zh-CN',
-    title: 'L0v3ch4n',
-    description: 'L0v3ch4n&#x27;s learning records.',
+    base: "/",
+    lang: "zh-CN",
+    title: "L0v3ch4n",
+    description: "L0v3ch4n&#x27;s learning records.",
     locales: {
-        '/': {
-            lang: 'zh-CN',
-            title: 'L0v3ch4n',
-            description: 'L0v3ch4n&#x27;s learning records.'
+        "/": {
+            lang: "zh-CN",
+            title: "L0v3ch4n",
+            description: "L0v3ch4n&#x27;s learning records.",
         },
     },
-    head: [
-        ['link', {rel: 'icon', href: '/L-logo.png'}],
-    ],
+    head: [["link", { rel: "icon", href: "/L-logo.png" }]],
 
     bundler: viteBundler(),
 
     theme: plumeTheme({
         // 添加您的部署域名
-        hostname: 'https://blog.l0v3ch4n.top/',
+        hostname: "https://blog.l0v3ch4n.top/",
 
         markdown: {
             abbr: true,
@@ -41,8 +39,29 @@ export default defineUserConfig({
              */
             shiki: {
                 // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-                langs: ['sh', 'css', 'html', 'jsx', 'javascript', 'js', 'ts', 'stylus', 'json', 'yaml', 'tsx',
-                    'dockerfile', 'bash', 'groovy', 'yml', 'md', 'nginx', 'toml', 'rust', 'vue', 'python'],
+                langs: [
+                    "sh",
+                    "css",
+                    "html",
+                    "jsx",
+                    "javascript",
+                    "js",
+                    "ts",
+                    "stylus",
+                    "json",
+                    "yaml",
+                    "tsx",
+                    "dockerfile",
+                    "bash",
+                    "groovy",
+                    "yml",
+                    "md",
+                    "nginx",
+                    "toml",
+                    "rust",
+                    "vue",
+                    "python",
+                ],
             },
 
             /**
@@ -84,9 +103,15 @@ export default defineUserConfig({
         // 加密设置
         encrypt: {
             rules: {
-              // 可以是 md 文件的相对路径，对该文件加密
-              '/secrets/ShortArticle/ForLingeFirstLive/': '0817',
-            }
+                // 可以是 md 文件的相对路径，对该文件加密
+                "/secrets/ShortArticle/ForLingeFirstLive/": "0817",
+            },
         },
     }),
-})
+
+    define: {
+        __VUEPRESS_GAODE_MAP_KEY__: process.env.VUEPRESS_GAODE_MAP_KEY,
+        // debug hydration mismatch
+        // __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+    },
+});

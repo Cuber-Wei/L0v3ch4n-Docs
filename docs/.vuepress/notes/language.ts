@@ -1,15 +1,15 @@
-import {defineNoteConfig} from 'vuepress-theme-plume'
+import { defineNoteConfig } from "vuepress-theme-plume";
 
 export default defineNoteConfig({
-    dir: 'language',
-    link: '/language/',
+    dir: "language",
+    link: "/language/",
     sidebar: [
-        '',
+        "",
         {
-            prefix: 'Python',
-            text: 'Python',
+            prefix: "Python",
+            text: "Python",
             collapsed: true,
-            items: 'auto'
+            items: "auto",
         },
         // {
         //     prefix: 'Java',
@@ -18,10 +18,10 @@ export default defineNoteConfig({
         //     items: 'auto'
         // },
         {
-            prefix: 'JavaScript',
-            text: 'JavaScript',
+            prefix: "JavaScript",
+            text: "JavaScript",
             collapsed: true,
-            items: 'auto'
+            items: "auto",
         },
-    ]
-})
+    ],
+});

@@ -24,8 +24,13 @@ config:
       -
         title: nginx
         icon: logos:nginx
-        details: nginx 配置，常用功能示例
+        details: Nginx 配置，常用功能示例
         link: ./nginx.md
+      - 
+        title: docker
+        icon: logos:docker-icon
+        details: Dockerfile模板，常用 Docker 命令
+        link: ./docker.md
       -
         title: Code Snippet
         icon: logos:visual-studio-code

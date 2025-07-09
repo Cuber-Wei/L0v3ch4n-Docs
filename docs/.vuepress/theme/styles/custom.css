@@ -1,74 +1,90 @@
+@import url(./landing.css);
+@import url(./Ma-Shan-Zheng.css);
+@import url(./HFDigits.css);
+@import url(./Fleur-De-Leah.css);
+
 :root {
     /** 主题颜色 */
-
     --vp-c-brand-1: var(--vp-c-turquoise-1);
     --vp-c-brand-2: var(--vp-c-turquoise-2);
     --vp-c-brand-3: var(--vp-c-turquoise-3);
     --vp-c-brand-soft: var(--vp-c-turquoise-soft);
-
     /** 背景颜色 */
-
-    /*
     --vp-c-bg: #fff;
     --vp-c-bg-alt: #f6f6f7;
     --vp-c-bg-elv: #fff;
     --vp-c-bg-soft: #f6f6f7;
-    */
-
     /** 文本颜色 */
-
-    /*
     --vp-c-text-1: rgba(60, 60, 67);
     --vp-c-text-2: rgba(60, 60, 67, 0.78);
     --vp-c-text-3: rgba(60, 60, 67, 0.56);
-    */
+    /** 默认颜色 */
+    --vp-c-default-1: var(--vp-c-gray-1);
+    --vp-c-default-2: var(--vp-c-gray-2);
+    --vp-c-default-3: var(--vp-c-gray-3);
+    --vp-c-default-soft: var(--vp-c-gray-soft);
 }
 
 /** 深色模式 */
 [data-theme="dark"] {
-    /*
+    /** 主题颜色 */
+    --vp-c-brand-1: var(--vp-c-turquoise-1);
+    --vp-c-brand-2: var(--vp-c-turquoise-2);
+    --vp-c-brand-3: var(--vp-c-turquoise-3);
+    --vp-c-brand-soft: var(--vp-c-turquoise-soft);
+    /** 背景颜色*/
     --vp-c-bg: #1b1b1f;
     --vp-c-bg-alt: #161618;
     --vp-c-bg-elv: #202127;
     --vp-c-bg-soft: #202127;
-    */
-
-    /*
+    /** 文本颜色 */
     --vp-c-text-1: rgba(255, 255, 245, 0.86);
     --vp-c-text-2: rgba(235, 235, 245, 0.6);
     --vp-c-text-3: rgba(235, 235, 245, 0.38);
-    */
+    /** 默认颜色 */
+    --vp-c-default-1: var(--vp-c-gray-1);
+    --vp-c-default-2: var(--vp-c-gray-2);
+    --vp-c-default-3: var(--vp-c-gray-3);
+    --vp-c-default-soft: var(--vp-c-gray-soft);
 }
 
 .content-container h2 {
     font-size: 28px;
-    border-radius: .5em;
-    border-top: 0 !important;
+    border-radius: 0.5em;
+    border: 0;
     width: fit-content;
 }
 
 .content-container h3 {
     font-size: 24px;
-    border-radius: .3em;
+    border-radius: 0.3em;
+    border: 0;
     width: fit-content;
 }
 
 .content-container h2::before {
     content: "H2";
-    border-radius: .3em;
-    font-size: .8em;
-    padding: 3px 7px;
+    color: var(--vp-c-text-1);
+    font-size: 0.8em;
+    background-color: var(--vp-c-brand-3);
+    border-radius: 0.3em;
     margin-right: 15px;
-    background-color: var(--vp-c-purple-3);
-    color: white;
+    padding: 3px 7px;
+    float: none;
+    position: relative;
+    top: 0;
+    left: 0;
+    vertical-align: baseline;
+    border-width: 0;
+    opacity: 0.75;
 }
 
 .content-container h3::before {
     content: "H3";
-    color: white;
+    color: var(--vp-c-text-1);
     font-size: 0.8em;
-    background-color: var(--vp-c-purple-3);
-    border-radius: .3em;
+    background-color: var(--vp-c-brand-3);
+    border-radius: 0.3em;
     margin-right: 12px;
     padding: 4px 7px;
     float: none;
@@ -77,12 +93,18 @@
     left: 0;
     vertical-align: baseline;
     border-width: 0;
+    opacity: 0.75;
 }
 
 .vp-doc-container {
     --vp-doc-blog-bg: rgba(100, 190, 190, 0.15);
 
-    background-image: linear-gradient(90deg, var(--vp-doc-blog-bg) 3%, transparent 0), linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
+    background-image: linear-gradient(
+            90deg,
+            var(--vp-doc-blog-bg) 3%,
+            transparent 0
+        ),
+        linear-gradient(1turn, var(--vp-doc-blog-bg) 3%, transparent 0);
     background-position: 50%;
     background-size: 20px 20px;
 }
@@ -91,21 +113,33 @@
     --vp-doc-blog-bg: rgba(30, 120, 120, 0.15);
 }
 
-/* .content-container p {
-    text-indent: 2em;
-} */
-
-.vp-doc-meta p,
-blockquote p {
-    text-indent: 0;
+.vp-doc blockquote {
+    border-left: 0.25rem solid var(--vp-c-brand-3) !important;
+    position: relative;
+    padding: 8px 20px 8px 36px;
+    margin: 16px 0;
+    color: var(--vp-c-text-2);
+    background-color: var(--vp-c-default-soft);
+    border-radius: 8px;
+    transition: background-color var(--vp-t-color), color var(--vp-t-color);
 }
 
-blockquote {
-    border-left: 0.25rem solid var(--vp-c-brand-3) !important;
-    padding: 0.25rem 1rem;
-    margin: 1rem 0;
-    background-color: var(--vp-c-bg-soft);
-    border-radius: 0.25rem;
+.vp-doc blockquote::before {
+    --icon: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='34' height='24' viewBox='0 0 34 24'%3E%3Cpath fill='%23000' d='M31.2 0H24l-4.8 9.6V24h14.4V9.6h-7.2zM12 0H4.8L0 9.6V24h14.4V9.6H7.2z'/%3E%3C/svg%3E");
+    position: absolute;
+    content: "";
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+    opacity: 0.5;
+    mask: var(--icon);
+    mask-size: 100% 100%;
+    mask-repeat: no-repeat;
+    mask-position: center;
+    background-color: var(--vp-c-brand-1);
+    transition: background-color var(--vp-t-color);
+    top: 8px;
+    left: 8px;
 }
 
 /*博客item下划线*/
@@ -113,7 +147,12 @@ blockquote {
 .vp-blog-short-post-list li .post-title,
 .blog-post-item-content h3 {
     width: fit-content;
-    background: linear-gradient(to right, var(--vp-c-brand-1), var(--vp-c-brand-soft)) no-repeat right bottom;
+    background: linear-gradient(
+            to right,
+            var(--vp-c-brand-1),
+            var(--vp-c-brand-soft)
+        )
+        no-repeat right bottom;
     background-size: 0 2px;
     transition: background-size 1s ease !important;
 }
@@ -137,7 +176,12 @@ blockquote {
 .vp-friend .content a,
 .vp-footer .container .message a {
     text-decoration-line: none !important;
-    background: linear-gradient(to right, var(--vp-c-brand-1), var(--vp-c-brand-soft)) no-repeat right bottom;
+    background: linear-gradient(
+            to right,
+            var(--vp-c-brand-1),
+            var(--vp-c-brand-soft)
+        )
+        no-repeat right bottom;
     background-size: 0 2px;
     transition: background-size 1s ease !important;
 }
