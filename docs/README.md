@@ -6,7 +6,7 @@ navbar: true
 config:
   - type: Landing
     name: L0v3ch4n
-    tagline: 一个挣扎在全栈开发道路上的小萌新
+    tagline: 宝骏踏断命里刺，胭脂洒满暮光谷；他日若随凌云志，敢笑黄巢不丈夫。
     avatar: https://q.qlogo.cn/headimg_dl?dst_uin=3134210778&spec=640&img_type=jpg
     background: /images/homeBackground.png
     nav:

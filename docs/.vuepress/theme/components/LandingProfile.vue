@@ -97,7 +97,7 @@ const social = computed(() => theme.value.social)
   flex: 1 2;
   color: var(--landing-c-text);
   font-size: 48px;
-  font-family: 'PinyonScript', sans-serif;
+  font-family: 'Fleur De Leah', sans-serif;
   font-weight: 400;
   text-shadow: 1px 1px 2px var(--landing-card-bg);
   line-height: 1;

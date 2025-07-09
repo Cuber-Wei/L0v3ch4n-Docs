@@ -3,7 +3,7 @@
     class="landing-card landing-hitokoto"
   >
     <p data-allow-mismatch>
-      Love Coding, Love Life.
+      It’s you that you wanna change to win.
     </p>
   </div>
 </template>
@@ -15,8 +15,9 @@
   align-items: center;
   justify-content: center;
   padding: 24px 16px;
+  font-family: 'Fleur De Leah', sans-serif;
   font-weight: 600;
-  font-size: 18px;
+  font-size: 24px;
   line-height: 1.5;
   gap: 8px;
 }

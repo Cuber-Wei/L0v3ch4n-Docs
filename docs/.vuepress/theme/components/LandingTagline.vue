@@ -10,7 +10,6 @@ defineProps<{ tagline?: string }>()
 
 <style scoped>
 .landing-card.tagline {
-  width: fit-content;
   padding: 24px 32px;
   font-family: 'Ma Shan Zheng', sans-serif;
   font-weight: 400;
