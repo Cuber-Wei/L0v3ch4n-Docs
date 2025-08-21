@@ -10,29 +10,29 @@ permalink: /interview/DOMOperation/
 
 ## 创建节点
 
-- `document.createDocumentFragment(node)` 创建一个虚拟节点对象
-- `document.createElement(node)` 创建一个新的元素
-- `document.createTextNode(text)` 创建一个文本节点
+-   `document.createDocumentFragment(node)` 创建一个虚拟节点对象
+-   `document.createElement(node)` 创建一个新的元素
+-   `document.createTextNode(text)` 创建一个文本节点
 
 ## 添加、移除、替换、插入
 
-- `appendChild(node)` 在元素的末尾插入一个子元素
-- `removeChild(node)` 删除元素中的指定的元素
-- `replaceChild(newNode, oldNode)` 使用 newNode 替换 oldNode
-- `insertBefore(newNode, node)` 在 node元素之前插入一个 newNode
+-   `appendChild(node)` 在元素的末尾插入一个子元素
+-   `removeChild(node)` 删除元素中的指定的元素
+-   `replaceChild(newNode, oldNode)` 使用 newNode 替换 oldNode
+-   `insertBefore(newNode, node)` 在 node 元素之前插入一个 newNode
 
 ## 查找
 
-- `getElementById(id)`
-- `getElementsByName(name)`
-- `getElementsByTagName(tagName)`
-- `getElementsByClassName(className)`
-- `querySelector(selector)`
-- `querySelectorAll(selector)`
+-   `getElementById(id)`
+-   `getElementsByName(name)`
+-   `getElementsByTagName(tagName)`
+-   `getElementsByClassName(className)`
+-   `querySelector(selector)`
+-   `querySelectorAll(selector)`
 
 ## 属性操作
 
-- `getAttribute(key)`
-- `setAttribute(key, value)`
-- `hasAttribute(key)`
-- `removeAttribute(key)`
+-   `getAttribute(key)`
+-   `setAttribute(key, value)`
+-   `hasAttribute(key)`
+-   `removeAttribute(key)`

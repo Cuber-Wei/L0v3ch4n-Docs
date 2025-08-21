@@ -3,10 +3,10 @@ title: NTRU加密：格密码初探
 createTime: 2025/03/12 19:55:16
 permalink: /CTF/NTRU/
 tags:
-  - CTF
-  - Crypto
-  - Lattice
-  - NTRU
+    - CTF
+    - Crypto
+    - Lattice
+    - NTRU
 ---
 
 ## 参数
@@ -27,32 +27,41 @@ $$
 $$
 fc\equiv rg+mf\equiv fm\pmod g
 $$
-再乘上$f^{-1}$就是m了。
+
+再乘上$f^{-1}$就是 m 了。
 
 **参数大小**
 
 显然当$rg+fm<p,m<g$时才能正常解密。
 
 考虑格
+
 $$
 L=\begin{bmatrix}1&h\\0&p\end{bmatrix}
 $$
+
 同时我们有$hf+kp=g$，
 此时我们发现$(f,g)$时格中的一个格点。因为：
+
 $$
 (f,k)L=(f,fh+kp)=(f,g)
 $$
+
 因此，如果我们能够找到$(f,p)$，那我们就可以确定$(f,g)$。
 
 **更多条件**
+
 $$
 f<\frac{p^{1/2}}{2},g<\frac{p^{1/2}}{2},m<\frac{p^{1/2}}{4},r<\frac{p^{1/2}}{2}
 $$
+
 此时我们可以发现向量$\mathbf{b}=(f,g)$的长度（欧几里得范数）为：
+
 $$
 ||\mathbf{b}||=\sqrt{f^2+g^2}<\sqrt{\frac{p}{2}}
 $$
-这条向量就是在$L$这个格下的最短向量，我们可以求解这个SVP问题得到$f,g$。
+
+这条向量就是在$L$这个格下的最短向量，我们可以求解这个 SVP 问题得到$f,g$。
 
 ## 例题
 
@@ -78,9 +87,9 @@ c = (r*h + m) % p
 ```python
 from Crypto.Util.number import *
 
-p = 
-h = 
-c = 
+p =
+h =
+c =
 
 # 构造格子
 L = matrix([[1, h],

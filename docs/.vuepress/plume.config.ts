@@ -6,7 +6,7 @@ import { notes } from "./notes";
  * @see https://theme-plume.vuejs.press/config/basic/
  */
 export default defineThemeConfig({
-    logo: "/L-logo.png",
+    logo: "/images/L-logo.png",
     // your git repo url
     // docsRepo: 'https://github.com/Cuber-Wei/L0v3ch4n-Docs',
     // docsDir: 'docs',

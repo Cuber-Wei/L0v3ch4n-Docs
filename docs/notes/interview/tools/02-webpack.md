@@ -6,16 +6,16 @@ permalink: /interview/webpack/
 
 ::: tip 提问
 
-1. 对webpack的了解
-2. webpack的工作原理
-3. loader和plugin有什么区别
-4. webpack优化
+1. 对 webpack 的了解
+2. webpack 的工作原理
+3. loader 和 plugin 有什么区别
+4. webpack 优化
 
 :::
 
 ## webpack
 
-webpack是一个用于现代javascript应用程序的静态打包工具。
+webpack 是一个用于现代 javascript 应用程序的静态打包工具。
 
 ## 工作原理
 
@@ -29,20 +29,20 @@ webpack是一个用于现代javascript应用程序的静态打包工具。
 
 ## loader
 
-将其他类型的资源文件转换为webpack能够处理的有效模块。
+将其他类型的资源文件转换为 webpack 能够处理的有效模块。
 
 ## plugin
 
-plugin是webpack的核心功能，其目的是在于解决loader无法解决的其他事上。
+plugin 是 webpack 的核心功能，其目的是在于解决 loader 无法解决的其他事上。
 
-plugin可以在webpack访问到webpack的整个生命周期，并且可以访问到compile对象，以及当前编译过程对象`compilation`,
-这使得plugin拥有非常强大的能力。
+plugin 可以在 webpack 访问到 webpack 的整个生命周期，并且可以访问到 compile 对象，以及当前编译过程对象`compilation`,
+这使得 plugin 拥有非常强大的能力。
 
-## loader和plugin的区别
+## loader 和 plugin 的区别
 
-loader仅能对其关联的模块类型进行解析转换，不能访问到webpack的整个生命周期
+loader 仅能对其关联的模块类型进行解析转换，不能访问到 webpack 的整个生命周期
 
-plugin是对webpack的扩展，可以访问到webpack整个生命周期。
+plugin 是对 webpack 的扩展，可以访问到 webpack 整个生命周期。
 
 ## webpack 优化
 
@@ -52,34 +52,34 @@ plugin是对webpack的扩展，可以访问到webpack整个生命周期。
 
 在进行优化前，首先要搞清楚有哪些地方出现了痛点，需要进行优化。
 
-- 编译速度分析
+-   编译速度分析
 
-  借助`speed-measure-webpack-plugin`插件，可以帮助我们获取插件、loader的耗时。
-  消耗时间比较长的，认为可以优化的，则放到优化计划中。
+    借助`speed-measure-webpack-plugin`插件，可以帮助我们获取插件、loader 的耗时。
+    消耗时间比较长的，认为可以优化的，则放到优化计划中。
 
-- 打包体积分析
+-   打包体积分析
 
-  借助`webpack-bundle-analyzer`插件，可以帮助我们获取打包后生成的bundle的体积中，各个模块的位置、体积等信息。
+    借助`webpack-bundle-analyzer`插件，可以帮助我们获取打包后生成的 bundle 的体积中，各个模块的位置、体积等信息。
 
 ### 编译速度优化
 
 1. 配置缓存方案。
 
-   在webpack的配置文件中 声明 配置：`{ cache: { type: 'filesystem } }`,来启用对模块和chunk的持久缓存。
-   可以大幅度优化 二次启动构建速度、打包速度等。
+    在 webpack 的配置文件中 声明 配置：`{ cache: { type: 'filesystem } }`,来启用对模块和 chunk 的持久缓存。
+    可以大幅度优化 二次启动构建速度、打包速度等。
 
-2. 对使用的loader，根据其作用，指定 include 或者 exclude，减少loader的应用范围。
+2. 对使用的 loader，根据其作用，指定 include 或者 exclude，减少 loader 的应用范围。
 
 3. 管理资源
 
-   使用webpack5内置的`asset/resource`代替`assets loader`(如， url-loader、file-loader、raw-loader)。
+    使用 webpack5 内置的`asset/resource`代替`assets loader`(如， url-loader、file-loader、raw-loader)。
 
 4. 多进程打包编译
 
-   使用`thread-loader`将耗时长的loader进行包装，放到其他的线程中进行处理。
+    使用`thread-loader`将耗时长的 loader 进行包装，放到其他的线程中进行处理。
 
 ### 打包体积优化
 
-重复多次出现的模块，可以抽到共享chunk中，非首屏加载必须的模块，可以抽到异步chunk中。
+重复多次出现的模块，可以抽到共享 chunk 中，非首屏加载必须的模块，可以抽到异步 chunk 中。
 
 （还有对各种资源进行压缩等）

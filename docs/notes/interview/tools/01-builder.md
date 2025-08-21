@@ -3,6 +3,7 @@ title: 模块打包器
 createTime: 2025/03/14 10:39:41
 permalink: /interview/PackageBuilder/
 ---
+
 ::: tip 提问
 
 1. 什么是模块打包器？
@@ -12,16 +13,16 @@ permalink: /interview/PackageBuilder/
 
 ## 模块打包器
 
-一个完整的前端项目，由各种各样的资源组成，包括html文件、css文件、javascript文件、图片文件等等。
+一个完整的前端项目，由各种各样的资源组成，包括 html 文件、css 文件、javascript 文件、图片文件等等。
 我们可以认为这些资源文件就是一个个的模块。
 模块打包器可以通过分析入口文件引用了哪些模块，这些模块又引用了哪些模块，通过模块之间的相互引用，获得模块依赖关系图。
 通过模块依赖关系图，将这些模块进行合并，打包，执行输出，形成一个完整的可执行的前端项目资源包。
 
 ## 常用的模块打包器
 
-- webpack
-- rollup
-- parcel
-- esbuild
-- vite
-- snowpack
+-   webpack
+-   rollup
+-   parcel
+-   esbuild
+-   vite
+-   snowpack

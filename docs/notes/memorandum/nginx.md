@@ -22,31 +22,31 @@ nginx -V        # 查看nginx的安装状态
 
 ## 全局变量
 
-| 变量                | 说明                                                            |
-| ------------------- | --------------------------------------------------------------- |
-| `$args`             | 这个变量等于请求行中的参数，同 `$query_string`                  |
-| `$remote_port`      | 客户端的端口                                                    |
-| `$content_length`   | 请求头中的 `Content-length` 字段                                |
-| `$remote_user`      | 已经经过 `Auth Basic Module` 验证的用户名                       |
-| `$content_type`     | 请求头中的 `Content-Type` 字段                                  |
-| `$request_filename` | 当前请求的文件路径，由 `root` 或alias指令与URI请求生成          |
-| `$document_root`    | 当前请求在 `root` 指令中指定的值                                |
-| `$scheme`           | HTTP方法（如http，https）                                       |
-| `$host`             | 请求主机头字段，否则为服务器名称                                |
-| `$hostname`         | 主机名                                                          |
-| `$http_user_agent`  | 客户端`agent`信息                                               |
-| `$http_cookie`      | 客户端`cookie`信息                                              |
-| `$server_protocol`  | 请求使用的协议，通常是`HTTP/1.0`或`HTTP/1.1`                    |
-| `$server_addr`      | 服务器地址，在完成一次系统调用后可以确定这个值                  |
-| `$server_name`      | 服务器名称                                                      |
-| `$server_port`      | 请求到达服务器的端口号                                          |
-| `$limit_rate`       | 这个变量可以限制连接速率                                        |
-| `$request_method`   | 客户端请求的动作，如 GET/POST                                   |
-| `$request_uri`      | 包含请求参数的原始URI，不包含主机名，如：`/foo/bar.php?arg=baz` |
-| `$remote_addr`      | 客户端的IP地址                                                  |
-| `$uri`              | 不带请求参数的当前URI，`$uri`不包含主机名，如 `/foo/bar.html`   |
-| `$document_uri`     | 与 `$uri` 相同                                                  |
-| `$nginx_version`    | `nginx` 版本                                                    |
+| 变量                | 说明                                                             |
+| ------------------- | ---------------------------------------------------------------- |
+| `$args`             | 这个变量等于请求行中的参数，同 `$query_string`                   |
+| `$remote_port`      | 客户端的端口                                                     |
+| `$content_length`   | 请求头中的 `Content-length` 字段                                 |
+| `$remote_user`      | 已经经过 `Auth Basic Module` 验证的用户名                        |
+| `$content_type`     | 请求头中的 `Content-Type` 字段                                   |
+| `$request_filename` | 当前请求的文件路径，由 `root` 或 alias 指令与 URI 请求生成       |
+| `$document_root`    | 当前请求在 `root` 指令中指定的值                                 |
+| `$scheme`           | HTTP 方法（如 http，https）                                      |
+| `$host`             | 请求主机头字段，否则为服务器名称                                 |
+| `$hostname`         | 主机名                                                           |
+| `$http_user_agent`  | 客户端`agent`信息                                                |
+| `$http_cookie`      | 客户端`cookie`信息                                               |
+| `$server_protocol`  | 请求使用的协议，通常是`HTTP/1.0`或`HTTP/1.1`                     |
+| `$server_addr`      | 服务器地址，在完成一次系统调用后可以确定这个值                   |
+| `$server_name`      | 服务器名称                                                       |
+| `$server_port`      | 请求到达服务器的端口号                                           |
+| `$limit_rate`       | 这个变量可以限制连接速率                                         |
+| `$request_method`   | 客户端请求的动作，如 GET/POST                                    |
+| `$request_uri`      | 包含请求参数的原始 URI，不包含主机名，如：`/foo/bar.php?arg=baz` |
+| `$remote_addr`      | 客户端的 IP 地址                                                 |
+| `$uri`              | 不带请求参数的当前 URI，`$uri`不包含主机名，如 `/foo/bar.html`   |
+| `$document_uri`     | 与 `$uri` 相同                                                   |
+| `$nginx_version`    | `nginx` 版本                                                     |
 
 ## 监听端口
 
@@ -125,7 +125,7 @@ upstream backend {
 
 ### url_hash
 
-按访问url的hash结果来分配请求
+按访问 url 的 hash 结果来分配请求
 
 ```nginx:no-line-numbers {2,3}
 upstream backend {
@@ -164,10 +164,10 @@ upstream memcached_backend {
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://0.0.0.0:3000;
-    # 其中 0.0.0.0:3000 是绑定在 
+    # 其中 0.0.0.0:3000 是绑定在
     # 0.0.0.0端口3000 列表上的 Node.js 服务器
   }
 }
@@ -178,14 +178,14 @@ server {
 ```nginx :no-line-numbers
 upstream node_js {
   server 0.0.0.0:3000;
-  # 其中 0.0.0.0:3000 是绑定在 
+  # 其中 0.0.0.0:3000 是绑定在
   # 0.0.0.0端口3000 列表上的 Node.js 服务器
 }
 
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://node_js;
   }
@@ -202,7 +202,7 @@ upstream node_js {
 server {
   listen 80;
   server_name example.com;
-  
+
   location / {
     proxy_pass http://node_js;
     proxy_redirect off;
@@ -210,7 +210,7 @@ server {
     proxy_set_header Upgrade $http_upgrade;
     proxy_set_header Connection "upgrade";
     proxy_set_header Host $host;
- 
+
   }
 }
 ```
@@ -221,7 +221,7 @@ server {
 server {
   listen 80;
   server_name api.xxx.com;
-    
+
   add_header 'Access-Control-Allow-Origin' '*';
   add_header 'Access-Control-Allow-Credentials' 'true';
   add_header 'Access-Control-Allow-Methods' 'GET,POST,HEAD';
@@ -230,8 +230,8 @@ server {
     proxy_pass http://127.0.0.1:3000;
     proxy_set_header X-Real-IP $remote_addr;
     proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-    proxy_set_header Host  $http_host;    
-  } 
+    proxy_set_header Host  $http_host;
+  }
 }
 ```
 
@@ -245,25 +245,25 @@ upstream test {
 server {
   listen 80;
   server_name api.xxx.com;
-  location / { 
+  location / {
     root  html;                   # 去请求../html文件夹里的文件
     index  index.html index.htm;  # 首页响应地址
   }
   # 用于拦截请求，匹配任何以 /api/开头的地址，
   # 匹配符合以后，停止往下搜索正则。
-  location ^~/api/{ 
+  location ^~/api/{
     # 代表重写拦截进来的请求，并且只能对域名后边的除去传递的参数外的字符串起作用
     # 例如www.a.com/api/msg?meth=1&par=2重写，只对/api/msg重写。
     # rewrite后面的参数是一个简单的正则 ^/api/(.*)$，
     # $1代表正则中的第一个()，$2代表第二个()的值，以此类推。
     rewrite ^/api/(.*)$ /$1 break;
-    
-    # 把请求代理到其他主机 
+
+    # 把请求代理到其他主机
     # 其中 http://www.b.com/ 写法和 http://www.b.com写法的区别如下
     # 如果你的请求地址是他 http://server/html/test.jsp
-    # 配置一： http://www.b.com/ 后面有“/” 
+    # 配置一： http://www.b.com/ 后面有“/”
     #         将反向代理成 http://www.b.com/html/test.jsp 访问
-    # 配置一： http://www.b.com 后面没有有“/” 
+    # 配置一： http://www.b.com 后面没有有“/”
     #         将反向代理成 http://www.b.com/test.jsp 访问
     proxy_pass http://test;
 
@@ -273,7 +273,7 @@ server {
 
     # 设置 Cookie 头通过
     proxy_pass_header Set-Cookie;
-  } 
+  }
 }
 ```
 
@@ -296,9 +296,9 @@ deny 124.45.0.0/16; # 屏蔽IP段即从 123.45.0.1 到 123.45.255.254 访问的�
 deny 123.45.6.0/24; # 屏蔽IP段即从 123.45.6.1 到 123.45.6.254 访问的命令
 
 # 如果你想实现这样的应用，除了几个IP外，其他全部拒绝
-allow 1.1.1.1; 
+allow 1.1.1.1;
 allow 1.1.1.2;
-deny all; 
+deny all;
 ```
 
 ## 代理转发重写路径
@@ -347,7 +347,7 @@ location ~ /\.(?!well-known\/) {
 
 ## Gzip 配置
 
-``` nginx :no-line-numbers
+```nginx :no-line-numbers
 gzip  on;
 gzip_buffers 16 8k;
 gzip_comp_level 6;

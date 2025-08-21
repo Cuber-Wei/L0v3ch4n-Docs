@@ -27,17 +27,6 @@
     );
 }
 
-.layout-landing .vp-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    background-color: var(--landing-card-bg);
-    backdrop-filter: var(--landing-card-backdrop);
-    border-top: none;
-    padding: 8px 0;
-}
-
 .layout-landing .vp-nav {
     background-color: var(--landing-card-bg);
     backdrop-filter: var(--landing-card-backdrop);
@@ -61,6 +50,17 @@
 .layout-landing .vp-nav .navbar-menu-link:hover,
 .layout-landing .vp-nav .navbar-menu-link.active {
     color: #8cccd5;
+}
+
+.layout-landing .vp-footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--landing-card-bg);
+    backdrop-filter: var(--landing-card-backdrop);
+    border-top: none;
+    padding: 8px 0;
 }
 
 .layout-landing .vp-footer .container {

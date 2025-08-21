@@ -4,7 +4,7 @@ createTime: 2025/03/12 21:52:05
 permalink: /project/OJ/MarkDownEditorDev/
 ---
 
-为了方便进行文本编辑，计划封装整合一个MarkDown编辑器方便调用。 选用`ByteMD`框架。
+为了方便进行文本编辑，计划封装整合一个 MarkDown 编辑器方便调用。 选用`ByteMD`框架。
 
 ## 安装
 
@@ -16,30 +16,30 @@ npm install @bytemd/vue-next
 
 ```typescript
 // main.ts
-import 'bytemd/dist/index.css'
+import "bytemd/dist/index.css";
 ```
 
 ```vue
 // @/components/MdEditor.vue
 <template>
-  <Editor :value="value" :plugins="plugins" @change="handleChange"/>
+    <Editor :value="value" :plugins="plugins" @change="handleChange" />
 </template>
 
 <script lang="ts" setup>
-  import gfm from "@bytemd/plugin-gfm";
-  import highlight from "@bytemd/plugin-highlight";
-  import math from "@bytemd/plugin-math";
+import gfm from "@bytemd/plugin-gfm";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
 
-  const plugins = [
+const plugins = [
     gfm(),
     highlight(),
     math(),
     // Add more plugins here
-  ];
+];
 
-  const handleChange = (v: string) => {
+const handleChange = (v: string) => {
     value.value = v;
-  };
+};
 </script>
 ```
 
@@ -53,15 +53,13 @@ import 'bytemd/dist/index.css'
 
 ```vue
 <template>
-  <MdEditor
-      :handle-change="onContentChange"
-      :value="question.content"
-  />
+    <MdEditor :handle-change="onContentChange" :value="question.content" />
 </template>
 <script lang="ts" setup>
-  const onContentChange = (v: string) => { // [!code highlight]
+const onContentChange = (v: string) => {
+    // [!code highlight]
     question.value.content = v; // [!code highlight]
-  }; // [!code highlight]
+}; // [!code highlight]
 </script>
 ```
 
@@ -69,45 +67,45 @@ import 'bytemd/dist/index.css'
 
 ```vue
 <template>
-  <Editor
-      :mode="mode"
-      :plugins="plugins"
-      :value="value"
-      @change="handleChange"
-  />
+    <Editor
+        :mode="mode"
+        :plugins="plugins"
+        :value="value"
+        @change="handleChange"
+    />
 </template>
 <script lang="ts" setup>
-  import gfm from "@bytemd/plugin-gfm";
-  import highlight from "@bytemd/plugin-highlight";
-  import math from "@bytemd/plugin-math";
-  import {defineProps, withDefaults} from "vue";
+import gfm from "@bytemd/plugin-gfm";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
+import { defineProps, withDefaults } from "vue";
 
-  /**
+/**
    定义组件属性类型
    */
-  interface Props {
+interface Props {
     value: string;
     mode?: string;
     handleChange: (v: string) => void;
-  }
+}
 
-  /**
+/**
    给组件指定初始值
    */
-  const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
     value: () => "",
     mode: () => "split",
     handleChange: (v: string) => {
-      console.log(v);
+        console.log(v);
     },
-  });
+});
 
-  const plugins = [
+const plugins = [
     gfm(),
     highlight(),
     math(),
     // Add more plugins here
-  ];
+];
 </script>
 ```
 
@@ -118,7 +116,7 @@ import 'bytemd/dist/index.css'
 
 ```vue
 <template>
-  <MdEditor v-model:value="question.content"/>
+    <MdEditor v-model:value="question.content" />
 </template>
 ```
 
@@ -126,46 +124,43 @@ import 'bytemd/dist/index.css'
 
 ```vue
 <template>
-  <Editor
-      :mode="mode"
-      :plugins="plugins"
-      :value="value"
-      @change="handleChange"
-  />
+    <Editor
+        :mode="mode"
+        :plugins="plugins"
+        :value="value"
+        @change="handleChange"
+    />
 </template>
 <script lang="ts" setup>
-  import gfm from "@bytemd/plugin-gfm";
-  import highlight from "@bytemd/plugin-highlight";
-  import math from "@bytemd/plugin-math";
-  import {defineEmits, defineProps, withDefaults} from "vue";
+import gfm from "@bytemd/plugin-gfm";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
+import { defineEmits, defineProps, withDefaults } from "vue";
 
-  /**
+/**
    定义组件属性类型
    */
-  interface Props {
+interface Props {
     value: string;
     mode?: string;
     handleChange: (v: string) => void;
-  }
+}
 
-  /**
+/**
    给组件指定初始值
    */
-  const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<Props>(), {
     value: () => "",
     mode: () => "split",
-  });
+});
 
-  const plugins = [
-    gfm(),
-    highlight(),
-    math(),
-  ];
+const plugins = [gfm(), highlight(), math()];
 
-  const emit = defineEmits(["update:value"]) // [!code highlight]
-  const handleChange = (v: string) => { // [!code highlight]
+const emit = defineEmits(["update:value"]); // [!code highlight]
+const handleChange = (v: string) => {
+    // [!code highlight]
     emit("update:value", v); // [!code highlight]
-  }; // [!code highlight]
+}; // [!code highlight]
 </script>
 ```
 

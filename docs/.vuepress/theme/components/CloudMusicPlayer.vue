@@ -17,7 +17,7 @@ const props = defineProps({
 });
 
 const getSrc = () => {
-  return `https://music.163.com/outchain/player?type=2&id=${props.id}&auto=${props.auto}&height=66`;
+  return `//music.163.com/outchain/player?type=2&id=${props.id}&auto=${props.auto}&height=66`;
 };
 const is_mobile = ref(false);
 onMounted(() => {
@@ -41,6 +41,7 @@ const isMobile = () => {
       height="86"
       marginheight="0"
       marginwidth="0"
+      allow="encrypted-media"
     />
   </div>
 </template>

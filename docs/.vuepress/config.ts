@@ -14,7 +14,7 @@ export default defineUserConfig({
             description: "L0v3ch4n&#x27;s learning records.",
         },
     },
-    head: [["link", { rel: "icon", href: "/L-logo.png" }]],
+    head: [["link", { rel: "icon", href: "/images/L-logo.png" }]],
 
     bundler: viteBundler(),
 

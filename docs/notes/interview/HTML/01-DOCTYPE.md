@@ -6,35 +6,35 @@ permalink: /interview/DOCTYPE/
 
 ::: tip 提问
 
-1. 什么是DOCTYPE？
-2. DOCTYPE的作用是什么？
+1. 什么是 DOCTYPE？
+2. DOCTYPE 的作用是什么？
 3. 标准模式和兼容模式
 4. HTML5 `<!DOCTYPE HTML>`
 5. 什么是 DTD？
 
 :::
 
-## 什么是DOCTYPE
+## 什么是 DOCTYPE
 
 `DOCTYPE` 是 文档类型， 用于声明当前文档使用哪种文档模式进行解析和渲染。
 
-## DOCTYPE的作用是什么？
+## DOCTYPE 的作用是什么？
 
 `<!DOCTYPE>` 声明一般位于文档的第一行，它的作用是告知浏览器以哪种模式进行解析文档。
 一般指定之后，会使用标准模式进行文档解析，否则就以兼容模式进行解析。
 
 ## 标准模式和兼容模式
 
-- 标准模式 是指 浏览器以该浏览器支持的最高标准进行文档解析和渲染，包括JS引擎。
-- 兼容模式 是指 文档以宽松的向后兼容的方式渲染，模拟老式浏览器的行为以防止站点无法工作。
+-   标准模式 是指 浏览器以该浏览器支持的最高标准进行文档解析和渲染，包括 JS 引擎。
+-   兼容模式 是指 文档以宽松的向后兼容的方式渲染，模拟老式浏览器的行为以防止站点无法工作。
 
-## HTML5的DOCTYPE声明
+## HTML5 的 DOCTYPE 声明
 
-HTML5的 不需要对 DTD 进行引用。但是需要 DOCTYPE 来规范浏览器的行为。
-所以HTML的DOCTYPE 声明为
+HTML5 的 不需要对 DTD 进行引用。但是需要 DOCTYPE 来规范浏览器的行为。
+所以 HTML 的 DOCTYPE 声明为
 
 ```html
-<!doctype html>
+<!DOCTYPE html>
 ```
 
 ## 什么是 DTD？

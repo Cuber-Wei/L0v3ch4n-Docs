@@ -22,17 +22,20 @@ permalink: /interview/newOperator/
 
 ```js
 function newFactory(constructor, ...args) {
-    if (typeof constructor !== 'function') {
-        throw new Error('constructor must be a function')
+    if (typeof constructor !== "function") {
+        throw new Error("constructor must be a function");
     }
 
-    const object = Object.create(constructor.prototype)
-    const result = constructor.apply(object, args)
+    const object = Object.create(constructor.prototype);
+    const result = constructor.apply(object, args);
 
-    if (result && (typeof result === 'object' || typeof result === 'function')) {
-        return result
+    if (
+        result &&
+        (typeof result === "object" || typeof result === "function")
+    ) {
+        return result;
     } else {
-        return object
+        return object;
     }
 }
 ```

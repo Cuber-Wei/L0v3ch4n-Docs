@@ -3,21 +3,21 @@ title: uni-app蓝牙踩坑小记
 createTime: 2025/01/31 21:21:12
 permalink: /article/uniapp-bluetooth/
 tags:
-  - 项目小记
-  - uni-app
-  - 蓝牙
+    - 项目小记
+    - uni-app
+    - 蓝牙
 ---
 
-> 之前接了个与硬件建立蓝牙通讯的项目，学到了一些uni-app蓝牙操作的知识，也踩了一些坑，特此记录一下防止忘记。
+> 之前接了个与硬件建立蓝牙通讯的项目，学到了一些 uni-app 蓝牙操作的知识，也踩了一些坑，特此记录一下防止忘记。
 
 > [!note]
-> 在蓝牙模块调用时，采用的是Promise链式调用的形式，因此下文所提供的代码片段均为Promise形式。
+> 在蓝牙模块调用时，采用的是 Promise 链式调用的形式，因此下文所提供的代码片段均为 Promise 形式。
 >
 > <div style="text-align: center">
->     <img src="/images/项目小记/promise链.png" style="height: 80%; width: 80%;" alt="超绝promise链">
+>     <img src="https://file.l0v3ch4n.top/L0v3ch4n-Docs-images/ProjectNote/promise链.png" style="height: 80%; width: 80%;" alt="超绝promise链">
 > </div>
 >
-> 文章参考：[uni-app官网](https://zh.uniapp.dcloud.io/quickstart-hx.html)、
+> 文章参考：[uni-app 官网](https://zh.uniapp.dcloud.io/quickstart-hx.html)、
 > [蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html)、
 > [低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html)
 
@@ -28,48 +28,48 @@ tags:
 ```javascript
 // Step1 初始化蓝牙
 const initBlue = () => {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // [!code word:openBluetoothAdapter]
-		uni.openBluetoothAdapter({
-			success(res) {
-				console.log('初始化蓝牙成功')
+        uni.openBluetoothAdapter({
+            success(res) {
+                console.log("初始化蓝牙成功");
                 // [!code word:getBluetoothAdapterState]
-				uni.getBluetoothAdapterState({
-					success(r) {
-						console.log('蓝牙状态', r.available);
-						if (r.available) {
-							resolve();
-						} else {
-							uni.showToast({
-								title: "请开启蓝牙",
-								icon: 'error',
-								duration: 2000,
-							});
-							reject();
-						}
-					},
-					fail(err) {
-						uni.showToast({
-							title: "请开启蓝牙",
-							icon: 'error',
-							duration: 2000,
-						});
-						reject();
-					}
-				});
-			},
-			fail(err) {
-				console.log('初始化蓝牙失败')
-				console.error(err)
-				uni.showToast({
-					title: "请开启蓝牙",
-					icon: 'error',
-					duration: 2000,
-				});
-				reject();
-			}
-		});
-	});
+                uni.getBluetoothAdapterState({
+                    success(r) {
+                        console.log("蓝牙状态", r.available);
+                        if (r.available) {
+                            resolve();
+                        } else {
+                            uni.showToast({
+                                title: "请开启蓝牙",
+                                icon: "error",
+                                duration: 2000,
+                            });
+                            reject();
+                        }
+                    },
+                    fail(err) {
+                        uni.showToast({
+                            title: "请开启蓝牙",
+                            icon: "error",
+                            duration: 2000,
+                        });
+                        reject();
+                    },
+                });
+            },
+            fail(err) {
+                console.log("初始化蓝牙失败");
+                console.error(err);
+                uni.showToast({
+                    title: "请开启蓝牙",
+                    icon: "error",
+                    duration: 2000,
+                });
+                reject();
+            },
+        });
+    });
 };
 ```
 
@@ -80,34 +80,34 @@ const initBlue = () => {
 ```javascript
 // Step2 开始搜寻附近设备
 const discovery = () => {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // [!code word:startBluetoothDevicesDiscovery]
-		uni.startBluetoothDevicesDiscovery({
-			success(res) {
-				uni.showLoading({
-					title: "正在搜索设备",
-					icon: "none",
-				});
-				// 开启监听回调
+        uni.startBluetoothDevicesDiscovery({
+            success(res) {
+                uni.showLoading({
+                    title: "正在搜索设备",
+                    icon: "none",
+                });
+                // 开启监听回调
                 // [!code word:onBluetoothDeviceFound]
-				uni.onBluetoothDeviceFound(function(devices) {
-					let obj = devices.devices[0];
-					console.log(obj.name)
-					if (obj.name === conf.deviceName) {
-						// 找到目标设备
-						// 设置设备ID到同步缓存中
-						uni.setStorageSync('deviceId', obj.deviceId);
-						uni.hideLoading();
-						resolve();
-					}
-				});
-				console.log('搜索蓝牙外围设备完成', res);
-			},
-			fail(err) {
-				console.log(err);
-			}
-		});
-	});
+                uni.onBluetoothDeviceFound(function (devices) {
+                    let obj = devices.devices[0];
+                    console.log(obj.name);
+                    if (obj.name === conf.deviceName) {
+                        // 找到目标设备
+                        // 设置设备ID到同步缓存中
+                        uni.setStorageSync("deviceId", obj.deviceId);
+                        uni.hideLoading();
+                        resolve();
+                    }
+                });
+                console.log("搜索蓝牙外围设备完成", res);
+            },
+            fail(err) {
+                console.log(err);
+            },
+        });
+    });
 };
 ```
 
@@ -118,37 +118,37 @@ const discovery = () => {
 ```javascript
 // Step3 连接设备
 const connect = () => {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // [!code word:createBLEConnection]
-		uni.createBLEConnection({
-			deviceId: uni.getStorageSync('deviceId'), // 设备id
-			success(res) {
-				console.log('连接成功');
-				console.log(res);
-				uni.showToast({
-					title: '连接成功',
-					icon: 'success'
-				});
-				// Step4 蓝牙连接成功后关闭蓝牙搜索
-				stopDiscovery();
-				resolve();
-			},
-			fail(err) {
-				uni.showToast({
-					title: '连接失败',
-					icon: 'error'
-				});
-				console.log("蓝牙连接失败");
-				console.log(err);
-				reject();
-			}
-		});
-	});
+        uni.createBLEConnection({
+            deviceId: uni.getStorageSync("deviceId"), // 设备id
+            success(res) {
+                console.log("连接成功");
+                console.log(res);
+                uni.showToast({
+                    title: "连接成功",
+                    icon: "success",
+                });
+                // Step4 蓝牙连接成功后关闭蓝牙搜索
+                stopDiscovery();
+                resolve();
+            },
+            fail(err) {
+                uni.showToast({
+                    title: "连接失败",
+                    icon: "error",
+                });
+                console.log("蓝牙连接失败");
+                console.log(err);
+                reject();
+            },
+        });
+    });
 };
 ```
 
 > [!important]
-> 由于Setp2中搜索蓝牙设备的功能比较耗费系统资源，因此在搜索并连接到设备后务必[停止搜索](#step4-停止搜索)。
+> 由于 Setp2 中搜索蓝牙设备的功能比较耗费系统资源，因此在搜索并连接到设备后务必[停止搜索](#step4-停止搜索)。
 
 ## Step4 停止搜索
 
@@ -158,16 +158,16 @@ const connect = () => {
 // Step4 停止搜索
 const stopDiscovery = () => {
     // [!code word:stopBluetoothDevicesDiscovery]
-	uni.stopBluetoothDevicesDiscovery({
-		success(res) {
-			console.log('停止成功');
-			console.log(res);
-		},
-		fail(err) {
-			console.log('停止失败');
-			console.error(err);
-		}
-	});
+    uni.stopBluetoothDevicesDiscovery({
+        success(res) {
+            console.log("停止成功");
+            console.log(res);
+        },
+        fail(err) {
+            console.log("停止失败");
+            console.error(err);
+        },
+    });
 };
 ```
 
@@ -178,20 +178,20 @@ const stopDiscovery = () => {
 ```javascript
 // Step5 获取蓝牙设备所有服务
 const getServices = () => {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // [!code word:getBLEDeviceServices]
-		uni.getBLEDeviceServices({
-			deviceId: uni.getStorageSync('deviceId'),
-			success(res) {
-				console.log(res)
-				resolve();
-			},
-			fail(err) {
-				console.error(err)
-				reject();
-			}
-		})
-	});
+        uni.getBLEDeviceServices({
+            deviceId: uni.getStorageSync("deviceId"),
+            success(res) {
+                console.log(res);
+                resolve();
+            },
+            fail(err) {
+                console.error(err);
+                reject();
+            },
+        });
+    });
 };
 ```
 
@@ -202,21 +202,21 @@ const getServices = () => {
 ```javascript
 // Step6 获取蓝牙设备某个服务中所有特征值
 const getCharacteristics = () => {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // [!code word:getBLEDeviceCharacteristics]
-		uni.getBLEDeviceCharacteristics({
-			deviceId: uni.getStorageSync('deviceId'),
-			serviceId: conf.serviceId,
-			success(res) {
-				console.log(res)
-				resolve();
-			},
-			fail(err) {
-				console.error(err)
-				reject();
-			}
-		})
-	})
+        uni.getBLEDeviceCharacteristics({
+            deviceId: uni.getStorageSync("deviceId"),
+            serviceId: conf.serviceId,
+            success(res) {
+                console.log(res);
+                resolve();
+            },
+            fail(err) {
+                console.error(err);
+                reject();
+            },
+        });
+    });
 };
 ```
 
@@ -226,25 +226,26 @@ const getCharacteristics = () => {
 
 ```javascript
 // Step7 开启消息监听
-const notify = (handleFunc) => { // 这里传入一个回调函数，用于处理接收到的数据。
+const notify = (handleFunc) => {
+    // 这里传入一个回调函数，用于处理接收到的数据。
     // [!code word:notifyBLECharacteristicValueChange]
-	uni.notifyBLECharacteristicValueChange({
-		deviceId: uni.getStorageSync('deviceId'), // 设备id
-		serviceId: conf.serviceId, // 监听指定的服务
-		characteristicId: conf.characteristicId, // 监听对应的特征值
-		state: true,
-		success(res) {
-			console.log(res)
-			listenValueChange(handleFunc); // 开启监听消息变化，并传入回调函数。
-		},
-		fail(err) {
-			console.error(err)
-			uni.showToast({
-				title: '监听失败',
-				icon: 'error'
-			})
-		}
-	})
+    uni.notifyBLECharacteristicValueChange({
+        deviceId: uni.getStorageSync("deviceId"), // 设备id
+        serviceId: conf.serviceId, // 监听指定的服务
+        characteristicId: conf.characteristicId, // 监听对应的特征值
+        state: true,
+        success(res) {
+            console.log(res);
+            listenValueChange(handleFunc); // 开启监听消息变化，并传入回调函数。
+        },
+        fail(err) {
+            console.error(err);
+            uni.showToast({
+                title: "监听失败",
+                icon: "error",
+            });
+        },
+    });
 };
 ```
 
@@ -254,12 +255,13 @@ const notify = (handleFunc) => { // 这里传入一个回调函数，用于处�
 
 ```javascript
 // Step8 监听消息变化
-const listenValueChange = (handleFunc) => { // 这里传入一个回调函数，用于处理接收到的数据。
+const listenValueChange = (handleFunc) => {
+    // 这里传入一个回调函数，用于处理接收到的数据。
     // [!code word:onBLECharacteristicValueChange]
-	uni.onBLECharacteristicValueChange(res => {
-		let resArray = ab2array(res.value); // 拿到数字数组
+    uni.onBLECharacteristicValueChange((res) => {
+        let resArray = ab2array(res.value); // 拿到数字数组
         // Something to do...
-	})
+    });
 };
 // ArrayBuffer 转数组
 const ab2array = (buffer) => {
@@ -275,23 +277,23 @@ const ab2array = (buffer) => {
 // Step9 发送数据
 const sendCommand = (data) => {
     // [!code word:writeBLECharacteristicValue]
-	uni.writeBLECharacteristicValue({
-		deviceId: uni.getStorageSync('deviceId'),
-		serviceId: conf.serviceId,
-		characteristicId: conf.characteristicId,
+    uni.writeBLECharacteristicValue({
+        deviceId: uni.getStorageSync("deviceId"),
+        serviceId: conf.serviceId,
+        characteristicId: conf.characteristicId,
         // 注意：value 是ArrayBuffer类型，需要进行转换。
-		value: array2ab(data), // [!code highlight]
-		success(res) {
-			console.log('写入成功' + res.errMsg);
-		},
-		fail(err) {
-			console.error(err)
-			uni.showToast({
-				title: '指令发送失败',
-				icon: 'error'
-			});
-		}
-	})
+        value: array2ab(data), // [!code highlight]
+        success(res) {
+            console.log("写入成功" + res.errMsg);
+        },
+        fail(err) {
+            console.error(err);
+            uni.showToast({
+                title: "指令发送失败",
+                icon: "error",
+            });
+        },
+    });
 };
 // 数组转Arraybuffer
 const array2ab = (numbers) => {
@@ -315,19 +317,19 @@ const array2ab = (numbers) => {
 ```javascript
 // Step10 断开蓝牙连接
 const stopConnection = () => {
-	return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
         // [!code word:closeBLEConnection]
-		uni.closeBLEConnection({
-			deviceId: uni.getStorageSync('deviceId'), // 设备id
-			success(r) {
-				resolve();
-			},
-			fail(r) {
-				console.log(r);
-				reject();
-			}
-		});
-	});
+        uni.closeBLEConnection({
+            deviceId: uni.getStorageSync("deviceId"), // 设备id
+            success(r) {
+                resolve();
+            },
+            fail(r) {
+                console.log(r);
+                reject();
+            },
+        });
+    });
 };
 ```
 
@@ -336,13 +338,13 @@ const stopConnection = () => {
 ### 为什么收到的数据是乱码（不符合预期）？
 
 1. **协议文档写错了**：可能是文档看错了或者硬件那边把协议改了却没有更新文档。
-2. **数据类型不对**：可能是收到的数据没有进行转换，直接在ArrayBuffer上面进行了数据解析操作。
-3. **硬件波特率设置有问题**：可能是硬件那边的波特率设置有问题，导致数据收发不正常。经过~~测试~~踩坑，波特率设置成9600时，
+2. **数据类型不对**：可能是收到的数据没有进行转换，直接在 ArrayBuffer 上面进行了数据解析操作。
+3. **硬件波特率设置有问题**：可能是硬件那边的波特率设置有问题，导致数据收发不正常。经过~~测试~~踩坑，波特率设置成 9600 时，
    数据收发正常。
 
-### 为什么采用Promise链的形式？
+### 为什么采用 Promise 链的形式？
 
-1. **逻辑清晰**：Promise链的形式可以让代码看起来更加清晰，易于理解。
+1. **逻辑清晰**：Promise 链的形式可以让代码看起来更加清晰，易于理解。
 2. **避免上下文影响**
    ：一些函数的调用会影响到下文，若只是按顺序结构编写逻辑则有可能发生[获取服务](#step5-获取蓝牙设备所有服务)
    先于[蓝牙连接](#step3-连接蓝牙设备)的情况，导致程序报错。

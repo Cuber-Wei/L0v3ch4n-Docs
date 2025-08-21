@@ -3,9 +3,9 @@ title: 2022 NewStar Week1 ezrsa复现
 createTime: 2025/03/12 19:30:48
 permalink: /CTF/NewStar2022Week1ezrsa/
 tags:
-  - CTF
-  - Crypto
-  - RSA
+    - CTF
+    - Crypto
+    - RSA
 ---
 
 ## 题干
@@ -18,7 +18,7 @@ cnt = len(flag) // 5
 flags = [flag[cnt*i:cnt*(i+1)] for i in range(5)]
 ```
 
-可知flag分五段。
+可知 flag 分五段。
 
 ## 第一段
 
@@ -30,7 +30,7 @@ q = 9631855759661411029901156175243744760977799976661519182223576693685069000499
 e = 0x10001
 ```
 
-**level1 **就是常规的RSA解密
+**level1 **就是常规的 RSA 解密
 
 ```python
 import Crypto.Util.number
@@ -50,7 +50,7 @@ e = 0x10001
 m = bytes_to_long(message)
 ```
 
-**level2** p,q没给出,我们就是通过网站分解质因数得到p,q.
+**level2** p,q 没给出,我们就是通过网站分解质因数得到 p,q.
 
 ```python
 import Crypto.Util.number
@@ -69,7 +69,7 @@ n = 8579369479265542093494586368896894446630030489890335421278051265092413293335
 e = 3
 ```
 
-**level3** e比较小,是低加密指数攻击
+**level3** e 比较小,是低加密指数攻击
 
 ```python
 import gmpy2
@@ -91,7 +91,7 @@ n = 6881669724019074460390382235142385559389979720370372303836324005791336622756
 
 ```
 
-**level4** e很大,是低解密指数攻击
+**level4** e 很大,是低解密指数攻击
 
 ```python
 import gmpy2
@@ -115,10 +115,11 @@ c = pow(m, e, n)
 hint = pow(d, e, n)
 ```
 
-**level5** p q无法啊直接通过n分解出来. 但仔细分析n和phi(n)我们可以发现公约数是p,那么我们的突破点就在这.
-通过题目可以发现直接求出phi(n)是不切实际的,那我们只需要让phi(n)存在于某一个式子即可.
+**level5** p q 无法啊直接通过 n 分解出来. 但仔细分析 n 和 phi(n)我们可以发现公约数是 p,那么我们的突破点就在这.
+通过题目可以发现直接求出 phi(n)是不切实际的,那我们只需要让 phi(n)存在于某一个式子即可.
 
 推导:
+
 $$
 n=p\times p\times q\newline
 \text{则}\phi (n)=p\times (p-1)\times (q-1)\newline
@@ -150,7 +151,7 @@ d = gmpy2.invert(e, phi)
 m = pow(c, d, n)
 ```
 
-## 完整exp
+## 完整 exp
 
 ```python
 '''
@@ -247,4 +248,3 @@ print(sent1()+sent2()+sent3()+sent4()+sent5())
 # flag:
 # b'flag{W0w_U_ar3_re4L1y_g0Od_4t_m4th_4nD_RSA!!}'
 ```
-
