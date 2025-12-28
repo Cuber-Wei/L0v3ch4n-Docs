@@ -28,4 +28,8 @@ list:
       link: https://blog.peacesheep.xyz
       avatar: https://q.qlogo.cn/headimg_dl?dst_uin=1553770945&spec=640&img_type=jpg
       desc: 亚宁哥哥！
+    - name: yyx235
+      link: https://blog.yyx235.top/
+      avatar: https://q.qlogo.cn/headimg_dl?dst_uin=734489881&spec=640&img_type=jpg
+      desc: 南航慢摇王子。
 ---
