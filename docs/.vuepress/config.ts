@@ -61,6 +61,9 @@ export default defineUserConfig({
                     "rust",
                     "vue",
                     "python",
+                    "go",
+                    "java",
+                    "kotlin",
                 ],
             },
 

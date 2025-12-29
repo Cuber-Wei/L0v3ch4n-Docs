@@ -23,5 +23,11 @@ export default defineNoteConfig({
             collapsed: true,
             items: "auto",
         },
+        {
+            prefix: "Go",
+            text: "Go",
+            collapsed: true,
+            items: "auto",
+        },
     ],
 });
