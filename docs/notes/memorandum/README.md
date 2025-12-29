@@ -25,6 +25,10 @@ config:
             icon: logos:docker-icon
             details: Dockerfile模板，常用 Docker 命令
             link: ./docker.md
+          - title: PostgreSQL
+            icon: devicon:postgresql
+            details: PostgreSQL 相关命令
+            link: ./postgreSQL.md
           - title: Code Snippet
             icon: logos:visual-studio-code
             details: 常用的代码片段
