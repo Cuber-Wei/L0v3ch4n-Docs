@@ -1,6 +1,6 @@
 ---
 title: Hello World
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/warm/Hello-World/
 ---
@@ -16,24 +16,19 @@ Hello, World!
 ```ts
 // 期望是一个 string 类型
 type HelloWorld = any
-```
 
-```ts
 // 你需要使得如下这行不会抛出异常
 type test = Expect<Equal<HelloWorld, string>>
 ```
 
-点击上方的 `接受挑战` 开始编码！旅途愉快！
-
-
 ## 解题思路
 
-待补充
+显然，`HelloWorld` 即为 `string` 类型。
 
 ## 答案
 
 ```ts
-type HelloWorld = any // expected to be a string
+type HelloWorld = string // expected to be a string
 
 ```
 

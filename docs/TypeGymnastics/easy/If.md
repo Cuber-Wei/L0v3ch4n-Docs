@@ -1,6 +1,6 @@
 ---
 title: If
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/If/
 ---
@@ -19,20 +19,22 @@ type B = If<false, 'a', 'b'> // expected to be 'b'
 
 ## 解题思路
 
-待补充
+`extends` 关键字配合 ` ? : ` 三目运算符使用，可以进行条件判断。`A extends B ? a : b` 意为判断 `A` 是否为 `B` 的子类型，若为真则返回 `a`，否则`b`。
 
 ## 答案
 
 ```ts
-type If<C, T, F> = any
+type If<C extends boolean, T, F> = C extends true ? T : F
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type If<C extends boolean, T, F> = C extends true ? T : F
+// ---cut---
 type cases = [
   Expect<Equal<If<true, 'a', 'b'>, 'a'>>,
   Expect<Equal<If<false, 'a', 2>, 2>>,
@@ -46,5 +48,4 @@ type error = If<null, 'a', 'b'>
 
 ## 参考
 
-无
-
+> - [条件类型 Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)

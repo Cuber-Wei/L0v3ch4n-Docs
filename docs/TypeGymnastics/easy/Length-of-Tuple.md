@@ -1,6 +1,6 @@
 ---
 title: Length of Tuple
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Length-of-Tuple/
 ---
@@ -22,20 +22,24 @@ type spaceXLength = Length<spaceX> // expected 5
 
 ## 解题思路
 
-待补充
+获取元组的 `length` 属性即可。
+
+注意若要获取 `length` 属性，需要限定泛型的类型。
 
 ## 答案
 
 ```ts
-type Length<T> = any
+type Length<T extends readonly any[]> = T["length"]
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type Length<T extends readonly any[]> = T["length"]
+// ---cut---
 const tesla = ['tesla', 'model 3', 'model X', 'model Y'] as const
 const spaceX = ['FALCON 9', 'FALCON HEAVY', 'DRAGON', 'STARSHIP', 'HUMAN SPACEFLIGHT'] as const
 
@@ -52,5 +56,4 @@ type cases = [
 
 ## 参考
 
-无
-
+> - [索引访问类型 Indexed Types](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)

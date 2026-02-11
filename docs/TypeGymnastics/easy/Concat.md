@@ -1,6 +1,6 @@
 ---
 title: Concat
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Concat/
 ---
@@ -18,20 +18,21 @@ type Result = Concat<[1], [2]> // expected to be [1, 2]
 
 ## 解题思路
 
-待补充
+利用数组的展开语法即可。
 
 ## 答案
 
 ```ts
-type Concat<T, U> = any
-
+type Concat<T extends readonly any[], U extends readonly any[]> = [...T, ...U]
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type Concat<T extends readonly any[], U extends readonly any[]> = [...T, ...U]
+// ---cut---
 const tuple = [1] as const
 
 type cases = [
@@ -49,5 +50,4 @@ type error = Concat<null, undefined>
 
 ## 参考
 
-无
-
+> - [可变元组 Variadic Tuple Types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#variadic-tuple-types)

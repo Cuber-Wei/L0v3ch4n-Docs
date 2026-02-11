@@ -1,6 +1,6 @@
 ---
 title: Pick
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Pick/
 ---
@@ -28,23 +28,28 @@ const todo: TodoPreview = {
 }
 ```
 
-
 ## 解题思路
 
-待补充
+通过 `keyof` 关键字获取 `T` 的键数组，再利用 `in` 关键字遍历键数组获取每个键。
 
 ## 答案
 
 ```ts
-type MyPick<T, K> = any
+type MyPick<T, K extends keyof T> = {
+  [key in K]: T[key]
+}
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type MyPick<T, K extends keyof T> = {
+  [key in K]: T[key]
+}
+// ---cut---
 type cases = [
   Expect<Equal<Expected1, MyPick<Todo, 'title'>>>,
   Expect<Equal<Expected2, MyPick<Todo, 'title' | 'completed'>>>,
@@ -71,5 +76,6 @@ interface Expected2 {
 
 ## 参考
 
-无
-
+> - [查找类型 Lookup Types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-1.html#keyof-and-lookup-types)
+> - [映射类型 Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)
+> - [索引访问类型 Indexed Types](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)

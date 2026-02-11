@@ -1,6 +1,6 @@
 ---
 title: Tuple to Object
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Tuple-to-Object/
 ---
@@ -17,23 +17,28 @@ const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const
 type result = TupleToObject<typeof tuple> // expected { 'tesla': 'tesla', 'model 3': 'model 3', 'model X': 'model X', 'model Y': 'model Y'}
 ```
 
-
 ## 解题思路
 
-待补充
+`T[number]` 即可遍历 `T` 元组中的元素。
 
 ## 答案
 
 ```ts
-type TupleToObject<T extends readonly any[]> = any
+type TupleToObject<T extends readonly (number|string|symbol)[]> = {
+  [P in T[number]]: P
+}
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type TupleToObject<T extends readonly (number|string|symbol)[]> = {
+  [P in T[number]]: P
+}
+// ---cut---
 const tuple = ['tesla', 'model 3', 'model X', 'model Y'] as const
 const tupleNumber = [1, 2, 3, 4] as const
 const sym1 = Symbol(1)
@@ -55,5 +60,5 @@ type error = TupleToObject<[[1, 2], {}]>
 
 ## 参考
 
-无
-
+> - [映射类型 Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)
+> - [索引访问类型 Indexed Types](https://www.typescriptlang.org/docs/handbook/2/indexed-access-types.html)

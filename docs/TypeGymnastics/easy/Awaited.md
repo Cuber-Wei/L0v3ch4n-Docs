@@ -1,6 +1,6 @@
 ---
 title: Awaited
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Awaited/
 ---
@@ -22,20 +22,28 @@ type Result = MyAwaited<ExampleType> // string
 
 ## 解题思路
 
-待补充
+考虑到样例中不是只有 `Promise` 类型，其中有实现了 `then` 方法的对象，我们采用 `PromiseLise` 类型。
+
+递归地对传入类型进行拆解，形式为 `PromiseLike<R>`，对 `R` 进一步判断是否需要继续拆解，若仍为 `PromiseLike` 类型则继续，否则返回 `R`。
 
 ## 答案
 
 ```ts
-type MyAwaited<T> = any
+type MyAwaited<T> = T extends PromiseLike<infer R> 
+? R extends PromiseLike<any> 
+  ? MyAwaited<R> 
+  : R 
+: never
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type MyAwaited<T> = T extends PromiseLike<infer R> ? R extends PromiseLike<any> ? MyAwaited<R> : R : never
+// ---cut---
 type X = Promise<string>
 type Y = Promise<{ field: number }>
 type Z = Promise<Promise<string | number>>
@@ -54,5 +62,5 @@ type cases = [
 
 ## 参考
 
-无
-
+> - [条件类型 Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)
+> - [条件类型中的类型推断 Type Inference in Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)

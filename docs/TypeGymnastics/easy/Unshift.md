@@ -1,6 +1,6 @@
 ---
 title: Unshift
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Unshift/
 ---
@@ -15,7 +15,6 @@ permalink: /TypeGymnastics/easy/Unshift/
 type Result = Unshift<[1, 2], 0> // [0, 1, 2]
 ```
 
-
 ## 解题思路
 
 待补充
@@ -23,15 +22,17 @@ type Result = Unshift<[1, 2], 0> // [0, 1, 2]
 ## 答案
 
 ```ts
-type Unshift<T, U> = any
+type Unshift<T extends any[], U> = [U, ...T]
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type Unshift<T extends any[], U> = [U, ...T]
+// ---cut---
 type cases = [
   Expect<Equal<Unshift<[], 1>, [1]>>,
   Expect<Equal<Unshift<[1, 2], 0>, [0, 1, 2]>>,
@@ -42,5 +43,6 @@ type cases = [
 
 ## 参考
 
-无
-
+> - [可变元组 Variadic Tuple Types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-4-0.html#variadic-tuple-types)
+> - [泛型 Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+> - [泛型约束 Generics Constraints](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)

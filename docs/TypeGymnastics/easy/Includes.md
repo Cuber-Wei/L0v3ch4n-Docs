@@ -1,6 +1,6 @@
 ---
 title: Includes
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Includes/
 ---
@@ -18,20 +18,60 @@ type isPillarMen = Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'> // e
 
 ## 解题思路
 
-待补充
+第一次尝试是这样的：
+
+```ts
+type Includes<T extends readonly any[], U> = T extends [infer First, ...infer Rest] 
+? U extends First 
+  ? true 
+  : Includes<Rest, U> 
+: false
+```
+
+但是存在一个问题，即 `{}` 和 `{ 1, 2 }` 是同类型的，并非相等。故需要引入 `Equal` 进行相等判断。
+
+```ts
+// 利用函数进行延迟求值
+type MyEqual<T, U> = (
+  <P>() => P extends T ? 1 : 2
+) extends (
+  <P>() => P extends U ? 1 : 2 
+) ? true : false
+```
 
 ## 答案
 
 ```ts
-type Includes<T extends readonly any[], U> = any
+type MyEqual<T, U> = (
+  <P>() => P extends T ? 1 : 2
+) extends (
+  <P>() => P extends U ? 1 : 2 
+) ? true : false
 
+type Includes<T extends readonly any[], U> = T extends [infer First, ...infer Rest] 
+? MyEqual<U, First> extends true 
+  ? true
+  : Includes<Rest, U>
+: false
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
+type MyEqual<T, U> = (
+  <P>() => P extends T ? 1 : 2
+) extends (
+  <P>() => P extends U ? 1 : 2 
+) ? true : false
 
+type Includes<T extends readonly any[], U> = T extends [infer First, ...infer Rest] 
+? MyEqual<U, First> extends true 
+  ? true
+  : Includes<Rest, U>
+: false
+// ---cut---
 type cases = [
   Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Kars'>, true>>,
   Expect<Equal<Includes<['Kars', 'Esidisi', 'Wamuu', 'Santana'], 'Dio'>, false>>,
@@ -55,5 +95,8 @@ type cases = [
 
 ## 参考
 
-无
-
+> - [泛型 Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+> - [泛型约束 Generics Constraints](https://www.typescriptlang.org/docs/handbook/2/generics.html#generic-constraints)
+> - [条件类型 Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)
+> - [条件类型分支 Distributive Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#distributive-conditional-types)
+> - [条件类型中的类型推断 Type Inference in Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)

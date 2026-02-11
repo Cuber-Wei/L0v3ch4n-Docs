@@ -1,6 +1,6 @@
 ---
 title: Readonly
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Readonly/
 ---
@@ -33,20 +33,26 @@ todo.description = "barFoo" // Error: cannot reassign a readonly property
 
 ## 解题思路
 
-待补充
+在遍历键数组的基础上为每个键值添加 `readonly` 标记。
 
 ## 答案
 
 ```ts
-type MyReadonly<T> = any
+type MyReadonly<T> = {
+  readonly [key in keyof T]: T[key]
+}
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type MyReadonly<T> = {
+  readonly [key in keyof T]: T[key]
+}
+// ---cut---
 type cases = [
   Expect<Equal<MyReadonly<Todo1>, Readonly<Todo1>>>,
 ]
@@ -64,5 +70,4 @@ interface Todo1 {
 
 ## 参考
 
-无
-
+> - [映射类型 Mapped Types](https://www.typescriptlang.org/docs/handbook/2/mapped-types.html)

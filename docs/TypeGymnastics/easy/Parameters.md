@@ -1,6 +1,6 @@
 ---
 title: Parameters
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/easy/Parameters/
 ---
@@ -17,23 +17,26 @@ const foo = (arg1: string, arg2: number): void => {}
 type FunctionParamsType = MyParameters<typeof foo> // [arg1: string, arg2: number]
 ```
 
-
 ## 解题思路
 
-待补充
+使用 `infer` 关键字进行形式匹配。
 
 ## 答案
 
 ```ts
-type MyParameters<T extends (...args: any[]) => any> = any
+type MyParameters<T extends (...args: any[]) => any> = T extends (
+  ...args: infer R
+) => any ? R : never
 
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
+// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer R) => any ? R : never
+// ---cut---
 function foo(arg1: string, arg2: number): void {}
 function bar(arg1: boolean, arg2: { a: 'A' }): void {}
 function baz(): void {}
@@ -48,5 +51,6 @@ type cases = [
 
 ## 参考
 
-无
-
+> - [泛型 Generics](https://www.typescriptlang.org/docs/handbook/2/generics.html)
+> - [条件类型 Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html)
+> - [条件类型内推断 Inferring Within Conditional Types](https://www.typescriptlang.org/docs/handbook/2/conditional-types.html#inferring-within-conditional-types)
