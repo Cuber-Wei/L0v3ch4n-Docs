@@ -1,6 +1,6 @@
 import { defineThemeConfig } from "vuepress-theme-plume";
 import { navbar } from "./navbar";
-import { notes } from "./notes";
+import collections from './collections'
 
 /**
  * @see https://theme-plume.vuejs.press/config/basic/
@@ -21,9 +21,8 @@ export default defineThemeConfig({
         // location: '',
         organization: "南京航空航天大学",
     },
-
     navbar,
-    notes,
+    collections,
     social: [
         {
             icon: "github",

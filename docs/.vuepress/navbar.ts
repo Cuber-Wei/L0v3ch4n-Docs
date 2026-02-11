@@ -27,6 +27,12 @@ export const navbar = defineNavbarConfig([
                 icon: "material-symbols:language-spanish-rounded",
             },
             {
+                text: "TS类型体操",
+                link: "/TypeGymnastics/",
+                activeMatch: "^/TypeGymnastics/",
+                icon: "proicons:typescript",
+            },
+            {
                 text: "项目开发笔记",
                 link: "/project/",
                 activeMatch: "^/project/",

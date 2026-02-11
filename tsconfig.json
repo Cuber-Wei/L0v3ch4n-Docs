@@ -1,0 +1,8 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "paths": {
+      "@type-challenges/utils": ["./docs/.vuepress/typings/type-challenges-utils.ts"],
+    },
+  },
+}

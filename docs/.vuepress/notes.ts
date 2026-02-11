@@ -6,6 +6,7 @@ import osNote from "./notes/OS";
 import memorandum from "./notes/memorandum";
 import jottingNote from "./notes/jotting";
 import secretsNote from "./notes/secrets";
+import typeGymnasticsNote from "./notes/TypeGymnastics"
 
 export const notes = defineNotesConfig({
     dir: "notes",
@@ -18,5 +19,6 @@ export const notes = defineNotesConfig({
         memorandum,
         jottingNote,
         secretsNote,
+        typeGymnasticsNote,
     ],
 });

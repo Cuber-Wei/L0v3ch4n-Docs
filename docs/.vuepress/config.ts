@@ -22,6 +22,14 @@ export default defineUserConfig({
         // 添加您的部署域名
         hostname: "https://blog.l0v3ch4n.top/",
 
+        collections: [
+            { type: 'post', dir: 'blog', title: '博客' }
+        ],
+
+        codeHighlighter: {
+            twoslash: true
+        },
+
         markdown: {
             abbr: true,
             annotation: true,

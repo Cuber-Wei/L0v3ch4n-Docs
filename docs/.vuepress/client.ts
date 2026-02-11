@@ -12,7 +12,7 @@ export default defineClientConfig({
         app.component("RepoCard", RepoCard);
         app.component("NpmBadge", NpmBadge);
         app.component("NpmBadgeGroup", NpmBadgeGroup);
-        app.component("CloudMusicPlayer", CloudMusicPlayer),
-            app.component("Landing", Landing);
+        app.component("CloudMusicPlayer", CloudMusicPlayer);
+        app.component("Landing", Landing);
     },
 });
