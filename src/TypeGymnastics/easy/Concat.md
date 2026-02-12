@@ -28,7 +28,6 @@ type Concat<T extends readonly any[], U extends readonly any[]> = [...T, ...U]
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type Concat<T extends readonly any[], U extends readonly any[]> = [...T, ...U]
 // ---cut---

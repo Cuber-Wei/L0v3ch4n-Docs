@@ -1,6 +1,6 @@
 ---
 title: AnyOf
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/medium/AnyOf/
 ---
@@ -18,19 +18,24 @@ type Sample2 = AnyOf<[0, '', false, [], {}]> // expected to be false.
 
 ## 解题思路
 
-待补充
+把所有为 `false` 的类型列举出来依次比较即可。
+
+> `Record<string, never>` 常用于构建只包含属性名称而不包含属性值的对象，即 `{ [k: string]: never }`
 
 ## 答案
 
 ```ts
-type AnyOf<T extends readonly any[]> = any
+type Falsely = 0 | '' | false | undefined | null | [] | Record<string, never>
+type AnyOf<T extends readonly any[]> = T[number] extends Falsely ? false : true
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type Falsely = 0 | '' | false | undefined | null | [] | Record<string, never>
+type AnyOf<T extends readonly any[]> = T[number] extends Falsely ? false : true
+// ---cut---
 type cases = [
   Expect<Equal<AnyOf<[1, 'test', true, [1], { name: 'test' }, { 1: 'test' }]>, true>>,
   Expect<Equal<AnyOf<[1, '', false, [], {}]>, true>>,

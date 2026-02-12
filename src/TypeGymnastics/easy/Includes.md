@@ -57,7 +57,6 @@ type Includes<T extends readonly any[], U> = T extends [infer First, ...infer Re
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type MyEqual<T, U> = (
   <P>() => P extends T ? 1 : 2

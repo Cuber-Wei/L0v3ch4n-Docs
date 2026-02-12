@@ -1,6 +1,6 @@
 ---
 title: All
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/medium/All/
 ---
@@ -21,19 +21,28 @@ type Todo2 = All<Test2, 1> // 应与 false 相同
 
 ## 解题思路
 
-待补充
+从第一项开始比对至结束，若有不相等的即返回 `false`。
 
 ## 答案
 
 ```ts
-type All = any
+type All<T extends any[], U> = T extends [infer First, ...infer Rest]
+  ? Equal<First, U> extends true
+    ? All<Rest, U>
+    : false
+  : true
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type All<T extends any[], U> = T extends [infer First, ...infer Rest]
+  ? Equal<First, U> extends true
+    ? All<Rest, U>
+    : false
+  : true
+// ---cut---
 type cases = [
   Expect<Equal<All<[1, 1, 1], 1>, true>>,
   Expect<Equal<All<[1, 1, 2], 1>, false>>,

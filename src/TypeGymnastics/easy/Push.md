@@ -28,7 +28,6 @@ type Push<T extends any[], U> = [...T, U]
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type Push<T extends any[], U> = [...T, U]
 // ---cut---

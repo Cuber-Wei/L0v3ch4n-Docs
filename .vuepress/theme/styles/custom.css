@@ -197,3 +197,7 @@
 .vp-doc .vp-tabs-nav {
     overflow: unset;
 }
+
+.vp-nav-screen {
+    position: sticky !important;
+}

@@ -1,6 +1,6 @@
 ---
 title: Omit
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/medium/Omit/
 ---
@@ -29,19 +29,24 @@ const todo: TodoPreview = {
 
 ## 解题思路
 
-待补充
+遍历 `T` 中的键，判断是否在 `K` 中。注意 `K` 需要限定在 `T` 的键中。
 
 ## 答案
 
 ```ts
-type MyOmit<T, K> = any
+type MyOmit<T, K extends keyof T> = {
+  [P in keyof T as P extends K ? never : P]: T[P]
+}
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type MyOmit<T, K extends keyof T> = {
+  [P in keyof T as P extends K ? never : P]: T[P]
+}
+// ---cut---
 type cases = [
   Expect<Equal<Expected1, MyOmit<Todo, 'description'>>>,
   Expect<Equal<Expected2, MyOmit<Todo, 'description' | 'completed'>>>,

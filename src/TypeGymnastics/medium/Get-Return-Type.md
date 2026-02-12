@@ -1,6 +1,6 @@
 ---
 title: Get Return Type
-icon: ph:minus-bold
+icon: ph:check-bold
 createTime: 2026/02/11 13:52:35
 permalink: /TypeGymnastics/medium/Get-Return-Type/
 ---
@@ -24,19 +24,20 @@ type a = MyReturnType<typeof fn> // 应推导出 "1 | 2"
 
 ## 解题思路
 
-待补充
+匹配函数模式即可。`(...args: any) => infer R`
 
 ## 答案
 
 ```ts
-type MyReturnType<T> = any
+type MyReturnType<T> = T extends (...args: any) => infer U ? U : never
 ```
 
 ## 验证
 
-```ts
+```ts twoslash
 import type { Equal, Expect } from '@type-challenges/utils'
-
+type MyReturnType<T> = T extends (...args: any) => infer U ? U : never
+// ---cut---
 type cases = [
   Expect<Equal<string, MyReturnType<() => string>>>,
   Expect<Equal<123, MyReturnType<() => 123>>>,

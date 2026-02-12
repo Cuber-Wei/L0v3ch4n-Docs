@@ -43,7 +43,6 @@ type MyPick<T, K extends keyof T> = {
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type MyPick<T, K extends keyof T> = {
   [key in K]: T[key]

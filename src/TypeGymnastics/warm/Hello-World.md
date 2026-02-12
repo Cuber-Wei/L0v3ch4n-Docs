@@ -34,7 +34,6 @@ type HelloWorld = string // expected to be a string
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import { Equal, Expect } from '@type-challenges/utils'
 type HelloWorld = string
 // ---cut---

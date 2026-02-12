@@ -29,7 +29,6 @@ type If<C extends boolean, T, F> = C extends true ? T : F
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type If<C extends boolean, T, F> = C extends true ? T : F
 // ---cut---

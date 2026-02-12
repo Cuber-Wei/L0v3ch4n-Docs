@@ -32,7 +32,6 @@ type MyParameters<T extends (...args: any[]) => any> = T extends (
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type MyParameters<T extends (...args: any[]) => any> = T extends (...args: infer R) => any ? R : never
 // ---cut---

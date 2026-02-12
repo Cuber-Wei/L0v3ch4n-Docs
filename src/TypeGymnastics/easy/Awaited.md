@@ -38,7 +38,6 @@ type MyAwaited<T> = T extends PromiseLike<infer R>
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type MyAwaited<T> = T extends PromiseLike<infer R> ? R extends PromiseLike<any> ? MyAwaited<R> : R : never
 // ---cut---

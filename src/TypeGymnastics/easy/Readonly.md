@@ -45,7 +45,6 @@ type MyReadonly<T> = {
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type MyReadonly<T> = {
   readonly [key in keyof T]: T[key]

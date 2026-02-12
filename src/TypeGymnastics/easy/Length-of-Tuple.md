@@ -34,7 +34,6 @@ type Length<T extends readonly any[]> = T['length']
 ## 验证
 
 ```ts twoslash
-// @errors: 2307
 import type { Equal, Expect } from '@type-challenges/utils'
 type Length<T extends readonly any[]> = T['length']
 // ---cut---
