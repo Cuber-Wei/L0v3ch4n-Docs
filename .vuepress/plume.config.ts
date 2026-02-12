@@ -2,20 +2,14 @@ import { defineThemeConfig } from 'vuepress-theme-plume'
 import collections from './collections'
 import { navbar } from './navbar'
 
-/**
- * @see https://theme-plume.vuejs.press/config/basic/
- */
 export default defineThemeConfig({
   logo: '/images/L-logo.png',
-
   appearance: true,
-
   profile: {
     avatar: 'https://q.qlogo.cn/headimg_dl?dst_uin=3134210778&spec=640&img_type=jpg',
     name: 'L0v3ch4n',
     description: '一个在全栈开发道路上挣扎的萌新',
     circle: true,
-    // location: '',
     organization: '南京航空航天大学',
   },
   navbar,
@@ -39,7 +33,6 @@ export default defineThemeConfig({
     },
   ],
   navbarSocialInclude: ['github', 'email'],
-
   footer: {
     message: `<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33060302001361" target="_blank">浙公网安备33060302001361</a>&emsp;<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2024137659号-1</a>`,
     copyright: 'Copyright © 2024-present L0v3ch4n',
