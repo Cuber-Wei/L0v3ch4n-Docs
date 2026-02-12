@@ -1,6 +1,7 @@
 import { viteBundler } from "@vuepress/bundler-vite";
 import { defineUserConfig } from "vuepress";
-import { plumeTheme } from "vuepress-theme-plume";
+import theme from "./theme"
+import { fs, getDirname, path, tinyglobby } from 'vuepress/utils'
 
 export default defineUserConfig({
     base: "/",
@@ -17,112 +18,27 @@ export default defineUserConfig({
     head: [["link", { rel: "icon", href: "/images/L-logo.png" }]],
 
     bundler: viteBundler(),
-
-    theme: plumeTheme({
-        // 添加您的部署域名
-        hostname: "https://blog.l0v3ch4n.top/",
-
-        collections: [
-            { type: 'post', dir: 'blog', title: '博客' }
-        ],
-
-        codeHighlighter: {
-            twoslash: true
-        },
-
-        markdown: {
-            abbr: true,
-            annotation: true,
-            timeline: true,
-            codeTree: true,
-            field: true,
-            collapse: true,
-            chat: true,
-        },
-
-        plugins: {
-            /**
-             * Shiki 代码高亮
-             * @see https://theme-plume.vuejs.press/config/plugins/code-highlight/
-             */
-            shiki: {
-                // 强烈建议预设代码块高亮语言，插件默认加载所有语言会产生不必要的时间开销
-                langs: [
-                    "sh",
-                    "css",
-                    "html",
-                    "jsx",
-                    "javascript",
-                    "js",
-                    "ts",
-                    "stylus",
-                    "json",
-                    "yaml",
-                    "tsx",
-                    "dockerfile",
-                    "bash",
-                    "groovy",
-                    "yml",
-                    "md",
-                    "nginx",
-                    "toml",
-                    "rust",
-                    "vue",
-                    "python",
-                    "go",
-                    "java",
-                    "kotlin",
-                ],
-            },
-
-            /**
-             *  markdown power
-             * @see https://theme-plume.vuejs.press/config/plugin/markdown-power/
-             */
-            markdownPower: {
-                pdf: true,
-                caniuse: true,
-                plot: true,
-                bilibili: true,
-                youtube: true,
-                icons: true,
-                codepen: true,
-                codeSandbox: true,
-                jsfiddle: true,
-                repl: {
-                    go: true,
-                    rust: true,
-                    kotlin: true,
-                },
-            },
-
-            /**
-             * 评论 comments
-             * @see https://theme-plume.vuejs.press/guide/features/comments/
-             */
-            // comment: {
-            //     provider: "Waline", // "Artalk" | "Giscus" | "Twikoo" | "Waline"
-            //     comment: true,
-            //     repo: 'https://github.com/Cuber-Wei/L0v3ch4n-Docs',
-            //     repoId: '',
-            //     categoryId: '',
-            //     mapping: 'pathname',
-            //     reactionsEnabled: true,
-            //     inputPosition: 'top',
-            // },
-        },
-        // 加密设置
-        encrypt: {
-            rules: {
-                // 可以是 md 文件的相对路径，对该文件加密
-                "/secrets/ShortArticle/ForLingeFirstLive/": "0817",
-            },
-        },
-    }),
-
+    theme,
     define: {
         __VUEPRESS_GAODE_MAP_KEY__: process.env.VUEPRESS_GAODE_MAP_KEY,
         // debug hydration mismatch
         // __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: 'true',
+    },
+    onGenerated: async (app) => {
+        const names = ['Ma-Shan-Zheng', 'Fleur-De-Leah']
+        const dest = app.dir.dest('assets')
+        const indexPath = app.dir.dest('index.html')
+        const assets = tinyglobby.globSync('*.ttf', { cwd: dest }) || []
+        const fonts = assets.filter(asset => names.some(name => asset.includes(name)))
+        let links = ''
+        fonts.forEach((font) => {
+            links += `<link rel="preload" href="/assets/${font}" as="font" type="font/ttf" crossorigin="anonymous">`
+        })
+        const content = fs.readFileSync(indexPath, 'utf-8')
+        fs.writeFileSync(indexPath, content.replace('<head>', `<head>${links}`))
+
+        await fs.writeFile(app.dir.dest('robots.txt'), `User-agent: *
+Allow: /
+`)
     },
 });

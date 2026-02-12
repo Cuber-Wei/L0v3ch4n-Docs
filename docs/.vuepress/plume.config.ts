@@ -7,9 +7,6 @@ import collections from './collections'
  */
 export default defineThemeConfig({
     logo: "/images/L-logo.png",
-    // your git repo url
-    // docsRepo: 'https://github.com/Cuber-Wei/L0v3ch4n-Docs',
-    // docsDir: 'docs',
 
     appearance: true,
 
@@ -42,8 +39,6 @@ export default defineThemeConfig({
         },
     ],
     navbarSocialInclude: ["github", "email"],
-
-    // sidebarDepth: 3,
 
     footer: {
         message: `<a href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=33060302001361" target="_blank">浙公网安备33060302001361</a>&emsp;<a href="https://beian.miit.gov.cn/" target="_blank">浙ICP备2024137659号-1</a>`,
