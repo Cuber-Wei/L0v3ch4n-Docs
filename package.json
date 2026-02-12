@@ -2,20 +2,33 @@
   "name": "l0v3ch4n-notes",
   "type": "module",
   "version": "1.0.0",
-  "description": "A note site for l0v3ch4n's learning.",
   "packageManager": "pnpm@9.10.0",
+  "description": "A note site for l0v3ch4n's learning.",
   "author": "L0v3ch4n <cuberwei0@163.com>",
   "license": "MIT",
   "engines": {
     "node": "^18.20.0 || >=20.0.0"
   },
   "scripts": {
-    "docs:dev": "vuepress dev docs",
-    "docs:dev-clean": "vuepress dev docs --clean-cache --clean-temp",
-    "docs:build": "vuepress build docs --clean-cache --clean-temp",
-    "docs:preview": "http-server docs/.vuepress/dist",
+    "docs:dev": "vuepress dev src",
+    "docs:dev-clean": "vuepress dev src --clean-cache --clean-temp",
+    "docs:build": "vuepress build src --clean-cache --clean-temp",
+    "docs:preview": "http-server docs -d 0",
+    "lint": "eslint . --fix",
     "vp-update": "pnpm dlx vp-update",
     "gen:font": "tsx scripts/web-fonts.ts"
+  },
+  "dependencies": {
+    "@eslint/markdown": "^7.5.1",
+    "@iconify/json": "^2.2.438",
+    "@pengzhanbo/eslint-config-vue": "^1.48.0",
+    "@vuepress/shiki-twoslash": "2.0.0-rc.121",
+    "eslint": "^10.0.0",
+    "katex": "^0.16.28",
+    "markmap-lib": "^0.18.12",
+    "markmap-toolbar": "^0.18.12",
+    "markmap-view": "^0.18.12",
+    "pyodide": "^0.29.3"
   },
   "devDependencies": {
     "@pengzhanbo/utils": "^3.1.0",
@@ -34,14 +47,5 @@
     "vue": "^3.5.28",
     "vuepress": "2.0.0-rc.26",
     "vuepress-theme-plume": "1.0.0-rc.187"
-  },
-  "dependencies": {
-    "@iconify/json": "^2.2.438",
-    "@vuepress/shiki-twoslash": "2.0.0-rc.121",
-    "katex": "^0.16.28",
-    "markmap-lib": "^0.18.12",
-    "markmap-toolbar": "^0.18.12",
-    "markmap-view": "^0.18.12",
-    "pyodide": "^0.29.3"
   }
 }

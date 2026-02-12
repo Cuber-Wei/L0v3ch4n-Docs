@@ -7,144 +7,145 @@
  * 2. 根据使用的字符，下载裁剪后的最小字体文件
  */
 
-import { Buffer } from "node:buffer";
-import fs from "node:fs";
-import path from "node:path";
+import { Buffer } from 'node:buffer'
+import fs from 'node:fs'
+import path from 'node:path'
 import {
-    isString,
-    objectEntries,
-    slash,
-    toArray,
-    uniq,
-} from "@pengzhanbo/utils";
+  isString,
+  objectEntries,
+  slash,
+  toArray,
+  uniq,
+} from '@pengzhanbo/utils'
 
 export interface Params {
-    family: string;
-    text?: string | string[];
-    display?: "block" | "swap" | "optional" | "auto" | "fallback";
-    ital?: "0" | "1" | "01";
-    wght?: `${number}` | `${number}..${number}`;
+  family: string
+  text?: string | string[]
+  display?: 'block' | 'swap' | 'optional' | 'auto' | 'fallback'
+  ital?: '0' | '1' | '01'
+  wght?: `${number}` | `${number}..${number}`
 }
 
 const EXT = {
-    "font/woff2": "woff2",
-    "font/woff": "woff",
-    "font/ttf": "ttf",
-    "font/otf": "otf",
-    "font/eot": "eot",
-    "font/collection": "ttc",
-};
+  'font/woff2': 'woff2',
+  'font/woff': 'woff',
+  'font/ttf': 'ttf',
+  'font/otf': 'otf',
+  'font/eot': 'eot',
+  'font/collection': 'ttc',
+}
 
 const stylesDir = path.join(
-    import.meta.dirname,
-    "../docs/.vuepress/theme/styles/"
-);
-const fontDir = path.join(stylesDir, "../fonts/");
-const cssFilename = "web-fonts.css";
+  import.meta.dirname,
+  '../.vuepress/theme/styles/',
+)
+const fontDir = path.join(stylesDir, '../fonts/')
+const cssFilename = 'web-fonts.css'
 
-const RE_FONT_URL = /url\((.*?)\)/g;
+const RE_FONT_URL = /url\((.*?)\)/g
 
-async function downloadWebFontCss(url: string, output: string): Promise<void>;
+async function downloadWebFontCss(url: string, output: string): Promise<void>
 async function downloadWebFontCss(
-    params: Params,
-    output?: string
-): Promise<void>;
+  params: Params,
+  output?: string,
+): Promise<void>
 async function downloadWebFontCss(
-    params: Params | string,
-    output?: string
+  params: Params | string,
+  output?: string,
 ): Promise<void> {
-    const url = isString(params) ? params : getUrl(params);
+  const url = isString(params) ? params : getUrl(params)
 
-    let filename =
-        output ||
-        (isString(params) ? cssFilename : params.family.replace(/\s+/g, "-"));
+  let filename
+    = output
+      || (isString(params) ? cssFilename : params.family.replace(/\s+/g, '-'))
 
-    filename = filename.endsWith(".css") ? filename : `${filename}.css`;
+  filename = filename.endsWith('.css') ? filename : `${filename}.css`
 
-    console.log(
-        `Downloading ${
-            isString(params)
-                ? url
-                : `${params.family} text: ${toArray(params.text).join(", ")}`
-        }`
-    );
+  console.log(
+    `Downloading ${
+      isString(params)
+        ? url
+        : `${params.family} text: ${toArray(params.text).join(', ')}`
+    }`,
+  )
 
-    const outputPath = path.join(stylesDir, filename);
-    fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-    fs.mkdirSync(fontDir, { recursive: true });
+  const outputPath = path.join(stylesDir, filename)
+  fs.mkdirSync(path.dirname(outputPath), { recursive: true })
+  fs.mkdirSync(fontDir, { recursive: true })
 
-    let css = await fetch(url).then((res) => res.text());
+  let css = await fetch(url).then(res => res.text())
 
-    let matched: RegExpExecArray | null;
-    const fontsUrl = new Set<string>();
+  let matched: RegExpExecArray | null
+  const fontsUrl = new Set<string>()
 
-    // eslint-disable-next-line no-cond-assign
-    while ((matched = RE_FONT_URL.exec(css))) {
-        fontsUrl.add(matched[1]);
-    }
+  // eslint-disable-next-line no-cond-assign
+  while ((matched = RE_FONT_URL.exec(css))) {
+    fontsUrl.add(matched[1])
+  }
 
-    const basename = path.basename(outputPath, ".css");
-    let uuid = 1;
-    const cache: Record<string, string> = {};
-    for (const url of fontsUrl) {
-        const res = await fetch(url);
-        const buffer = Buffer.from(await res.arrayBuffer());
-        const ext = EXT[res.headers.get("content-type") ?? ""];
-        cache[url] = `${basename}-${uuid++ * 100}.${ext}`;
-        await fs.promises.writeFile(path.join(fontDir, cache[url]), buffer);
-    }
+  const basename = path.basename(outputPath, '.css')
+  let uuid = 1
+  const cache: Record<string, string> = {}
+  for (const url of fontsUrl) {
+    const res = await fetch(url)
+    const buffer = Buffer.from(await res.arrayBuffer())
+    const ext = EXT[res.headers.get('content-type') ?? '']
+    cache[url] = `${basename}-${uuid++ * 100}.${ext}`
+    await fs.promises.writeFile(path.join(fontDir, cache[url]), buffer)
+  }
 
-    const fontPath = path.relative(path.dirname(outputPath), fontDir);
+  const fontPath = path.relative(path.dirname(outputPath), fontDir)
 
-    objectEntries(cache).forEach(([key, value]) => {
-        css = css.replaceAll(key, slash(path.join(fontPath, value)));
-    });
+  objectEntries(cache).forEach(([key, value]) => {
+    css = css.replaceAll(key, slash(path.join(fontPath, value)))
+  })
 
-    await fs.promises.writeFile(outputPath, css);
+  await fs.promises.writeFile(outputPath, css)
 }
 
 function getUrl(params: Params) {
-    let family = params.family.replace(/\s/g, "+");
+  let family = params.family.replace(/\s/g, '+')
 
-    const spec: string[] = [];
+  const spec: string[] = []
 
-    params.ital && spec.push("ital");
-    params.wght && spec.push("wght");
+  params.ital && spec.push('ital')
+  params.wght && spec.push('wght')
 
-    if (spec.length > 0) {
-        family += `:${spec.join(",")}@`;
-        const ital = params.ital?.split("");
-        const wght = params.wght;
-        if (ital) {
-            ital.forEach((v, i) => {
-                family += `${v}${wght ? `,${wght}` : ""}${
-                    i < ital.length - 1 ? ";" : ""
-                }`;
-            });
-        } else if (wght) {
-            family += `${wght}`;
-        }
+  if (spec.length > 0) {
+    family += `:${spec.join(',')}@`
+    const ital = params.ital?.split('')
+    const wght = params.wght
+    if (ital) {
+      ital.forEach((v, i) => {
+        family += `${v}${wght ? `,${wght}` : ''}${
+          i < ital.length - 1 ? ';' : ''
+        }`
+      })
     }
-    let url = `https://fonts.googleapis.com/css2?family=${family}&display=${
-        params.display ?? "swap"
-    }`;
-    const text = toArray(params.text);
-    if (text.length) {
-        const format = uniq(text.join("").split(""))
-            .join("")
-            .replace(/\s+/g, "");
-        url += `&text=${encodeURIComponent(format)}`;
+    else if (wght) {
+      family += `${wght}`
     }
+  }
+  let url = `https://fonts.googleapis.com/css2?family=${family}&display=${
+    params.display ?? 'swap'
+  }`
+  const text = toArray(params.text)
+  if (text.length) {
+    const format = uniq(text.join('').split(''))
+      .join('')
+      .replace(/\s+/g, '')
+    url += `&text=${encodeURIComponent(format)}`
+  }
 
-    return url;
+  return url
 }
 
 downloadWebFontCss({
-    family: "Ma Shan Zheng",
-    text: ["宝骏踏断命里刺，胭脂洒满暮光谷。他日若随凌云志，敢笑黄巢不丈夫。"],
-});
+  family: 'Ma Shan Zheng',
+  text: ['宝骏踏断命里刺，胭脂洒满暮光谷。他日若随凌云志，敢笑黄巢不丈夫。'],
+})
 
 downloadWebFontCss({
-    family: "Fleur De Leah",
-    text: ["L0v3ch4n", "It’s you that you wanna change to win."],
-});
+  family: 'Fleur De Leah',
+  text: ['L0v3ch4n', 'It’s you that you wanna change to win.'],
+})

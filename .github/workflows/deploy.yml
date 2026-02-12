@@ -50,7 +50,7 @@ jobs:
       # 添加 CNAME 记录
       # Add CNAME record
       - name: Add CNAME record
-        run: echo ${{ secrets.TARGET_DOMAIN }} > docs/.vuepress/dist/CNAME
+        run: echo ${{ secrets.TARGET_DOMAIN }} > docs/CNAME
 
       # 查看 workflow 的文档来获取更多信息
       # @see https://github.com/crazy-max/ghaction-github-pages
@@ -60,7 +60,7 @@ jobs:
           # 部署到 gh-pages 分支
           target_branch: gh-pages
           # 部署目录为 VuePress 的默认输出目录
-          build_dir: docs/.vuepress/dist
+          build_dir: docs
         env:
           # @see https://docs.github.com/cn/actions/reference/authentication-in-a-workflow#about-the-github_token-secret
           GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
