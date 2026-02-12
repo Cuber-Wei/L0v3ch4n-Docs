@@ -1,0 +1,110 @@
+---
+url: /Misc/BreakServer/index.md
+---
+> \[!important]
+> 系统能运行就已经很厉害了！系统能不出错就不要动它了！
+>
+> 每次执行命令前务必清楚知道这个命令会做些什么！
+
+## 事故背景
+
+负责的学校 OJ 开发接近尾声，最近正在往服务器上部署。由于有点无法忍受 Ubuntu 18 上版本低得离谱的 Docker 工具，
+遂考虑升级 Docker 工具链。于是在 apt 的帮助下，主包成功地把系统更新挂了。
+
+## 数据抢救
+
+于是便紧急学习了如何进行数据抢救，做笔记如下：
+
+### 抢救思路
+
+我们可以从 ISO 的系统入手，将目标机器的文件系统挂载到 ISO 系统中，从而将重要的数据给拿取出来。
+
+### 具体操作
+
+首先先制作 Ubuntu Server Live ISO。
+
+请从 U 盘启动，并选择 **“Try or Install Ubuntu Server”** 选项。通过`Help`菜单会启动到命令行终端界面。
+
+**第一步：识别磁盘和分区，创建挂载点**
+
+1. **列出所有磁盘**：
+   使用 `lsblk` 或 `fdisk` 命令来查看系统识别到的硬盘。
+
+   ```bash
+   sudo lsblk -f
+   ```
+
+   * `lsblk -f` 会显示文件系统类型（如 `ext4`, `ntfs`）和标签（LABEL），这能帮我们更好地识别哪个是原系统分区（比如标有 `OS` 或 `Ubuntu` 的分区）和数据分区。
+   * 找到原系统硬盘（比如 `sda`）和它的分区（比如 `sda1`, `sda3`）。
+
+2. **创建挂载点**：
+   下面我们需要创建目录作为挂载点，以便访问硬盘里的内容。
+
+   ```bash
+   sudo mkdir /mnt/original_disk
+   ```
+
+**第二步：挂载原系统分区**
+
+假设数据在 `/dev/sda3` 上：
+
+```bash
+sudo mount /dev/sda3 /mnt/original_disk
+```
+
+**第三步：挂载备份介质（外接硬盘/U 盘）**
+
+现在，将**另一个**U 盘或移动硬盘插入服务器。再次使用 `lsblk` 命令，它会作为一个新设备出现（比如 `/dev/sdc1`）。
+
+1. **创建挂载点并挂载**：
+
+   ```bash
+   sudo mkdir /mnt/backup_drive
+   sudo mount /dev/sdc1 /mnt/backup_drive  # 请将 sdc1 替换为实际设备名
+   ```
+
+2. **检查挂载结果**：
+   使用 `df -h` 命令可以查看所有已挂载的磁盘及其可用空间，确认两个盘都挂载成功了。
+
+**第四步：复制数据**
+
+现在，原系统数据在 `/mnt/original_disk`，备份盘在 `/mnt/backup_drive`。使用 `cp` 或 `rsync` 命令进行复制。
+
+* **使用 `rsync` (可以保留权限、 ownership 等信息)**:
+
+  ```bash
+  sudo rsync -av --progress /mnt/original_disk/home/your_username/ /mnt/backup_drive/ubuntu_backup/
+  ```
+
+  * `-a`: 归档模式（保留所有属性）
+  * `-v`: 显示详细过程
+  * `--progress`: 显示传输进度
+  * 将 `your_username` 替换为原来的用户名。
+
+* **使用 `cp` (简单直接)**:
+
+  ```bash
+  sudo cp -r /mnt/original_disk/home/your_username/Documents /mnt/backup_drive/ubuntu_backup/
+  sudo cp -r /mnt/original_disk/home/your_username/Pictures /mnt/backup_drive/ubuntu_backup/
+  # ... 复制其他需要的重要文件夹
+  ```
+
+**常见的重要目录**
+
+* `/home/username/`（主要数据存放目录）
+* `/etc/`（系统配置文件）
+
+**第五步：完成并卸载**
+
+数据复制完成后，安全地卸载磁盘：
+
+```bash
+sudo umount /mnt/original_disk
+sudo umount /mnt/backup_drive
+```
+
+然后便可以关机 (`sudo poweroff`)，拔掉所有 U 盘，数据就已经安全地备份到外接硬盘里了。
+
+## 重装系统
+
+然后就是重装系统了，这也是主包装过的第一个服务器系统。

@@ -1,0 +1,35 @@
+---
+url: /project/OJ/FrontendInit/index.md
+---
+切换 node 版本的工具：[nvm](https://github.com/nvm-sh/nvm)
+
+## 通过 vue-cli 脚手架创建项目
+
+```shell
+npm install -g @vue/cli
+vue create my-project
+```
+
+## 引入组件库
+
+采用 Arco Design Vue 组件库。
+
+安装：
+
+```shell
+npm install --save-dev @arco-design/web-vue
+```
+
+引入
+
+```typescript
+import ArcoVue from '@arco-design/web-vue'
+// main.ts
+import { createApp } from 'vue'
+import App from './App.vue'
+import '@arco-design/web-vue/dist/arco.css'
+
+const app = createApp(App)
+app.use(ArcoVue)
+app.mount('#app')
+```
