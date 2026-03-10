@@ -20,7 +20,7 @@ permalink: /TypeGymnastics/
 
 - `热身` <span class="tc-p"><span style="width:100%" /></span> <span>1 / 1</span>
 - `简单` <span class="tc-p"><span style="width:100%" /></span> <span>13 / 13</span>
-- `中等` <span class="tc-p"><span style="width:0%" /></span> <span>0 / 103</span>
+- `中等` <span class="tc-p"><span style="width:calc((57/103)*100%)" /></span> <span>6 / 103</span>
 - `困难` <span class="tc-p"><span style="width:0%" /></span> <span>0 / 43</span>
 - `地狱` <span class="tc-p"><span style="width:0%" /></span> <span>0 / 14</span>
 

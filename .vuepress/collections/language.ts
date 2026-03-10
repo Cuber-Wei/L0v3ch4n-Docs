@@ -31,5 +31,18 @@ export default defineCollection({
       collapsed: true,
       items: 'auto',
     },
+    {
+      prefix: 'Shell',
+      text: 'Shell',
+      collapsed: true,
+      items: [
+        '基础语法',
+        '常见命令',
+        '流程控制',
+        'Shell函数',
+        '输入输出重定向',
+        '文件包含',
+      ],
+    },
   ],
 })
