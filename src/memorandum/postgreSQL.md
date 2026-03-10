@@ -1,5 +1,6 @@
 ---
 title: postgreSQL
+icon: logos:postgresql
 createTime: 2025/12/29 14:25:16
 permalink: /memorandum/postgreSQL/
 ---
