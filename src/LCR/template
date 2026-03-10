@@ -1,0 +1,39 @@
+## [题干]()
+
+## 思路
+
+## 代码
+
+:::tabs
+@tab C++
+```cpp
+class Solution {
+public:
+    int divide(int a, int b) {
+
+    }
+};
+```
+@tab Python3
+```python
+class Solution:
+    def divide(self, a: int, b: int) -> int:
+```
+@tab JavaScript
+```js
+/**
+ * @param {number} a
+ * @param {number} b
+ * @return {number}
+ */
+var divide = function(a, b) {
+
+};
+```
+@tab Go
+```go
+func divide(a int, b int) int {
+
+}
+```
+:::

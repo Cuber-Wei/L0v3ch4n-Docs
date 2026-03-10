@@ -2,6 +2,7 @@ import { defineCollections } from 'vuepress-theme-plume'
 import interviewNote from './interview'
 import jottingNote from './jotting'
 import languageNote from './language'
+import LCRNote from './LCR'
 import memorandum from './memorandum'
 import osNote from './OS'
 import projectNote from './project'
@@ -18,4 +19,5 @@ export default defineCollections([
   jottingNote,
   secretsNote,
   typeGymnasticsNote,
+  LCRNote,
 ])

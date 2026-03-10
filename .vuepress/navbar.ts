@@ -33,6 +33,12 @@ export const navbar = defineNavbarConfig([
         icon: 'proicons:typescript',
       },
       {
+        text: '剑指Offer',
+        link: '/LCR/',
+        activeMatch: '^/LCR/',
+        icon: 'fa-solid:paper-plane',
+      },
+      {
         text: '项目开发笔记',
         link: '/project/',
         activeMatch: '^/project/',

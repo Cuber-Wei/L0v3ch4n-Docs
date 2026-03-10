@@ -29,4 +29,8 @@ config:
           - text: TS类型体操
             link: /TypeGymnastics/
             icon: proicons:typescript
+
+          - text: 剑指Offer
+            link: /LCR/
+            icon: fa-solid:paper-plane
 ---
