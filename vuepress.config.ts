@@ -47,6 +47,7 @@ export default defineUserConfig({
 
     await fs.writeFile(app.dir.dest('robots.txt'), `User-agent: *
 Allow: /
+Sitemap: https://blog.l0v3ch4n.top/sitemap.xml
 `)
   },
 })

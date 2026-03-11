@@ -13,6 +13,12 @@ export default defineCollection({
       collapsed: true,
       items: 'auto',
     },
+    {
+      prefix: 'Python进阶：跟着CoreDev学Python',
+      text: '跟着CoreDev学Python',
+      collapsed: true,
+      items: 'auto',
+    },
     // {
     //     prefix: 'Java',
     //     text: 'Java',

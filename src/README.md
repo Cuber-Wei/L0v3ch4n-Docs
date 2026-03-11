@@ -14,13 +14,13 @@ config:
             link: /blog/
             icon: material-symbols:menu-book
 
-          - text: 随笔
-            link: /jotting/
-            icon: streamline-freehand:book-bookmark
-
           - text: 备忘录
             link: /memorandum/
             icon: emojione-monotone:memo
+
+          - text: 语言学习
+            link: /language/
+            icon: streamline-freehand:book-bookmark
 
           - text: 面试题笔记
             link: /interview/

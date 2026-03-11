@@ -11,3 +11,4 @@ preview
 .idea
 
 .env.local
+example.py
