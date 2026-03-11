@@ -1,5 +1,5 @@
 ---
-title: LCR 50题
+title: LeetCode 剑指Offer
 createTime: 2026/03/10 17:43:00
 permalink: /LCR/
 ---
