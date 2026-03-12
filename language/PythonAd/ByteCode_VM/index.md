@@ -1,0 +1,60 @@
+---
+url: /language/PythonAd/ByteCode_VM/index.md
+---
+本文采用的 Python 版本：`3.13.0 (tags/v3.13.0:60403a5, Oct  7 2024, 09:38:07) [MSC v.1941 64 bit (AMD64)]`
+
+## 0xFF 前言
+
+所有的 Python 代码都会被编译成一个 `CodeObject`，Python 解释器会在运行代码之前建立一个 [`frame`](https://docs.python.org/zh-cn/3.13/library/inspect.html)。`frame` 提供了一个程序运行的环境，包含其局部变量、全局变量、代码对应的 `ByteCode`和上一个运行的 `instruction`。
+
+除了第一次创建的 `frame` 外，每次调用函数都会创建对应的 `frame`。在每次建立 `frame` 后，Python 解释器就开始运行字节码了。
+
+## 0x00 字节码
+
+以下展示的是一个简单的加法函数对应的字节码（利用 `dis` 模块进行打印）：
+
+::: tabs
+@tab add.py
+
+```python
+def add(a, b):
+    return a + b
+
+print(add(1, 2))
+```
+
+@tab ByteCode
+
+```text
+  0           RESUME                   0
+
+  1           LOAD_CONST               0 (<code object add at 0x000001A31517B050, file "<dis>", line 1>)
+              MAKE_FUNCTION
+              STORE_NAME               0 (add)
+
+  4           LOAD_NAME                1 (print)
+              PUSH_NULL
+              LOAD_NAME                0 (add)
+              PUSH_NULL
+              LOAD_CONST               1 (1)
+              LOAD_CONST               2 (2)
+              CALL                     2
+              CALL                     1
+              POP_TOP
+              RETURN_CONST             3 (None)
+
+Disassembly of <code object add at 0x000001A31517B050, file "<dis>", line 1>:
+  1           RESUME                   0
+
+  2           LOAD_FAST_LOAD_FAST      1 (a, b)
+              BINARY_OP                0 (+)
+              RETURN_VALUE
+```
+
+:::
+
+Python 的字节码是 `Stack Based` 即每个字节码要么是在进行运算，要么是在对栈进行操作。具体的字节码及对应操作可以查询 [`dis` 库的官方文档](https://docs.python.org/zh-cn/3.13/library/dis.html#module-dis)。
+
+## 参考
+
+@[bilibili time="0" width="100%" height="400px" ratio="16:9" auto="0"](BV1ju411z7Sy)
