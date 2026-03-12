@@ -258,11 +258,478 @@ if d:
 
 ## 0x02 属性相关的魔术方法
 
+### `__getattr__` 和 `__getattribute__`
+用于获取对象的属性，`__getattr__` 为对象不存在这一属性时调用，`__getattribute__` 在尝试读取对象属性时都会调用。
+
+::: python-repl title="获取属性"
+```python
+class A:
+    def __init__(self) -> None:
+        self.a = 123
+        self.counter = 0
+
+    def __getattr__(self, name):
+        print(f"getting {name} via __getattr__")
+        return None
+
+    def __getattribute__(self, name: str):
+        print(f"getting {name} via __getattribute__")
+        if name == "a":
+            self.counter += 1
+        return super().__getattribute__(name) # 要使用 `super` 函数来实现默认表现
+
+a = A()
+print(a.a)
+a.a
+print(a.counter)
+```
+:::
+
+### `__setattr__`
+
+用于设置对象的属性值
+
+::: python-repl title="设置属性值"
+```python
+class A:
+    def __init__(self) -> None:
+        self.data = "abc"
+        self.counter = 0
+
+    def __setattr__(self, name: str, value) -> None:
+        print(f"set {name} with {value}")
+        super().__setattr__(name, value)
+
+a = A()
+print(a.data)
+```
+:::
+
+### `__delattr__`
+
+在正常的对象产生和消亡的过程中，`__delattr__` 不会被调用。它会在尝试删除一个对象的属性时被调用。
+
+::: python-repl editable
+```python
+class A:
+    def __init__(self) -> None:
+        self.data = "abc"
+
+    def __delattr__(self, name: str) -> None:
+        print(f"del {name}")
+
+a = A()
+# del a.data
+```
+:::
+
+### `__dir__`
+
+在正常的对象产生和消亡的过程中，`__dir__` 不会被调用。它会在尝试删除一个对象的属性时被调用。
+
+::: python-repl editable
+```python
+class A:
+    def __init__(self) -> None:
+        self.data = "abc"
+
+    def __dir__(self):
+        lst = super().__dir__()
+        return [el for el in lst if not el.startswith("_")]
+
+a = A()
+print(dir(a))
+```
+:::
+
+### 描述器 Descriptor 相关
+`__get__` 函数会在尝试读取 `a.x` 时被调用。下例中 `__get__` 函数的参数对应为：
+
+- `self`：描述器本身，即 `x`。
+- `instance`：实例化对象，即 `o`。
+- `owner`：对象的类，即 `A`。
+
+`__set__` 函数会在尝试设置 `a.x` 时被调用。
+
+`__delete__` 函数会在尝试删除 `a.x` 时被调用。
+
+::: python-repl
+```python
+class D:
+    def __init__(self) -> None:
+        self.val = 10
+
+    def __get__(self, instance, owner=None):
+        print(instance, owner)
+        return self.val
+
+    def __set__(self, instance, value):
+        self.val = value
+
+    def __delete__(self, instance):
+        print("delete")
+
+class A:
+    x = D()
+
+a = A()
+a_ = A()
+print(a.x)
+print(a_.x)
+a.x = 1
+print(a.x)
+print(a_.x)
+del a.x
+```
+:::
+
+> [!note]
+> `__get__` 和 `__set__` 是类级的（Descriptor是 Class Level 的），故对一个实例化对象的操作会同步到该类实例化的所有对象。
+
 ## 0x03 用于构建类的魔术方法
+
+:::: tabs
+@tab `__init_subclass__`
+在建立衍生类时被调用。
+::: python-repl
+```python
+class Base:
+    def __init_subclass__(cls, name) -> None:
+        print(cls)
+        cls.x = {}
+        cls.name = name
+
+class A(Base, name="AAA"):
+    pass
+
+print(A.x)
+print(A.name)
+```
+:::
+
+@tab `__set_name__`
+
+当在类定义里构建该类的 `instance` 时被调用。
+::: python-repl
+```python
+class D:
+    def __set_name__(self, owner, name):
+        print(owner, name)
+
+class A:
+    x = D()
+```
+:::
+
+@tab PEP 560
+
+> 相关介绍：[PEP 560](https://peps.python.org/pep-0560/)
+
+`__class_getitem__` 在做特定 `Type Hint` 时调用。
+::: python-repl
+```python
+class A:
+    def __class_getitem__(cls, item):
+        print(item)
+        return "123"
+
+print(A[0])
+
+int_arr_type = list[int]
+l1: int_arr_type = []
+l2: int_arr_type = []
+```
+:::
+
+`__mro_entries__` 辅助子类寻找基类。
+::: python-repl
+```python
+class A:
+    def __mro_entries__(self, bases):
+        print(bases)
+        return ()
+
+class AA:
+    def __mro_entries__(self, bases):
+        print(bases)
+        return (AA, )
+
+class B(A(), AA()):
+    pass
+
+print(issubclass(B, A)) # expect False
+print(issubclass(B, AA)) # expect True
+```
+:::
+
+@tab Meta Class 相关
+
+::: python-repl
+```python
+class Meta(type):
+    @classmethod
+    def __prepare__(metacls, name, bases, /, **kwds):
+        # 用于准备要构建的 `class` 的命名空间
+        print(name, bases, kwds)
+        return {"x": 10}
+
+    def __instancecheck__(self, instance):\
+        # isinstance(instance, A)
+        print("Instance Check")
+        return isinstance(instance, int)
+
+    def __subclasscheck__(self, subclass):
+        # issubclass(subclass, A)
+        print("Subclass Check")
+        if subclass is int:
+            return True
+        return False
+
+class A(metaclass=Meta):
+    pass
+
+print(A.x)
+o = A()
+print(isinstance(123, A))
+print(issubclass(int, A))
+
+```
+:::
+
+::::
 
 ## 0x04 用于运算的魔术方法
 
+一般来说，所有的操作符对应魔法方法都有 `r` 版本和 `i` 版本，分别表示操作数在左侧的情况和结果就地更新的情况。
+
+::: python-repl
+```python
+class Vector:
+    def __init__(self, x: int, y: int) -> None:
+        self.x = x
+        self.y = y
+
+    def __repr__(self) -> str:
+        return f"Vector({self.x}, {self.y})"
+
+    """ 二元操作符 """
+
+    def __add__(self, other):
+        # v1 + v2
+        return Vector(self.x + other.x, self.y + other.y)
+
+    def __iadd__(self, other):
+        # v1 += v2
+        self.x += other.x
+        self.y += other.y
+        return self
+
+    def __sub__(self, other):
+        # v1 - v2
+        return Vector(self.x - other.x, self.y - other.y)
+
+    def __mul__(self, other):
+        # v1 * v2
+        if isinstance(other, int):
+            return Vector(self.x * other, self.y * other)
+        elif isinstance(other, Vector):
+            return self.x * other.x + self.y * other.y
+        else:
+            raise ValueError("Can not calculate!")
+
+    def __rmul__(self, other):
+        # other * self
+        if isinstance(other, int):
+            return Vector(self.x * other, self.y * other)
+        elif isinstance(other, Vector):
+            return self.x * other.x + self.y * other.y
+        else:
+            raise ValueError("Can not calculate!")
+
+    def __matmul__(self, other):
+        # v1 @ v2
+        return self.x * other.x + self.y * other.y
+
+    def __truediv__(self, other):
+        # v1 / v2
+        pass
+
+    def __floordiv__(self, other):
+        # v1 // v2
+        pass
+
+    def __mod__(self, other):
+        # v1 % v2
+        pass
+
+    def __divmod__(self, other):
+        # divmod(v1, v2)
+        pass
+
+    def __pow__(self, other, modulo=None):
+        # pow(v1, v2, mod=None)
+        # v1 ** v2
+        pass
+
+    def __lshift__(self, other):
+        # v1 << v2
+        pass
+
+    def __rshift__(self, other):
+        # v1 >> v2
+        pass
+
+    def __and__(self, other):
+        # v1 & v2
+        pass
+
+    def __xor__(self, other):
+        # v1 ^ v2
+        pass
+
+    def __or__(self, value):
+        # v1 | v2
+        pass
+
+    """ 一元操作符 """
+
+    def __neg__(self):
+        # -v1
+        return Vector(-self.x, -self.y)
+
+    def __pos__(self):
+        # +v1
+        return Vector(self.x, self.y)
+
+    def __abs__(self):
+        # abs(v1)
+        return Vector(abs(self.x), abs(self.y))
+
+    def __invert__(self):
+        # ~v1
+        return Vector(self.y, self.x)
+
+    """ 类型转换 """
+
+    def __complex__(self):
+        return complex(self.x, self.y)
+
+    def __int__(self):
+        return int(self.x)
+
+    def __float__(self):
+        return float(self.x)
+
+    def __index__(self):
+        # 作为索引时的表现
+        return int(self.x)
+
+    """ 取整 """
+
+    def __round__(self, ndigits=None):
+        # round()，四舍五入
+        return int(self.x)
+
+    def __trunc__(self):
+        # math.trunc()，小数部分舍去，即向0取整
+        return int(self.x)
+
+    def __floor__(self):
+        # math.floor()，向下向负无穷取整
+        return int(self.x)
+
+    def __ceil__(self):
+        # math.ceil()，向上向正无穷取整
+        return int(self.x)
+
+v1 = Vector(1, 2)
+v2 = Vector(4, 5)
+print(v1 + v2)
+print(v1 - v2)
+print(v1 * 2)
+# print(v1 * '1')
+print(2 * v2)
+print(v1 * v2)
+```
+:::
+
 ## 0x05 用于模拟的魔术方法
+
+::: python-repl
+```python
+import time
+
+class MultiplierAndTimer:
+    def __init__(self, mul) -> None:
+        self.mul = mul
+        self.history = []
+
+    def __call__(self, arg):
+        # 模拟 Callable
+        self.history.append(arg)
+        return self.mul * arg
+
+    """ 容器 """
+
+    def __len__(self):
+        # len()
+        return len(self.history)
+
+    def __length_hint__(self):
+        # operator.length_hint()
+        return len(self.history)
+
+    def __getitem__(self, key):
+        # o[key]
+        return self.history[int(key)]
+
+    def __setitem__(self, key, value):
+        # o[key] = value
+        try:
+            self.history[int(key)] = value
+        except IndexError:
+            pass
+
+    def __delitem__(self, key):
+        # del o[key]
+        self.history = self.history[0:key] + self.history[key+1:]
+
+    def __reversed__(self):
+        # reverse()
+        return self.history[::-1]
+
+    def __contains__(self, item):
+        # in
+        return item in self.history
+
+    def __iter__(self):
+        # 返回对象的 Iterator 迭代器
+        return iter(self.history)
+
+    def __missing__(self, key):
+        # 寻找元素 key 时未找到时进行的处理
+        return None
+
+    """ 上下文 """
+
+    def __enter__(self):
+        # with 进入时
+        self.start = time.time()
+        return self
+
+    def __exit__(self, exc_type, exc_value, traceback):
+        # with 后处理
+        print(f"Time: {time.time() - self.start}")
+
+o = MultiplierAndTimer(3)
+print(o(4))
+print(len(o))
+
+with o:
+    for _ in range(10000):
+        __ = 1 + 1
+```
+:::
 
 ## 参考
 
