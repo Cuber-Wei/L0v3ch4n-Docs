@@ -12,3 +12,5 @@ preview
 
 .env.local
 example.py
+
+**/fonts/*-100.ttf
