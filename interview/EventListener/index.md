@@ -1,0 +1,26 @@
+---
+url: /interview/EventListener/index.md
+---
+addEventListener() 方法是添加事件监听器的标准方式，它允许我们对 DOM 元素的特定事件进行响应。
+
+## 基本用法
+
+```javascript
+element.addEventListener(event, func, useCapture)
+```
+
+* event：一个字符串，表示要监听的事件类型（如 "click"、"mouseover" 等）。
+* function：当事件发生时要执行的函数（也称为回调函数）。
+* useCapture：一个可选的布尔值，指示是否在捕获阶段调用事件处理程序。默认为 false，表示在冒泡阶段调用。
+
+## 常见事件类型
+
+1. 点击事件(click)
+2. 鼠标悬停事件(mouseover)
+3. 鼠标移出时间(mouseout)
+4. 键盘按下事件(keydown)
+5. 表单提交事件(submit)
+
+## 移除事件监听器
+
+如果需要移除已添加的事件监听器，可以使用 removeEventListener() 方法。注意，移除事件监听器时，必须传入相同的事件类型和函数引用。

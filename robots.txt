@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://blog.l0v3ch4n.top/sitemap.xml
