@@ -5,5 +5,5 @@ export default defineCollection({
   title: '备忘录',
   dir: 'memorandum',
   linkPrefix: '/memorandum/',
-  sidebar: ['', 'git', 'grep', 'nginx', 'docker', 'O&M', 'postgreSQL', 'codeSnippet'],
+  sidebar: ['', 'git', 'grep', 'nginx', 'docker', 'O&M', 'postgreSQL', 'codeSnippet', 'macList'],
 })

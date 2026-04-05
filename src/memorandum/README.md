@@ -37,6 +37,10 @@ config:
             icon: logos:visual-studio-code
             details: 常用的代码片段
             link: ./codeSnippet.md
+          - title: macList
+            icon: qlementine-icons:mac-16
+            details: Mac 新机环境搭建清单
+            link: ./macList/
     - type: custom
 permalink: /memorandum/
 title: 备忘录
