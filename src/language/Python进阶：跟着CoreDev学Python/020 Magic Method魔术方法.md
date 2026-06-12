@@ -502,7 +502,7 @@ print(issubclass(int, A))
 
 一般来说，所有的操作符对应魔法方法都有 `r` 版本和 `i` 版本，分别表示操作数在左侧的情况和结果就地更新的情况。
 
-::: python-repl
+::: python-repl editable
 ```python
 class Vector:
     def __init__(self, x: int, y: int) -> None:

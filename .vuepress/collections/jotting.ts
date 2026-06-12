@@ -19,5 +19,11 @@ export default defineCollection({
       collapsed: true,
       items: 'auto',
     },
+    {
+      prefix: '2026',
+      text: '2026',
+      collapsed: true,
+      items: 'auto',
+    },
   ],
 })
