@@ -58,7 +58,7 @@ permalink: /memorandum/macList/
 
 1. [7zip](https://7-zip.org/download.html): 好用的解压缩软件。
     ```bash
-    brew install p7zip 
+    brew install p7zip
     ```
 2. [btop](https://github.com/aristocratos/btop): 电脑资源占用监控软件。
 3. [fastfetch](https://github.com/fastfetch-cli/fastfetch): 解决了 MacOS 上没有刷新键的问题。
