@@ -10,7 +10,7 @@ export default defineThemeConfig({
     name: 'L0v3ch4n',
     description: '一个在全栈开发道路上挣扎的萌新',
     circle: true,
-    organization: '南京航空航天大学',
+    organization: '浙江工商大学',
   },
   navbar,
   collections,
