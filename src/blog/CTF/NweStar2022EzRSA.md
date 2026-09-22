@@ -3,9 +3,9 @@ title: 2022 NewStar Week1 ezrsa复现
 createTime: 2025/03/12 19:30:48
 permalink: /CTF/NewStar2022Week1ezrsa/
 tags:
-    - CTF
-    - Crypto
-    - RSA
+  - CTF
+  - Crypto
+  - RSA
 ---
 
 ## 题干

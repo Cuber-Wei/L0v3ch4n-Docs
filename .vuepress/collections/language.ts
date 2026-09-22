@@ -1,23 +1,23 @@
-import { defineCollection } from 'vuepress-theme-plume'
+import { defineCollection } from "vuepress-theme-plume";
 
 export default defineCollection({
-  type: 'doc',
-  title: '语言学习',
-  dir: 'language',
-  linkPrefix: '/language/',
+  type: "doc",
+  title: "语言学习",
+  dir: "language",
+  linkPrefix: "/language/",
   sidebar: [
-    '',
+    "",
     {
-      prefix: 'Python',
-      text: 'Python',
+      prefix: "Python",
+      text: "Python",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'Python进阶：跟着CoreDev学Python',
-      text: '跟着CoreDev学Python',
+      prefix: "Python进阶：跟着CoreDev学Python",
+      text: "跟着CoreDev学Python",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     // {
     //     prefix: 'Java',
@@ -26,29 +26,29 @@ export default defineCollection({
     //     items: 'auto'
     // },
     {
-      prefix: 'JavaScript',
-      text: 'JavaScript',
+      prefix: "JavaScript",
+      text: "JavaScript",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'Go',
-      text: 'Go',
+      prefix: "Go",
+      text: "Go",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'Shell',
-      text: 'Shell',
+      prefix: "Shell",
+      text: "Shell",
       collapsed: true,
       items: [
-        '基础语法',
-        '常见命令',
-        '流程控制',
-        'Shell函数',
-        '输入输出重定向',
-        '文件包含',
+        "基础语法",
+        "常见命令",
+        "流程控制",
+        "Shell函数",
+        "输入输出重定向",
+        "文件包含",
       ],
     },
   ],
-})
+});

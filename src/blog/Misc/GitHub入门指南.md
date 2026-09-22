@@ -4,7 +4,7 @@ createTime: 2025/05/11 20:31:15
 permalink: /Misc/GitHub-Toturial/
 draft: true
 tags:
-    - GitHub
+  - GitHub
 ---
 
 ## 0xFF 一些概念
@@ -34,9 +34,9 @@ tags:
 1. 访问 [GitHub 官网](https://github.com)
 2. 点击右上角的"Sign up"（注册）按钮
 3. 填写以下信息：
-    - 用户名（Username）：这将是你的 GitHub 身份标识
-    - 电子邮箱（Email）：建议使用常用邮箱
-    - 密码（Password）：设置一个安全的密码
+   - 用户名（Username）：这将是你的 GitHub 身份标识
+   - 电子邮箱（Email）：建议使用常用邮箱
+   - 密码（Password）：设置一个安全的密码
 4. 完成人机验证
 5. 选择你的使用计划（建议新手选择免费计划）
 6. 完成邮箱验证
@@ -60,19 +60,17 @@ tags:
 ### 安装 Git
 
 1. Windows 用户：
-
-    - 访问 [Git 官网](https://git-scm.com/download/win)
-    - 下载并安装 Git for Windows
+   - 访问 [Git 官网](https://git-scm.com/download/win)
+   - 下载并安装 Git for Windows
 
 2. Mac 用户：
-
-    - 打开终端
-    - 输入命令：`git --version`
-    - 如果没有安装，系统会提示安装
+   - 打开终端
+   - 输入命令：`git --version`
+   - 如果没有安装，系统会提示安装
 
 3. Linux 用户：
-    - Ubuntu/Debian: `sudo apt-get install git`
-    - CentOS/RHEL: `sudo yum install git`
+   - Ubuntu/Debian: `sudo apt-get install git`
+   - CentOS/RHEL: `sudo yum install git`
 
 ### 配置 Git
 

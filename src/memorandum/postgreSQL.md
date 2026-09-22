@@ -4,11 +4,13 @@ icon: logos:postgresql
 createTime: 2025/12/29 14:25:16
 permalink: /memorandum/postgreSQL/
 ---
+
 # PostgreSQL 常用命令和语法
 
 ## 一、基础连接和系统命令
 
 ### 1. **连接命令**
+
 ```bash
 # 基本连接
 psql -U 用户名 -d 数据库名 -h 主机 -p 端口
@@ -19,6 +21,7 @@ psql postgres                         # 连接默认数据库
 ```
 
 ### 2. **信息查看命令**
+
 ```sql
 \l 或 \list                          -- 列出所有数据库
 \c 数据库名                          -- 切换数据库
@@ -42,6 +45,7 @@ psql postgres                         # 连接默认数据库
 ## 二、数据库操作
 
 ### 1. **创建和管理数据库**
+
 ```sql
 -- 创建数据库
 CREATE DATABASE 数据库名;
@@ -67,6 +71,7 @@ CREATE DATABASE 新数据库 TEMPLATE 原数据库;
 ```
 
 ### 2. **备份和恢复**
+
 ```bash
 # 备份单个数据库
 pg_dump -U 用户名 数据库名 > 备份文件.sql
@@ -84,6 +89,7 @@ pg_dump 数据库名 | gzip > 备份文件.sql.gz
 ## 三、表操作
 
 ### 1. **创建表**
+
 ```sql
 -- 基本创建
 CREATE TABLE 表名 (
@@ -112,6 +118,7 @@ CREATE TABLE 新表名 (LIKE 原表名 INCLUDING ALL);
 ```
 
 ### 2. **修改表结构**
+
 ```sql
 -- 添加列
 ALTER TABLE 表名 ADD COLUMN 列名 数据类型 约束;
@@ -141,6 +148,7 @@ ALTER TABLE 旧表名 RENAME TO 新表名;
 ## 四、数据操作（CRUD）
 
 ### 1. **插入数据**
+
 ```sql
 -- 插入单行
 INSERT INTO 表名 (列1, 列2) VALUES (值1, 值2);
@@ -161,6 +169,7 @@ INSERT INTO 表名 (列1) VALUES (值1) RETURNING id;
 ```
 
 ### 2. **查询数据**
+
 ```sql
 -- 基础查询
 SELECT * FROM 表名;
@@ -215,6 +224,7 @@ SELECT * FROM 表名 ORDER BY id LIMIT 10 OFFSET 10; -- 第2页
 ```
 
 ### 3. **更新数据**
+
 ```sql
 -- 基础更新
 UPDATE 表名 SET 列1 = 值1, 列2 = 值2 WHERE 条件;
@@ -234,6 +244,7 @@ UPDATE users SET status = 'active' WHERE id = 1 RETURNING *;
 ```
 
 ### 4. **删除数据**
+
 ```sql
 -- 删除指定行
 DELETE FROM 表名 WHERE 条件;
@@ -251,6 +262,7 @@ DELETE FROM users WHERE id = 1 RETURNING *;
 ## 五、索引操作
 
 ### 1. **创建索引**
+
 ```sql
 -- 创建B-tree索引（默认）
 CREATE INDEX idx_name ON 表名 (列名);
@@ -272,6 +284,7 @@ SELECT * FROM pg_indexes WHERE tablename = '表名';
 ```
 
 ### 2. **删除索引**
+
 ```sql
 DROP INDEX IF EXISTS 索引名;
 ```
@@ -329,6 +342,7 @@ DROP VIEW IF EXISTS 视图名;
 ## 八、函数和存储过程
 
 ### 1. **创建函数**
+
 ```sql
 -- 简单函数
 CREATE OR REPLACE FUNCTION get_user_count()
@@ -352,6 +366,7 @@ SELECT * FROM get_user_by_id(1);
 ```
 
 ### 2. **创建存储过程**
+
 ```sql
 CREATE OR REPLACE PROCEDURE update_salary(
     emp_id INTEGER,
@@ -410,6 +425,7 @@ REVOKE INSERT ON 表名 FROM 用户名;
 ## 十一、高级查询技巧
 
 ### 1. **窗口函数**
+
 ```sql
 SELECT
     name,
@@ -421,6 +437,7 @@ FROM employees;
 ```
 
 ### 2. **CTE（公共表表达式）**
+
 ```sql
 WITH recent_orders AS (
     SELECT * FROM orders WHERE order_date > CURRENT_DATE - INTERVAL '30 days'
@@ -432,6 +449,7 @@ SELECT COUNT(*) FROM high_value_orders;
 ```
 
 ### 3. **JSON操作**
+
 ```sql
 -- 创建JSON字段
 CREATE TABLE products (
@@ -452,12 +470,14 @@ SELECT * FROM products WHERE attributes @> '{"brand": "Dell"}';
 ## 十二、实用技巧和最佳实践
 
 ### 1. **查看查询计划**
+
 ```sql
 EXPLAIN SELECT * FROM users WHERE id = 1;
 EXPLAIN ANALYZE SELECT * FROM users WHERE id = 1;  -- 实际执行
 ```
 
 ### 2. **导入/导出数据**
+
 ```bash
 # 导出CSV
 psql -c "\copy (SELECT * FROM table) TO 'data.csv' WITH CSV HEADER"
@@ -467,6 +487,7 @@ psql -c "\copy table FROM 'data.csv' WITH CSV HEADER"
 ```
 
 ### 3. **性能监控**
+
 ```sql
 -- 查看活跃查询
 SELECT * FROM pg_stat_activity;
@@ -483,6 +504,7 @@ SELECT * FROM pg_stat_user_indexes;
 ```
 
 ### 4. **维护命令**
+
 ```sql
 -- 分析表（更新统计信息）
 ANALYZE 表名;
@@ -496,13 +518,13 @@ REINDEX TABLE 表名;
 
 ## 十三、快捷方式速查
 
-| 快捷键 | 功能 |
-|--------|------|
-| `\e` | 打开文本编辑器编辑查询 |
-| `\g` | 再次执行最后一条查询 |
-| `\s` | 查看命令历史 |
-| `\i 文件` | 执行外部SQL文件 |
-| `\o 文件` | 将查询结果输出到文件 |
-| `\! 命令` | 执行shell命令 |
-| `Ctrl + R` | 搜索命令历史 |
-| `Ctrl + D` | 退出psql（等同于\q） |
+| 快捷键     | 功能                   |
+| ---------- | ---------------------- |
+| `\e`       | 打开文本编辑器编辑查询 |
+| `\g`       | 再次执行最后一条查询   |
+| `\s`       | 查看命令历史           |
+| `\i 文件`  | 执行外部SQL文件        |
+| `\o 文件`  | 将查询结果输出到文件   |
+| `\! 命令`  | 执行shell命令          |
+| `Ctrl + R` | 搜索命令历史           |
+| `Ctrl + D` | 退出psql（等同于\q）   |

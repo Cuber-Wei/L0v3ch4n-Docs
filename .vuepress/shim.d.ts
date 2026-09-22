@@ -1,11 +1,11 @@
-declare module '*.vue' {
-  import type { ComponentOptions } from 'vue'
+declare module "*.vue" {
+  import type { ComponentOptions } from "vue";
 
-  const comp: ComponentOptions
-  export default comp
+  const comp: ComponentOptions;
+  export default comp;
 }
 
-declare module '*.css' {
-  const css: string
-  export default css
+declare module "*.css" {
+  const css: string;
+  export default css;
 }

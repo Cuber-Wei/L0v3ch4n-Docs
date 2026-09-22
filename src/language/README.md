@@ -9,6 +9,7 @@ permalink: /language/
 ## 更新日志
 
 ::: timeline
+
 - Python
   time=2025-02-03 type=success card=True icon=akar-icons:python-fill
 

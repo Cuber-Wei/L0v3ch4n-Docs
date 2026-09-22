@@ -1,41 +1,41 @@
-import { defineCollection } from 'vuepress-theme-plume'
+import { defineCollection } from "vuepress-theme-plume";
 
 export default defineCollection({
-  type: 'doc',
-  title: 'TS类型体操',
-  dir: 'TypeGymnastics',
-  linkPrefix: '/TypeGymnastics/',
+  type: "doc",
+  title: "TS类型体操",
+  dir: "TypeGymnastics",
+  linkPrefix: "/TypeGymnastics/",
   sidebar: [
-    '',
+    "",
     {
-      prefix: 'warm',
-      text: '热身',
+      prefix: "warm",
+      text: "热身",
       collapsed: false,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'easy',
-      text: '简单',
+      prefix: "easy",
+      text: "简单",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'medium',
-      text: '中等',
+      prefix: "medium",
+      text: "中等",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'hard',
-      text: '困难',
+      prefix: "hard",
+      text: "困难",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: 'extreme',
-      text: '地狱',
+      prefix: "extreme",
+      text: "地狱",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
   ],
-})
+});

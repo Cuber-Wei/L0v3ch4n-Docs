@@ -3,9 +3,9 @@ title: Schmidt-Samoa密码系统
 createTime: 2025/03/12 20:05:53
 permalink: /CTF/SchmidtSamoa/
 tags:
-    - CTF
-    - Crypto
-    - Schmidt-Samoa
+  - CTF
+  - Crypto
+  - Schmidt-Samoa
 ---
 
 Schmidt-Samoa 密码系统，像 Rabin 加密一样，其安全性基于整数因式分解的难度。但 Rabin 解密时会得到四个解，而 Schmidt-Samoa

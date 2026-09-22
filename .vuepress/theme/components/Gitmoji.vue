@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useClipboard } from '@vueuse/core'
-import { gitmojis } from 'gitmojis'
-import { computed } from 'vue'
+import { useClipboard } from "@vueuse/core";
+import { gitmojis } from "gitmojis";
+import { computed } from "vue";
 
 const list = computed(() =>
-  gitmojis.map(item => ({
+  gitmojis.map((item) => ({
     name: item.name,
     desc: item.description,
     code: item.code,
     emoji: item.emoji,
   })),
-)
+);
 
-const { copy, copied } = useClipboard()
+const { copy, copied } = useClipboard();
 </script>
 
 <template>
@@ -109,7 +109,9 @@ const { copy, copied } = useClipboard()
   line-height: 1;
   opacity: 0;
   border-bottom-left-radius: 8px;
-  transition: opacity var(--vp-t-color), color var(--vp-t-color),
+  transition:
+    opacity var(--vp-t-color),
+    color var(--vp-t-color),
     background-color var(--vp-t-color);
 }
 

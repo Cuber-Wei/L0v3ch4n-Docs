@@ -3,23 +3,24 @@ title: uni-app蓝牙踩坑小记
 createTime: 2025/01/31 21:21:12
 permalink: /article/uniapp-bluetooth/
 tags:
-    - 项目小记
-    - uni-app
-    - 蓝牙
+  - 项目小记
+  - uni-app
+  - 蓝牙
 ---
 
 > 之前接了个与硬件建立蓝牙通讯的项目，学到了一些 uni-app 蓝牙操作的知识，也踩了一些坑，特此记录一下防止忘记。
 
-> [!note]
-> 在蓝牙模块调用时，采用的是 Promise 链式调用的形式，因此下文所提供的代码片段均为 Promise 形式。
->
-> <div style="text-align: center">
->     <img src="https://file.l0v3ch4n.top/L0v3ch4n-Docs-images/ProjectNote/promise链.png" style="height: 80%; width: 80%;" alt="超绝promise链">
-> </div>
->
-> 文章参考：[uni-app 官网](https://zh.uniapp.dcloud.io/quickstart-hx.html)、
-> [蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html)、
-> [低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html)
+::: note
+在蓝牙模块调用时，采用的是 Promise 链式调用的形式，因此下文所提供的代码片段均为 Promise 形式。
+
+<div style="text-align: center">
+    <img src="https://file.l0v3ch4n.top/L0v3ch4n-Docs-images/ProjectNote/promise链.png" style="height: 80%; width: 80%;" alt="超绝promise链">
+</div>
+
+文章参考：[uni-app 官网](https://zh.uniapp.dcloud.io/quickstart-hx.html)、
+[蓝牙](https://uniapp.dcloud.net.cn/api/system/bluetooth.html)、
+[低功耗蓝牙](https://uniapp.dcloud.net.cn/api/system/ble.html)
+:::
 
 ## Step1 初始化蓝牙适配器
 
@@ -32,45 +33,44 @@ function initBlue() {
     // [!code word:openBluetoothAdapter]
     uni.openBluetoothAdapter({
       success(res) {
-        console.log('初始化蓝牙成功')
+        console.log("初始化蓝牙成功");
         // [!code word:getBluetoothAdapterState]
         uni.getBluetoothAdapterState({
           success(r) {
-            console.log('蓝牙状态', r.available)
+            console.log("蓝牙状态", r.available);
             if (r.available) {
-              resolve()
-            }
-            else {
+              resolve();
+            } else {
               uni.showToast({
-                title: '请开启蓝牙',
-                icon: 'error',
+                title: "请开启蓝牙",
+                icon: "error",
                 duration: 2000,
-              })
-              reject()
+              });
+              reject();
             }
           },
           fail(err) {
             uni.showToast({
-              title: '请开启蓝牙',
-              icon: 'error',
+              title: "请开启蓝牙",
+              icon: "error",
               duration: 2000,
-            })
-            reject()
+            });
+            reject();
           },
-        })
+        });
       },
       fail(err) {
-        console.log('初始化蓝牙失败')
-        console.error(err)
+        console.log("初始化蓝牙失败");
+        console.error(err);
         uni.showToast({
-          title: '请开启蓝牙',
-          icon: 'error',
+          title: "请开启蓝牙",
+          icon: "error",
           duration: 2000,
-        })
-        reject()
+        });
+        reject();
       },
-    })
-  })
+    });
+  });
 }
 ```
 
@@ -86,29 +86,29 @@ function discovery() {
     uni.startBluetoothDevicesDiscovery({
       success(res) {
         uni.showLoading({
-          title: '正在搜索设备',
-          icon: 'none',
-        })
+          title: "正在搜索设备",
+          icon: "none",
+        });
         // 开启监听回调
         // [!code word:onBluetoothDeviceFound]
         uni.onBluetoothDeviceFound((devices) => {
-          let obj = devices.devices[0]
-          console.log(obj.name)
+          let obj = devices.devices[0];
+          console.log(obj.name);
           if (obj.name === conf.deviceName) {
             // 找到目标设备
             // 设置设备ID到同步缓存中
-            uni.setStorageSync('deviceId', obj.deviceId)
-            uni.hideLoading()
-            resolve()
+            uni.setStorageSync("deviceId", obj.deviceId);
+            uni.hideLoading();
+            resolve();
           }
-        })
-        console.log('搜索蓝牙外围设备完成', res)
+        });
+        console.log("搜索蓝牙外围设备完成", res);
       },
       fail(err) {
-        console.log(err)
+        console.log(err);
       },
-    })
-  })
+    });
+  });
 }
 ```
 
@@ -122,29 +122,29 @@ function connect() {
   return new Promise((resolve, reject) => {
     // [!code word:createBLEConnection]
     uni.createBLEConnection({
-      deviceId: uni.getStorageSync('deviceId'), // 设备id
+      deviceId: uni.getStorageSync("deviceId"), // 设备id
       success(res) {
-        console.log('连接成功')
-        console.log(res)
+        console.log("连接成功");
+        console.log(res);
         uni.showToast({
-          title: '连接成功',
-          icon: 'success',
-        })
+          title: "连接成功",
+          icon: "success",
+        });
         // Step4 蓝牙连接成功后关闭蓝牙搜索
-        stopDiscovery()
-        resolve()
+        stopDiscovery();
+        resolve();
       },
       fail(err) {
         uni.showToast({
-          title: '连接失败',
-          icon: 'error',
-        })
-        console.log('蓝牙连接失败')
-        console.log(err)
-        reject()
+          title: "连接失败",
+          icon: "error",
+        });
+        console.log("蓝牙连接失败");
+        console.log(err);
+        reject();
       },
-    })
-  })
+    });
+  });
 }
 ```
 
@@ -161,14 +161,14 @@ function stopDiscovery() {
   // [!code word:stopBluetoothDevicesDiscovery]
   uni.stopBluetoothDevicesDiscovery({
     success(res) {
-      console.log('停止成功')
-      console.log(res)
+      console.log("停止成功");
+      console.log(res);
     },
     fail(err) {
-      console.log('停止失败')
-      console.error(err)
+      console.log("停止失败");
+      console.error(err);
     },
-  })
+  });
 }
 ```
 
@@ -182,17 +182,17 @@ function getServices() {
   return new Promise((resolve, reject) => {
     // [!code word:getBLEDeviceServices]
     uni.getBLEDeviceServices({
-      deviceId: uni.getStorageSync('deviceId'),
+      deviceId: uni.getStorageSync("deviceId"),
       success(res) {
-        console.log(res)
-        resolve()
+        console.log(res);
+        resolve();
       },
       fail(err) {
-        console.error(err)
-        reject()
+        console.error(err);
+        reject();
       },
-    })
-  })
+    });
+  });
 }
 ```
 
@@ -206,18 +206,18 @@ function getCharacteristics() {
   return new Promise((resolve, reject) => {
     // [!code word:getBLEDeviceCharacteristics]
     uni.getBLEDeviceCharacteristics({
-      deviceId: uni.getStorageSync('deviceId'),
+      deviceId: uni.getStorageSync("deviceId"),
       serviceId: conf.serviceId,
       success(res) {
-        console.log(res)
-        resolve()
+        console.log(res);
+        resolve();
       },
       fail(err) {
-        console.error(err)
-        reject()
+        console.error(err);
+        reject();
       },
-    })
-  })
+    });
+  });
 }
 ```
 
@@ -231,22 +231,22 @@ function notify(handleFunc) {
   // 这里传入一个回调函数，用于处理接收到的数据。
   // [!code word:notifyBLECharacteristicValueChange]
   uni.notifyBLECharacteristicValueChange({
-    deviceId: uni.getStorageSync('deviceId'), // 设备id
+    deviceId: uni.getStorageSync("deviceId"), // 设备id
     serviceId: conf.serviceId, // 监听指定的服务
     characteristicId: conf.characteristicId, // 监听对应的特征值
     state: true,
     success(res) {
-      console.log(res)
-      listenValueChange(handleFunc) // 开启监听消息变化，并传入回调函数。
+      console.log(res);
+      listenValueChange(handleFunc); // 开启监听消息变化，并传入回调函数。
     },
     fail(err) {
-      console.error(err)
+      console.error(err);
       uni.showToast({
-        title: '监听失败',
-        icon: 'error',
-      })
+        title: "监听失败",
+        icon: "error",
+      });
     },
-  })
+  });
 }
 ```
 
@@ -260,13 +260,13 @@ function listenValueChange(handleFunc) {
   // 这里传入一个回调函数，用于处理接收到的数据。
   // [!code word:onBLECharacteristicValueChange]
   uni.onBLECharacteristicValueChange((res) => {
-    let resArray = ab2array(res.value) // 拿到数字数组
+    let resArray = ab2array(res.value); // 拿到数字数组
     // Something to do...
-  })
+  });
 }
 // ArrayBuffer 转数组
 function ab2array(buffer) {
-  return Array.from(new Uint8Array(buffer))
+  return Array.from(new Uint8Array(buffer));
 }
 ```
 
@@ -279,35 +279,35 @@ function ab2array(buffer) {
 function sendCommand(data) {
   // [!code word:writeBLECharacteristicValue]
   uni.writeBLECharacteristicValue({
-    deviceId: uni.getStorageSync('deviceId'),
+    deviceId: uni.getStorageSync("deviceId"),
     serviceId: conf.serviceId,
     characteristicId: conf.characteristicId,
     // 注意：value 是ArrayBuffer类型，需要进行转换。
     value: array2ab(data), // [!code highlight]
     success(res) {
-      console.log(`写入成功${res.errMsg}`)
+      console.log(`写入成功${res.errMsg}`);
     },
     fail(err) {
-      console.error(err)
+      console.error(err);
       uni.showToast({
-        title: '指令发送失败',
-        icon: 'error',
-      })
+        title: "指令发送失败",
+        icon: "error",
+      });
     },
-  })
+  });
 }
 // 数组转Arraybuffer
 function array2ab(numbers) {
   // 创建一个ArrayBuffer，其大小等于数字数组的长度
-  const buffer = new ArrayBuffer(numbers.length)
+  const buffer = new ArrayBuffer(numbers.length);
   // 创建一个Uint8Array视图来操作buffer
-  const uint8View = new Uint8Array(buffer)
+  const uint8View = new Uint8Array(buffer);
   // 将数字填充到Uint8Array中
   for (let i = 0; i < numbers.length; i++) {
-    uint8View[i] = numbers[i]
+    uint8View[i] = numbers[i];
   }
   // 返回ArrayBuffer
-  return buffer
+  return buffer;
 }
 ```
 
@@ -321,16 +321,16 @@ function stopConnection() {
   return new Promise((resolve, reject) => {
     // [!code word:closeBLEConnection]
     uni.closeBLEConnection({
-      deviceId: uni.getStorageSync('deviceId'), // 设备id
+      deviceId: uni.getStorageSync("deviceId"), // 设备id
       success(r) {
-        resolve()
+        resolve();
       },
       fail(r) {
-        console.log(r)
-        reject()
+        console.log(r);
+        reject();
       },
-    })
-  })
+    });
+  });
 }
 ```
 

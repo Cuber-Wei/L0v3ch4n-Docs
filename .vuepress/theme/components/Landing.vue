@@ -1,34 +1,34 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import LandingBg from './LandingBg.vue'
-import LandingHitokoto from './LandingHitokoto.vue'
-import LandingNav from './LandingNav.vue'
-import LandingProfile from './LandingProfile.vue'
-import LandingTagline from './LandingTagline.vue'
-import LandingToday from './LandingToday.vue'
+import { ref } from "vue";
+import LandingBg from "./LandingBg.vue";
+import LandingHitokoto from "./LandingHitokoto.vue";
+import LandingNav from "./LandingNav.vue";
+import LandingProfile from "./LandingProfile.vue";
+import LandingTagline from "./LandingTagline.vue";
+import LandingToday from "./LandingToday.vue";
 
 interface LandingNavItem {
-  text: string
-  link: string
-  icon: string
+  text: string;
+  link: string;
+  icon: string;
 }
 
 withDefaults(
   defineProps<{
-    name?: string
-    avatar?: string
-    tagline?: string
-    hitokoto?: boolean
-    today?: boolean
-    nav?: LandingNavItem[]
+    name?: string;
+    avatar?: string;
+    tagline?: string;
+    hitokoto?: boolean;
+    today?: boolean;
+    nav?: LandingNavItem[];
   }>(),
   {
     hitokoto: true,
     today: true,
   },
-)
+);
 
-const active = ref(false)
+const active = ref(false);
 </script>
 
 <template>

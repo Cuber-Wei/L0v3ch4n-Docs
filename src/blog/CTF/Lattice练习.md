@@ -3,9 +3,9 @@ title: Lattice练习
 createTime: 2025/03/12 20:03:52
 permalink: /CTF/LatticePractise/
 tags:
-    - CTF
-    - Crypto
-    - Lattice
+  - CTF
+  - Crypto
+  - Lattice
 ---
 
 题目：

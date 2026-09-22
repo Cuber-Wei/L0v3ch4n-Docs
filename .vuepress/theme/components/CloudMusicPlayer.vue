@@ -1,33 +1,33 @@
 <script lang="ts" setup>
-import { onMounted, ref } from 'vue'
+import { onMounted, ref } from "vue";
 
 const props = defineProps({
   title: {
     type: String,
-    default: '音乐播放器',
+    default: "音乐播放器",
   },
   id: {
     type: String,
-    default: '2155422573',
+    default: "2155422573",
   },
   auto: {
     type: String,
     default: 0,
   },
-})
+});
 
 function getSrc() {
-  return `//music.163.com/outchain/player?type=2&id=${props.id}&auto=${props.auto}&height=66`
+  return `//music.163.com/outchain/player?type=2&id=${props.id}&auto=${props.auto}&height=66`;
 }
-const is_mobile = ref(false)
+const is_mobile = ref(false);
 onMounted(() => {
-  isMobile()
-})
+  isMobile();
+});
 function isMobile() {
-  is_mobile.value
-    = navigator.userAgent.match(
+  is_mobile.value =
+    navigator.userAgent.match(
       /(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i,
-    ) !== null
+    ) !== null;
 }
 </script>
 

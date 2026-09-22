@@ -16,25 +16,25 @@ npm install @bytemd/vue-next
 
 ```typescript
 // main.ts
-import 'bytemd/dist/index.css'
+import "bytemd/dist/index.css";
 ```
 
 ```vue
 // @/components/MdEditor.vue
 <script lang="ts" setup>
-import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
-import math from '@bytemd/plugin-math'
+import gfm from "@bytemd/plugin-gfm";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
 
 const plugins = [
   gfm(),
   highlight(),
   math(),
   // Add more plugins here
-]
+];
 
 function handleChange(v: string) {
-  value.value = v
+  value.value = v;
 }
 </script>
 
@@ -55,7 +55,7 @@ function handleChange(v: string) {
 <script lang="ts" setup>
 function onContentChange(v: string) {
   // [!code highlight]
-  question.value.content = v // [!code highlight]
+  question.value.content = v; // [!code highlight]
 } // [!code highlight]
 </script>
 
@@ -68,37 +68,37 @@ function onContentChange(v: string) {
 
 ```vue
 <script lang="ts" setup>
-import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
-import math from '@bytemd/plugin-math'
-import { defineProps, withDefaults } from 'vue'
+import gfm from "@bytemd/plugin-gfm";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
+import { defineProps, withDefaults } from "vue";
 
 /**
    定义组件属性类型
  */
 interface Props {
-  value: string
-  mode?: string
-  handleChange: (v: string) => void
+  value: string;
+  mode?: string;
+  handleChange: (v: string) => void;
 }
 
 /**
    给组件指定初始值
  */
 const props = withDefaults(defineProps<Props>(), {
-  value: () => '',
-  mode: () => 'split',
+  value: () => "",
+  mode: () => "split",
   handleChange: (v: string) => {
-    console.log(v)
+    console.log(v);
   },
-})
+});
 
 const plugins = [
   gfm(),
   highlight(),
   math(),
   // Add more plugins here
-]
+];
 </script>
 
 <template>
@@ -126,36 +126,36 @@ const plugins = [
 
 ```vue
 <script lang="ts" setup>
-import gfm from '@bytemd/plugin-gfm'
-import highlight from '@bytemd/plugin-highlight'
-import math from '@bytemd/plugin-math'
-import { defineEmits, defineProps, withDefaults } from 'vue'
+import gfm from "@bytemd/plugin-gfm";
+import highlight from "@bytemd/plugin-highlight";
+import math from "@bytemd/plugin-math";
+import { defineEmits, defineProps, withDefaults } from "vue";
 
 /**
    定义组件属性类型
  */
 interface Props {
-  value: string
-  mode?: string
-  handleChange: (v: string) => void
+  value: string;
+  mode?: string;
+  handleChange: (v: string) => void;
 }
 
 /**
    给组件指定初始值
  */
 const props = withDefaults(defineProps<Props>(), {
-  value: () => '',
-  mode: () => 'split',
-})
+  value: () => "",
+  mode: () => "split",
+});
 
-const emit = defineEmits(['update:value'])
+const emit = defineEmits(["update:value"]);
 
-const plugins = [gfm(), highlight(), math()]
+const plugins = [gfm(), highlight(), math()];
 
 // [!code highlight]
 function handleChange(v: string) {
   // [!code highlight]
-  emit('update:value', v) // [!code highlight]
+  emit("update:value", v); // [!code highlight]
 } // [!code highlight]
 </script>
 

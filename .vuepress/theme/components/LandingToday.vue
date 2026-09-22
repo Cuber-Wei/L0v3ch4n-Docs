@@ -1,15 +1,18 @@
 <script setup lang="ts">
-import { useDate } from '../composables/date'
-import { useWeather } from '../composables/weather'
+import { useDate } from "../composables/date";
+import { useWeather } from "../composables/weather";
 
-const { city, weather } = useWeather()
-const { date, time } = useDate()
+const { city, weather } = useWeather();
+const { date, time } = useDate();
 </script>
 
 <template>
   <div class="landing-card landing-today">
     <p class="today-date" data-allow-mismatch>
-      <span>{{ date.year }}</span><span>年</span> <span>{{ date.month }}</span><span>月</span> <span>{{ date.day }}</span><span>日</span>
+      <span>{{ date.year }}</span
+      ><span>年</span> <span>{{ date.month }}</span
+      ><span>月</span> <span>{{ date.day }}</span
+      ><span>日</span>
       <span>星期{{ date.week }}</span>
     </p>
     <p class="today-time">

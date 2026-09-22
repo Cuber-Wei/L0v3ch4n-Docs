@@ -1,29 +1,29 @@
-import { defineCollection } from 'vuepress-theme-plume'
+import { defineCollection } from "vuepress-theme-plume";
 
 export default defineCollection({
-  type: 'doc',
-  title: '随笔',
-  dir: 'jotting',
-  linkPrefix: '/jotting/',
+  type: "doc",
+  title: "随笔",
+  dir: "jotting",
+  linkPrefix: "/jotting/",
   sidebar: [
-    '',
+    "",
     {
-      prefix: '2024',
-      text: '2024',
+      prefix: "2024",
+      text: "2024",
       collapsed: false,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: '2025',
-      text: '2025',
+      prefix: "2025",
+      text: "2025",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
     {
-      prefix: '2026',
-      text: '2026',
+      prefix: "2026",
+      text: "2026",
       collapsed: true,
-      items: 'auto',
+      items: "auto",
     },
   ],
-})
+});

@@ -3,10 +3,10 @@ title: NTRU加密：格密码初探
 createTime: 2025/03/12 19:55:16
 permalink: /CTF/NTRU/
 tags:
-    - CTF
-    - Crypto
-    - Lattice
-    - NTRU
+  - CTF
+  - Crypto
+  - Lattice
+  - NTRU
 ---
 
 ## 参数

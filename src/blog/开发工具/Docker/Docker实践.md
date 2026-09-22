@@ -3,9 +3,9 @@ title: Docker实践
 createTime: 2025/06/13 10:20:46
 permalink: /DevTools/Docker/DockerPractice/
 tags:
-    - DevTool
-    - Practice
-    - Docker
+  - DevTool
+  - Practice
+  - Docker
 ---
 
 ## 0xFF 引言
@@ -40,7 +40,9 @@ Dockerfile 是一个文本文件，包含了一条条指令，每一条指令对
 编写 Dockerfile 通常遵循以下流程：
 
 ### 步骤 1：选择基础镜像
+
 根据应用类型选择合适的基础镜像。例如：
+
 - **Java 应用**：`openjdk:11-jre-slim`
 - **Python 应用**：`python:3.9-slim`
 - **Node.js 应用**：`node:16-alpine`
@@ -49,21 +51,27 @@ Dockerfile 是一个文本文件，包含了一条条指令，每一条指令对
 基础镜像应尽量选择轻量级（如 `-slim`、`-alpine`）且版本明确，避免使用 `latest`。
 
 ### 步骤 2：设置工作目录
+
 使用 `WORKDIR` 指令创建工作目录并切换进去，后续的 COPY、RUN、CMD 都会基于此目录执行。
 
 ### 步骤 3：复制项目文件
+
 将宿主机上的源代码、配置文件等复制到镜像中。通常先复制依赖定义文件（如 `package.json`、`requirements.txt`），再复制其他源码，这样可以利用 Docker 缓存，避免每次构建都重新安装依赖。
 
 ### 步骤 4：安装依赖和构建
+
 执行 `RUN` 命令安装软件包或编译代码。对于多阶段构建，这部分可能只存在于构建阶段。
 
 ### 步骤 5：设置环境变量
+
 使用 `ENV` 定义容器运行时需要的环境变量，如 `ENV NODE_ENV=production`。
 
 ### 步骤 6：暴露端口
+
 用 `EXPOSE` 声明应用监听的端口（例如 `EXPOSE 8080`），便于用户了解容器将使用哪些端口。
 
 ### 步骤 7：定义启动命令
+
 用 `CMD` 或 `ENTRYPOINT` 指定容器启动时要执行的进程。通常建议使用 **exec 格式**（如 `CMD ["node", "app.js"]`），而不是 shell 格式，以确保能正确接收信号。
 
 ## 0x04. 示例：一个 Node.js 应用的 Dockerfile
@@ -95,16 +103,21 @@ CMD ["node", "server.js"]
 ## 0x05. 构建与运行
 
 ### 构建镜像
+
 在 Dockerfile 所在目录执行：
+
 ```bash
 docker build -t myapp:1.0 .
 ```
+
 `-t` 指定镜像名称和标签，`.` 表示构建上下文路径。
 
 ### 运行容器
+
 ```bash
 docker run -d -p 3000:3000 --name myapp myapp:1.0
 ```
+
 `-d` 后台运行，`-p` 将宿主机端口映射到容器端口。
 
 ## 0x06. 最佳实践建议

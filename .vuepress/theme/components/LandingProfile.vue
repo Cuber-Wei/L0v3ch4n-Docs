@@ -1,23 +1,23 @@
 <script setup lang="ts">
-import VPSocialLinks from '@theme/VPSocialLinks.vue'
-import { computed } from 'vue'
-import { useData } from 'vuepress-theme-plume/client'
+import VPSocialLinks from "@theme/VPSocialLinks.vue";
+import { computed } from "vue";
+import { useData } from "vuepress-theme-plume/client";
 
 defineProps<{
-  name?: string
-  avatar?: string
-}>()
+  name?: string;
+  avatar?: string;
+}>();
 
-const { theme } = useData()
+const { theme } = useData();
 
-const profile = computed(() => theme.value.profile)
-const social = computed(() => theme.value.social)
+const profile = computed(() => theme.value.profile);
+const social = computed(() => theme.value.social);
 </script>
 
 <template>
   <div v-if="profile || (name && avatar)" class="landing-profile">
     <div class="landing-card profile-avatar">
-      <img :src="avatar || profile?.avatar" alt="Avatar">
+      <img :src="avatar || profile?.avatar" alt="Avatar" />
     </div>
     <div>
       <h2 class="profile-name">
@@ -67,7 +67,9 @@ const social = computed(() => theme.value.social)
   background-size: 200% 200%;
   background-position: center;
   background-image: var(--landing-card-conic);
-  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff -100% 200%);
+  mask:
+    linear-gradient(#fff 0 0) content-box,
+    linear-gradient(#fff -100% 200%);
   mask-composite: subtract;
   opacity: 0;
   transition: opacity var(--vp-t-color);

@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import VPIcon from 'vuepress-theme-plume/components/VPIcon.vue'
-import VPLink from 'vuepress-theme-plume/components/VPLink.vue'
+import VPIcon from "vuepress-theme-plume/components/VPIcon.vue";
+import VPLink from "vuepress-theme-plume/components/VPLink.vue";
 
 interface LandingNavItem {
-  text: string
-  link?: string
-  icon: string
+  text: string;
+  link?: string;
+  icon: string;
 }
 
 defineProps<{
-  nav?: LandingNavItem[]
-}>()
+  nav?: LandingNavItem[];
+}>();
 </script>
 
 <template>
