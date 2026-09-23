@@ -1,0 +1,72 @@
+---
+url: /TypeGymnastics/hard/Tree-path-array/index.md
+---
+## 题目
+
+Create a type `Path` that represents validates a possible path of a tree under the form of an array.
+
+Related challenges:
+
+* [Object key path](https://github.com/type-challenges/type-challenges/blob/main/questions/07258-hard-object-key-paths/README.md)
+
+```ts
+declare const example: {
+  foo: {
+    bar: {
+      a: string
+    }
+    baz: {
+      b: number
+      c: number
+    }
+  }
+}
+
+// Possible solutions:
+// []
+// ['foo']
+// ['foo', 'bar']
+// ['foo', 'bar', 'a']
+// ['foo', 'baz']
+// ['foo', 'baz', 'b']
+// ['foo', 'baz', 'c']
+```
+
+## 解题思路
+
+待补充
+
+## 答案
+
+```ts
+type Path<T> = any
+```
+
+## 验证
+
+```ts
+import type { ExpectExtends, ExpectFalse, ExpectTrue } from '@type-challenges/utils'
+
+declare const example: {
+  foo: {
+    bar: {
+      a: string
+    }
+    baz: {
+      b: number
+      c: number
+    }
+  }
+}
+
+type cases = [
+  ExpectTrue<ExpectExtends<Path<typeof example['foo']['bar']>, ['a']>>,
+  ExpectTrue<ExpectExtends<Path<typeof example['foo']['baz']>, ['b'] | ['c']>>,
+  ExpectTrue<ExpectExtends<Path<typeof example['foo']>, ['bar'] | ['baz'] | ['bar', 'a'] | ['baz', 'b'] | ['baz', 'c']>>,
+  ExpectFalse<ExpectExtends<Path<typeof example['foo']['bar']>, ['z']>>,
+]
+```
+
+## 参考
+
+无

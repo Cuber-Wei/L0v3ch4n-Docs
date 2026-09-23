@@ -1,0 +1,64 @@
+---
+url: /TypeGymnastics/medium/Permutations-of-Tuple/index.md
+---
+## 题目
+
+Given a generic tuple type `T extends unknown[]`, write a type which produces all permutations of `T` as a union.
+
+For example:
+
+```ts
+PermutationsOfTuple<[1, number, unknown]>
+// Should return:
+// | [1, number, unknown]
+// | [1, unknown, number]
+// | [number, 1, unknown]
+// | [unknown, 1, number]
+// | [number, unknown, 1]
+// | [unknown, number ,1]
+```
+
+## 解题思路
+
+待补充
+
+## 答案
+
+```ts
+type PermutationsOfTuple<T extends unknown[]> = any
+```
+
+## 验证
+
+```ts
+import type { Equal, Expect, ExpectFalse } from '@type-challenges/utils'
+
+type cases = [
+  Expect<Equal<PermutationsOfTuple<[]>, []>>,
+  Expect<Equal<PermutationsOfTuple<[any]>, [any]>>,
+  Expect<Equal<PermutationsOfTuple<[any, unknown]>, [any, unknown] | [unknown, any]>>,
+  Expect<Equal<
+    PermutationsOfTuple<[any, unknown, never]>,
+    | [any, unknown, never]
+    | [unknown, any, never]
+    | [unknown, never, any]
+    | [any, never, unknown]
+    | [never, any, unknown]
+    | [never, unknown, any]
+  >>,
+  Expect<Equal<
+    PermutationsOfTuple<[1, number, unknown]>,
+    | [1, number, unknown]
+    | [1, unknown, number]
+    | [number, 1, unknown]
+    | [unknown, 1, number]
+    | [number, unknown, 1]
+    | [unknown, number, 1]
+  >>,
+  ExpectFalse<Equal<PermutationsOfTuple<[ 1, number, unknown ]>, [unknown]>>,
+]
+```
+
+## 参考
+
+无
