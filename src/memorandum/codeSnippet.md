@@ -11,12 +11,13 @@ permalink: /memorandum/CodeSnippet/
 
 ```javascript
 function debounce(func, duration = 500) {
-  let timerId;
+  let timerId
   return function (...args) {
-    if (timerId) clearTimeout(timerId);
+    if (timerId)
+      clearTimeout(timerId)
     timerId = setTimeout(() => {
-      func.apply(this, args);
-    }, duration);
-  };
+      func.apply(this, args)
+    }, duration)
+  }
 }
 ```

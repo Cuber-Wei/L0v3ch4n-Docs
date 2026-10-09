@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { useClipboard } from "@vueuse/core";
-import { gitmojis } from "gitmojis";
-import { computed } from "vue";
+import { useClipboard } from '@vueuse/core'
+import { gitmojis } from 'gitmojis'
+import { computed } from 'vue'
 
 const list = computed(() =>
-  gitmojis.map((item) => ({
+  gitmojis.map(item => ({
     name: item.name,
     desc: item.description,
     code: item.code,
     emoji: item.emoji,
   })),
-);
+)
 
-const { copy, copied } = useClipboard();
+const { copy, copied } = useClipboard()
 </script>
 
 <template>

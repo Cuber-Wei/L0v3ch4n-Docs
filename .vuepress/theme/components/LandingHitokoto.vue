@@ -1,6 +1,8 @@
 <template>
   <div class="landing-card landing-hitokoto">
-    <p data-allow-mismatch>It’s you that you wanna change to win.</p>
+    <p data-allow-mismatch>
+      It’s you that you wanna change to win.
+    </p>
   </div>
 </template>
 
